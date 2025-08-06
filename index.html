@@ -3,102 +3,287 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Juan P. Romano</title>
+        <meta name="description" content="Juan P. Romano - Linux Coordinator, Entrepreneur, Developer, and Tech Writer" />
+        <meta name="author" content="Juan P. Romano" />
+        <title>Juan P. Romano - Personal Website</title>
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
+        
+        <!-- Font Awesome icons -->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
+        
+        <!-- Google fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        
+        <!-- Core theme CSS -->
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">
-                <span class="d-block d-lg-none">Juan P. Romano</span>
-                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="..." /></span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Home</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="https://portfolio-jpromanonet.vercel.app">Portfolio</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="https://mybooks-jpromanonet.vercel.app">My Books</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="https://writing-jpromanonet.vercel.app">Writing</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="https://ventures-jpromanonet.vercel.app">Ventures</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="https://news-jpromanonet.vercel.app">News & Media</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="https://opensource-jpromanonet.vercel.app">Open Source</a></li>
-                    <!--<li class="nav-item"><a class="nav-link js-scroll-trigger" href="http://jpromano.net/donations">Donations</a></li>-->
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="https://resumes-jpromanonet.vercel.app">Resumes</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
-                    <hr>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="https://linktr.ee/jpromanonet" target="_blank">Contact</a></li>
-                </ul>
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <nav class="header-nav">
+                    <a href="#hero" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="https://portfolio-jpromanonet.vercel.app" target="_blank" class="nav-link">
+                        <i class="fas fa-briefcase"></i>
+                        <span>Portfolio</span>
+                    </a>
+                    <a href="https://mybooks-jpromanonet.vercel.app" target="_blank" class="nav-link">
+                        <i class="fas fa-book"></i>
+                        <span>Books</span>
+                    </a>
+                    <a href="https://writing-jpromanonet.vercel.app" target="_blank" class="nav-link">
+                        <i class="fas fa-pen-fancy"></i>
+                        <span>Writing</span>
+                    </a>
+                    <a href="https://ventures-jpromanonet.vercel.app" target="_blank" class="nav-link">
+                        <i class="fas fa-rocket"></i>
+                        <span>Ventures</span>
+                    </a>
+                    <a href="https://news-jpromanonet.vercel.app" target="_blank" class="nav-link">
+                        <i class="fas fa-newspaper"></i>
+                        <span>News</span>
+                    </a>
+                    <a href="https://opensource-jpromanonet.vercel.app" target="_blank" class="nav-link">
+                        <i class="fab fa-github"></i>
+                        <span>Open Source</span>
+                    </a>
+                    <a href="https://resumes-jpromanonet.vercel.app" target="_blank" class="nav-link">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Resumes</span>
+                    </a>
+                    <a href="https://ututo.ar" target="_blank" class="nav-link">
+                        <i class="fab fa-linux"></i>
+                        <span>Ututo</span>
+                    </a>
+                </nav>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <i>💡</i>
+                </button>
             </div>
-        </nav>
-        <!-- Page Content-->
-        <div class="container-fluid p-0">
-            <!-- About-->
-            <section class="resume-section" id="about">
-                <div class="resume-section-content">
-                    <h1 class="mb-0">
-                        Juan P.
-                        <span class="text-primary">Romano</span>
-                    </h1>
-                    <div class="subheading mb-5">
-                        <a href="mailto:contact@jpromano.net">contact@jpromano.net</a>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Juan P. Romano</h1>
+                <p class="hero-subtitle">Linux Coordinator & Open Source Enthusiast</p>
+                <p class="hero-description">
+                    I coordinate the <a href="https://ututo.ar" target="_blank" class="hero-link">Ututo Linux</a>🐧 project, 
+                    start ventures, code, and write✍🏽 about science & technology🔬. 
+                    Polyglot and nerd passionate about open source and innovation.
+                </p>
+                <div class="hero-actions">
+                    <a href="https://hackandmate.medium.com" target="_blank" class="hero-btn primary">
+                        <i class="fas fa-blog"></i>
+                        Read My Blog
+                    </a>
+                    <a href="https://linktr.ee/jpromanonet" target="_blank" class="hero-btn secondary">
+                        <i class="fas fa-link"></i>
+                        Connect With Me
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- About Section -->
+            <section class="content-section" id="about">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">About Me</h2>
+                        <p class="section-subtitle">Passionate about technology and innovation</p>
                     </div>
-                    <p class="lead mb-5">I coordinate the <a href="https://ututo.ar" target="_blank">Ututo Linux</a>🐧 project, start ventures, code, and write✍🏽 about science & technology🔬, polyglot and nerd.</p>
-                    <p class="lead mb-5">You can read my blog <a href="https://hackandmate.medium.com" target="_blank">here</a>.</p>
-                    <div class="social-icons">
-                        <a class="social-icon" href="https://www.linkedin.com/in/jpromanonet/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="social-icon" href="https://github.com/jpromanonet" target="_blank"><i class="fab fa-github"></i></a>
-                        <a class="social-icon" href="https://x.com/jpromanonet" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a class="social-icon" href="https://instagram.com/jpromanonet"><i class="fab fa-instagram"></i></a>
+                    <div class="about-content">
+                        <div class="about-text">
+                            <p>I coordinate the <a href="https://ututo.ar" target="_blank" class="text-link">Ututo Linux</a>🐧 project, start ventures, code, and write✍🏽 about science & technology🔬, polyglot and nerd.</p>
+                            <p>You can read my blog <a href="https://hackandmate.medium.com" target="_blank" class="text-link">here</a>.</p>
+                        </div>
                     </div>
                 </div>
             </section>
-            <hr class="m-0" />
-            <!-- Skills-->
-            <section class="resume-section" id="skills">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">Skills</h2>
-                    <div class="subheading mb-3">Programming Languages & Tools</div>
-                    <ul class="list-inline dev-icons">
-                        <!-- Programming Languages -->
-                        <li class="list-inline-item"><i class="fab fa-html5"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-css3-alt"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-js-square"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-angular"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-react"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-node-js"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-python"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-java"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-php"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-sass"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-bootstrap"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-laravel"></i></li>
-            
-                        <!-- Tools -->
-                        <li class="list-inline-item"><i class="fab fa-docker"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-git"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-github"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-gitlab"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-bitbucket"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-aws"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-linux"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-npm"></i></li>
-                    </ul>
+
+            <!-- Skills Section -->
+            <section class="content-section skills-section" id="skills">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Skills & Technologies</h2>
+                        <p class="section-subtitle">Programming Languages & Tools I work with</p>
+                    </div>
+                    <div class="skills-content">
+                        <div class="skills-grid">
+                            <div class="skill-category">
+                                <h3 class="category-title">Programming Languages</h3>
+                                <div class="skill-items">
+                                    <div class="skill-item">
+                                        <i class="fab fa-html5"></i>
+                                        <span>HTML5</span>
+                                    </div>
+                                    <div class="skill-item">
+                                        <i class="fab fa-css3-alt"></i>
+                                        <span>CSS3</span>
+                                    </div>
+                                    <div class="skill-item">
+                                        <i class="fab fa-js-square"></i>
+                                        <span>JavaScript</span>
+                                    </div>
+                                    <div class="skill-item">
+                                        <i class="fab fa-python"></i>
+                                        <span>Python</span>
+                                    </div>
+                                    <div class="skill-item">
+                                        <i class="fab fa-java"></i>
+                                        <span>Java</span>
+                                    </div>
+                                    <div class="skill-item">
+                                        <i class="fab fa-php"></i>
+                                        <span>PHP</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-category">
+                                <h3 class="category-title">Frameworks & Libraries</h3>
+                                <div class="skill-items">
+                                    <div class="skill-item">
+                                        <i class="fab fa-react"></i>
+                                        <span>React</span>
+                                    </div>
+                                    <div class="skill-item">
+                                        <i class="fab fa-angular"></i>
+                                        <span>Angular</span>
+                                    </div>
+                                    <div class="skill-item">
+                                        <i class="fab fa-node-js"></i>
+                                        <span>Node.js</span>
+                                    </div>
+                                    <div class="skill-item">
+                                        <i class="fab fa-laravel"></i>
+                                        <span>Laravel</span>
+                                    </div>
+                                    <div class="skill-item">
+                                        <i class="fab fa-bootstrap"></i>
+                                        <span>Bootstrap</span>
+                                    </div>
+                                    <div class="skill-item">
+                                        <i class="fab fa-sass"></i>
+                                        <span>Sass</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-category">
+                                <h3 class="category-title">Tools & Platforms</h3>
+                                <div class="skill-items">
+                                    <div class="skill-item">
+                                        <i class="fab fa-docker"></i>
+                                        <span>Docker</span>
+                                    </div>
+                                    <div class="skill-item">
+                                        <i class="fab fa-git"></i>
+                                        <span>Git</span>
+                                    </div>
+                                    <div class="skill-item">
+                                        <i class="fab fa-github"></i>
+                                        <span>GitHub</span>
+                                    </div>
+                                    <div class="skill-item">
+                                        <i class="fab fa-aws"></i>
+                                        <span>AWS</span>
+                                    </div>
+                                    <div class="skill-item">
+                                        <i class="fab fa-linux"></i>
+                                        <span>Linux</span>
+                                    </div>
+                                    <div class="skill-item">
+                                        <i class="fab fa-npm"></i>
+                                        <span>NPM</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </section>            
-        </div>
-        <!-- Bootstrap core JS-->
+            </section>
+
+            <!-- Contact Section -->
+            <section class="content-section contact-section" id="contact">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Get In Touch</h2>
+                        <p class="section-subtitle">Let's connect and collaborate</p>
+                    </div>
+                    <div class="contact-content">
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h3>Email</h3>
+                                    <a href="mailto:contact@jpromano.net">contact@jpromano.net</a>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-blog"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h3>Blog</h3>
+                                    <a href="https://hackandmate.medium.com" target="_blank">hackandmate.medium.com</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/jpromanonet/" target="_blank" class="social-link">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://github.com/jpromanonet" target="_blank" class="social-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://x.com/jpromanonet" target="_blank" class="social-link">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://instagram.com/jpromanonet" target="_blank" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-info">
+                        <h3>Juan P. Romano</h3>
+                        <p>Linux Coordinator • Entrepreneur • Developer • Tech Writer</p>
+                    </div>
+                    <div class="footer-links">
+                        <a href="https://hackandmate.medium.com" target="_blank" class="footer-link">
+                            <i class="fas fa-blog"></i>
+                            Blog
+                        </a>
+                        <a href="https://linktr.ee/jpromanonet" target="_blank" class="footer-link">
+                            <i class="fas fa-link"></i>
+                            Contact
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Bootstrap core JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
+        
+        <!-- Core theme JS -->
         <script src="js/scripts.js"></script>
     </body>
 </html>
