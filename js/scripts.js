@@ -87,6 +87,40 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Mobile menu functionality
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const headerNav = document.getElementById('header-nav');
+    
+    if (mobileMenuToggle && headerNav) {
+        mobileMenuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            this.classList.toggle('active');
+            headerNav.classList.toggle('mobile-open');
+            console.log('Mobile menu toggled:', headerNav.classList.contains('mobile-open'));
+        });
+        
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenuToggle.classList.remove('active');
+                headerNav.classList.remove('mobile-open');
+                console.log('Mobile menu closed via link click');
+            });
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!mobileMenuToggle.contains(event.target) && !headerNav.contains(event.target)) {
+                mobileMenuToggle.classList.remove('active');
+                headerNav.classList.remove('mobile-open');
+                console.log('Mobile menu closed via outside click');
+            }
+        });
+    } else {
+        console.error('Mobile menu elements not found:', { mobileMenuToggle, headerNav });
+    }
+    
     // Header scroll effect
     const header = document.querySelector('.header');
     
