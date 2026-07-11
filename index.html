@@ -1,260 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="Juan P. Romano - Linux Coordinator, Entrepreneur, Developer, and Tech Writer" />
-        <meta name="author" content="Juan P. Romano" />
-        <title>Juan P. Romano - Personal Website</title>
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
-        
-        <!-- Font Awesome icons -->
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        
-        <!-- Google fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-        
-        <!-- Core theme CSS -->
-        <link href="css/styles.css" rel="stylesheet" />
-    </head>
-    <body id="page-top">
-        <!-- Header -->
-        <header class="header">
-            <div class="header-content">
-                <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle mobile menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                
-                <nav class="header-nav" id="header-nav">
-                    <a href="https://jpromano.net/portfolio" class="nav-link">
-                        <i class="fas fa-briefcase"></i>
-                        <span>Portfolio</span>
-                    </a>
-                    <a href="https://jpromano.net/mybooks" class="nav-link">
-                        <i class="fas fa-book"></i>
-                        <span>Books</span>
-                    </a>
-                    <a href="https://jpromano.net/writing" class="nav-link">
-                        <i class="fas fa-pen-fancy"></i>
-                        <span>Writing</span>
-                    </a>
-                    <a href="https://jpromano.net/ventures" class="nav-link">
-                        <i class="fas fa-rocket"></i>
-                        <span>Ventures</span>
-                    </a>
-                    <a href="https://jpromano.net/news" class="nav-link">
-                        <i class="fas fa-newspaper"></i>
-                        <span>News</span>
-                    </a>
-                    <a href="https://jpromano.net/resumes" class="nav-link">
-                        <i class="fas fa-file-alt"></i>
-                        <span>Resumes</span>
-                    </a>
-                </nav>
-                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-                    <i>💡</i>
-                </button>
-            </div>
-        </header>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Juan P. Romano — Engineering Manager at Hybrid Bee Technology, Packt author, and polyglot software engineer based in Buenos Aires." />
+    <meta name="author" content="Juan P. Romano" />
+    <title>Juan P. Romano</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
 
-        <!-- Hero Section -->
-        <section class="hero" id="hero">
-            <div class="hero-content">
-                <h1 class="hero-title">Juan P. Romano</h1>
-                <p class="hero-subtitle">Software Engineer, Serial entrepreneur & Writer</p>
-                <div class="hero-actions">
-                    <a href="https://linktr.ee/jpromanonet" class="hero-btn secondary">
-                        <i class="fas fa-link"></i>
-                        Connect With Me
-                    </a>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@500;600;700;800&family=Share+Tech+Mono&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body id="page-top" data-theme="dark">
+    <a class="skip-link" href="#about">Skip to content</a>
+
+    <div class="scanlines" aria-hidden="true"></div>
+
+    <header class="header" id="site-header">
+        <div class="header-inner">
+            <a href="#page-top" class="brand-mark" aria-label="Juan P. Romano — home">
+                <span class="brand-mark__glyph" aria-hidden="true"></span>
+                <span class="brand-mark__text">JPR</span>
+                <span class="brand-mark__tag">sys.online</span>
+            </a>
+
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="header-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="header-nav" id="header-nav" aria-label="Primary">
+                <a href="https://jpromano.net/portfolio" class="nav-link"><span data-text="Portfolio">Portfolio</span></a>
+                <a href="https://jpromano.net/mybooks" class="nav-link"><span data-text="Books">Books</span></a>
+                <a href="https://jpromano.net/writing" class="nav-link"><span data-text="Writing">Writing</span></a>
+                <a href="https://jpromano.net/ventures" class="nav-link"><span data-text="Ventures">Ventures</span></a>
+                <a href="https://jpromano.net/news" class="nav-link"><span data-text="News">News</span></a>
+                <a href="https://jpromano.net/resumes" class="nav-link"><span data-text="Resumes">Resumes</span></a>
+            </nav>
+
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" type="button">
+                <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">
+                    <i class="fas fa-sun"></i>
+                </span>
+                <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">
+                    <i class="fas fa-moon"></i>
+                </span>
+            </button>
+        </div>
+    </header>
+
+    <section class="hero" id="hero" aria-label="Introduction">
+        <div class="hero-media" aria-hidden="true">
+            <div class="hero-media__void"></div>
+            <div class="hero-media__grid"></div>
+            <div class="hero-media__perspective"></div>
+            <div class="hero-media__beam hero-media__beam--one"></div>
+            <div class="hero-media__beam hero-media__beam--two"></div>
+            <div class="hero-media__noise"></div>
+        </div>
+
+        <div class="hero-content">
+            <p class="hero-kicker">
+                <span class="hero-kicker__pulse" aria-hidden="true"></span>
+                // engineering manager · writer · polyglot
+            </p>
+            <h1 class="hero-title">
+                <span class="hero-title__glitch" data-text="Juan P. Romano">Juan P. Romano</span>
+            </h1>
+            <p class="hero-subtitle">
+                Engineering Manager at Hybrid Bee Technology. I ship products, lead teams, and write about the stack.
+            </p>
+            <div class="hero-actions">
+                <a href="https://www.linkedin.com/in/jpromanonet/" class="hero-btn" target="_blank" rel="noopener noreferrer">
+                    <span>Connect on LinkedIn</span>
+                    <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+
+        <a href="#about" class="hero-scroll" aria-label="Scroll to about">
+            <span>scroll_down</span>
+            <i class="fas fa-chevron-down" aria-hidden="true"></i>
+        </a>
+    </section>
+
+    <main class="main-content">
+        <section class="content-section" id="about">
+            <div class="container">
+                <header class="section-header">
+                    <p class="section-eyebrow">01 / about</p>
+                    <h2 class="section-title">Curious mind. Builder by trade.</h2>
+                    <p class="section-subtitle">~14 years shipping software, leading teams, and teaching the craft.</p>
+                </header>
+
+                <div class="about-layout">
+                    <div class="about-text">
+                        <p>
+                            I’m Juan — a software engineer and Engineering Manager based in Buenos Aires.
+                            I work across Java, Python (Django), C++, and JavaScript (Node, React, Angular, Vue),
+                            and I love turning messy problems into clean, shippable systems.
+                        </p>
+                        <p>
+                            Right now I’m Engineering Manager at
+                            <a href="https://hybridbeetechnology.com/" target="_blank" rel="noopener noreferrer" class="text-link">Hybrid Bee Technology</a>,
+                            partnering with clients and building the custom tools that keep infrastructure projects moving.
+                            I’m also co-writing
+                            <em>Full-Stack React, TypeScript, and Node</em>
+                            with
+                            <a href="https://www.packtpub.com/" target="_blank" rel="noopener noreferrer" class="text-link">Packt</a>.
+                        </p>
+                        <p>
+                            Before that I led front-end at
+                            <a href="https://www.oca.com.ar/" target="_blank" rel="noopener noreferrer" class="text-link">OCA</a>,
+                            managed engineering at Adviters, and directed software development at Andreani —
+                            plus years as a professor and technical writer for freeCodeCamp, Henry, and more.
+                            I’m a polyglot
+                            <span class="lang-flags" aria-label="Languages: Spanish, Chinese, English, Russian, Portuguese, German, French, Italian, Japanese">🇪🇸 🇨🇳 🇬🇧 🇷🇺 🇧🇷 🇩🇪 🇫🇷 🇮🇹 🇯🇵</span>
+                            and a full-time nerd — in the best way.
+                        </p>
+                        <p>
+                            See the full path on
+                            <a href="https://www.linkedin.com/in/jpromanonet/" target="_blank" rel="noopener noreferrer" class="text-link">LinkedIn</a>,
+                            or browse my
+                            <a href="https://jpromano.net/portfolio" class="text-link">portfolio</a>
+                            and
+                            <a href="https://jpromano.net/mybooks" class="text-link">books</a>.
+                        </p>
+                    </div>
+
+                    <aside class="about-aside" aria-label="Highlights">
+                        <ul class="signal-list">
+                            <li>
+                                <span class="signal-list__label">now</span>
+                                <span class="signal-list__value">Engineering Manager · Hybrid Bee Technology</span>
+                            </li>
+                            <li>
+                                <span class="signal-list__label">writing</span>
+                                <span class="signal-list__value">Packt · Full-Stack React, TypeScript &amp; Node</span>
+                            </li>
+                            <li>
+                                <span class="signal-list__label">base</span>
+                                <span class="signal-list__value">Buenos Aires, Argentina</span>
+                            </li>
+                        </ul>
+                    </aside>
                 </div>
             </div>
         </section>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- About Section -->
-            <section class="content-section" id="about">
-                <div class="container">
-                    <div class="section-header">
-                        <h2 class="section-title">About Me?</h2>
-                        <p class="section-subtitle">Passionate about technology, innovation and a lot of nerdy stuff</p>
+        <section class="content-section skills-section" id="skills">
+            <div class="container">
+                <header class="section-header">
+                    <p class="section-eyebrow">02 / toolkit</p>
+                    <h2 class="section-title">Skills &amp; technologies</h2>
+                    <p class="section-subtitle">What I’m actively shipping with — there are more tools in the drawer, but these get the most airtime.</p>
+                </header>
+
+                <div class="skills-rail">
+                    <div class="skill-band reveal">
+                        <h3 class="category-title">Languages</h3>
+                        <ul class="skill-chips">
+                            <li><i class="fab fa-js-square" aria-hidden="true"></i> JavaScript</li>
+                            <li><i class="fab fa-python" aria-hidden="true"></i> Python</li>
+                            <li><i class="fab fa-java" aria-hidden="true"></i> Java</li>
+                            <li><i class="fas fa-code" aria-hidden="true"></i> TypeScript</li>
+                            <li><i class="fas fa-code" aria-hidden="true"></i> C++</li>
+                            <li><i class="fab fa-microsoft" aria-hidden="true"></i> C#</li>
+                        </ul>
                     </div>
-                    <div class="about-content">
-                        <div class="about-text">
-                            <p>I like to start ventures, code, and write books✍🏽 about science, technology🔬 and another stuff, I’m also a polyglot (🇪🇸, 🇨🇳, 🇬🇧, 🇷🇺, 🇧🇷, 🇩🇪, 🇫🇷, 🇮🇹, 🇯🇵) and obviously a full time nerd.</p>
-                            <br>
-                            <p>You can look up my portfolio <a href="https://jpromano.net/portfolio" class="text-link">here</a> or read my books <a href="https://jpromano.net/mybooks" class="text-link">here</a>.
-                            </p>
-                            <br>
-                            <p>
-                            What about my ventures? you can look them up <a href="https://jpromano.net/ventures">here</a>
-                            </p>
-                            <br>
-                            Also I work as a full time Enginnering Manager at <a href="https://hybridbeetechnology.com/" target="_blank">Hybrid Bee Technology</a> and I'm the current full time Chief Coordinator of the <a href="https://ututo.ar" target="_blank">Ututo Project</a> (which it's an honor and I love it).
-                        </div>
+
+                    <div class="skill-band reveal">
+                        <h3 class="category-title">Frameworks</h3>
+                        <ul class="skill-chips">
+                            <li><i class="fab fa-react" aria-hidden="true"></i> React</li>
+                            <li><i class="fab fa-angular" aria-hidden="true"></i> Angular</li>
+                            <li><i class="fab fa-vuejs" aria-hidden="true"></i> Vue</li>
+                            <li><i class="fab fa-node-js" aria-hidden="true"></i> Node.js</li>
+                            <li><i class="fab fa-python" aria-hidden="true"></i> Django</li>
+                            <li><i class="fab fa-microsoft" aria-hidden="true"></i> .NET</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-band reveal">
+                        <h3 class="category-title">Platforms</h3>
+                        <ul class="skill-chips">
+                            <li><i class="fab fa-docker" aria-hidden="true"></i> Docker</li>
+                            <li><i class="fab fa-linux" aria-hidden="true"></i> Linux</li>
+                            <li><i class="fas fa-database" aria-hidden="true"></i> SQL</li>
+                            <li><i class="fab fa-aws" aria-hidden="true"></i> AWS</li>
+                            <li><i class="fab fa-microsoft" aria-hidden="true"></i> Azure</li>
+                            <li><i class="fab fa-git" aria-hidden="true"></i> Git</li>
+                        </ul>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Skills Section -->
-            <section class="content-section skills-section" id="skills">
-                <div class="container">
-                    <div class="section-header">
-                        <h2 class="section-title">Skills & Technologies</h2>
-                        <p class="section-subtitle">Programming Languages & Tools I currently work with (there are more, but I'm currently focused on these)</p>
+        <section class="content-section contact-section" id="contact">
+            <div class="container">
+                <header class="section-header">
+                    <p class="section-eyebrow">03 / contact</p>
+                    <h2 class="section-title">Let’s build something</h2>
+                    <p class="section-subtitle">Ideas, collaborations, or just a good conversation about tech.</p>
+                </header>
+
+                <div class="contact-panel reveal">
+                    <div class="contact-channels">
+                        <a href="https://www.linkedin.com/in/jpromanonet/" target="_blank" rel="noopener noreferrer" class="contact-row">
+                            <span class="contact-row__meta">linkedin</span>
+                            <span class="contact-row__value">linkedin.com/in/jpromanonet</span>
+                        </a>
+                        <a href="mailto:contact@jpromano.net" class="contact-row">
+                            <span class="contact-row__meta">email</span>
+                            <span class="contact-row__value">contact@jpromano.net</span>
+                        </a>
+                        <a href="https://hackandmate.medium.com" target="_blank" rel="noopener noreferrer" class="contact-row">
+                            <span class="contact-row__meta">blog</span>
+                            <span class="contact-row__value">hackandmate.medium.com</span>
+                        </a>
                     </div>
-                    <div class="skills-content">
-                        <div class="skills-grid">
-                            <div class="skill-category">
-                                <h3 class="category-title">Programming Languages</h3>
-                                <div class="skill-items">
-                                    <div class="skill-item">
-                                        <i class="fab fa-html5"></i>
-                                        <span>HTML5</span>
-                                    </div>
-                                    <div class="skill-item">
-                                        <i class="fab fa-css3-alt"></i>
-                                        <span>CSS3</span>
-                                    </div>
-                                    <div class="skill-item">
-                                        <i class="fab fa-js-square"></i>
-                                        <span>JavaScript</span>
-                                    </div>
-                                    <div class="skill-item">
-                                        <i class="fab fa-python"></i>
-                                        <span>Python</span>
-                                    </div>
-                                    <div class="skill-item">
-                                        <i class="fab fa-java"></i>
-                                        <span>Java</span>
-                                    </div>
-                                    <div class="skill-item">
-                                        <i class="fab fa-php"></i>
-                                        <span>PHP</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="skill-category">
-                                <h3 class="category-title">Frameworks & Libraries</h3>
-                                <div class="skill-items">
-                                    <div class="skill-item">
-                                        <i class="fab fa-react"></i>
-                                        <span>React</span>
-                                    </div>
-                                    <div class="skill-item">
-                                        <i class="fab fa-angular"></i>
-                                        <span>Angular</span>
-                                    </div>
-                                    <div class="skill-item">
-                                        <i class="fab fa-node-js"></i>
-                                        <span>Node.js</span>
-                                    </div>
-                                    <div class="skill-item">
-                                        <i class="fab fa-laravel"></i>
-                                        <span>Laravel</span>
-                                    </div>
-                                    <div class="skill-item">
-                                        <i class="fab fa-bootstrap"></i>
-                                        <span>Bootstrap</span>
-                                    </div>
-                                    <div class="skill-item">
-                                        <i class="fab fa-sass"></i>
-                                        <span>Sass</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="skill-category">
-                                <h3 class="category-title">Tools & Platforms</h3>
-                                <div class="skill-items">
-                                    <div class="skill-item">
-                                        <i class="fab fa-docker"></i>
-                                        <span>Docker</span>
-                                    </div>
-                                    <div class="skill-item">
-                                        <i class="fab fa-git"></i>
-                                        <span>Git</span>
-                                    </div>
-                                    <div class="skill-item">
-                                        <i class="fab fa-github"></i>
-                                        <span>GitHub</span>
-                                    </div>
-                                    <div class="skill-item">
-                                        <i class="fab fa-aws"></i>
-                                        <span>AWS</span>
-                                    </div>
-                                    <div class="skill-item">
-                                        <i class="fab fa-linux"></i>
-                                        <span>Linux</span>
-                                    </div>
-                                    <div class="skill-item">
-                                        <i class="fab fa-npm"></i>
-                                        <span>NPM</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+                    <div class="social-row" aria-label="Social links">
+                        <a href="https://www.linkedin.com/in/jpromanonet/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://github.com/jpromanonet" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://x.com/jpromanonet" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="X / Twitter">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://instagram.com/jpromanonet" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
+    </main>
 
-            <!-- Contact Section -->
-            <section class="content-section contact-section" id="contact">
-                <div class="container">
-                    <div class="section-header">
-                        <h2 class="section-title">Get In Touch</h2>
-                        <p class="section-subtitle">Let's connect and collaborate</p>
-                    </div>
-                    <div class="contact-content">
-                        <div class="contact-info">
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div class="contact-details">
-                                    <h3>Email</h3>
-                                    <a href="mailto:contact@jpromano.net">contact@jpromano.net</a>
-                                </div>
-                            </div>
-                            
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-blog"></i>
-                                </div>
-                                <div class="contact-details">
-                                    <h3>Blog</h3>
-                                    <a href="https://hackandmate.medium.com" target="_blank">hackandmate.medium.com</a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="social-links">
-                            <a href="https://www.linkedin.com/in/jpromanonet/" target="_blank" class="social-link">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a href="https://github.com/jpromanonet" target="_blank" class="social-link">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://x.com/jpromanonet" target="_blank" class="social-link">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="https://instagram.com/jpromanonet" target="_blank" class="social-link">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p class="footer-brand">Juan P. Romano <span class="footer-blink">_</span></p>
+            <p class="footer-copy">&copy; <span id="year"></span> — Built with curiosity.</p>
+        </div>
+    </footer>
 
-        <!-- Bootstrap core JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        
-        <!-- Core theme JS -->
-        <script src="js/scripts.js"></script>
-    </body>
+    <script src="js/scripts.js"></script>
+</body>
 </html>
