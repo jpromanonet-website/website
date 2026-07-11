@@ -242,11 +242,27 @@ a {
     background: none;
     border: none;
     cursor: pointer;
-    font: inherit;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: inherit;
+    line-height: inherit;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--header-text);
+    opacity: 0.7;
+    padding: 0.45rem 0.7rem;
+}
+
+.nav-dropdown__toggle:hover,
+.nav-dropdown__toggle:focus-visible {
+    opacity: 1;
+    color: var(--neon);
+    text-shadow: 0 0 12px rgba(0, 255, 156, 0.55);
 }
 
 .nav-dropdown__chevron {
-    font-size: 0.65rem;
+    font-size: 0.55rem;
+    line-height: 1;
     opacity: 0.7;
     transition: transform 0.2s var(--ease);
 }
