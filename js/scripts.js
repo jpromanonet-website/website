@@ -37,6 +37,11 @@ document.addEventListener("DOMContentLoaded", () => {
         mobileMenuToggle.classList.remove("active");
         mobileMenuToggle.setAttribute("aria-expanded", "false");
         headerNav.classList.remove("mobile-open");
+        headerNav.querySelectorAll(".nav-dropdown.is-open").forEach((dropdown) => {
+            dropdown.classList.remove("is-open");
+            const toggle = dropdown.querySelector(".nav-dropdown__toggle");
+            if (toggle) toggle.setAttribute("aria-expanded", "false");
+        });
     };
 
     if (mobileMenuToggle && headerNav) {
@@ -47,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
             mobileMenuToggle.setAttribute("aria-expanded", String(isOpen));
         });
 
-        headerNav.querySelectorAll(".nav-link").forEach((link) => {
+        headerNav.querySelectorAll("a.nav-link, .nav-dropdown__item").forEach((link) => {
             link.addEventListener("click", closeMobileNav);
         });
 
@@ -64,6 +69,35 @@ document.addEventListener("DOMContentLoaded", () => {
             if (event.key === "Escape") closeMobileNav();
         });
     }
+
+    // Teaching dropdown
+    headerNav?.querySelectorAll(".nav-dropdown").forEach((dropdown) => {
+        const toggle = dropdown.querySelector(".nav-dropdown__toggle");
+        if (!toggle) return;
+
+        toggle.addEventListener("click", (event) => {
+            event.stopPropagation();
+            const willOpen = !dropdown.classList.contains("is-open");
+            headerNav.querySelectorAll(".nav-dropdown.is-open").forEach((other) => {
+                if (other !== dropdown) {
+                    other.classList.remove("is-open");
+                    other.querySelector(".nav-dropdown__toggle")?.setAttribute("aria-expanded", "false");
+                }
+            });
+            dropdown.classList.toggle("is-open", willOpen);
+            toggle.setAttribute("aria-expanded", String(willOpen));
+        });
+    });
+
+    document.addEventListener("click", (event) => {
+        if (!headerNav) return;
+        headerNav.querySelectorAll(".nav-dropdown.is-open").forEach((dropdown) => {
+            if (!dropdown.contains(event.target)) {
+                dropdown.classList.remove("is-open");
+                dropdown.querySelector(".nav-dropdown__toggle")?.setAttribute("aria-expanded", "false");
+            }
+        });
+    });
 
     // Smooth in-page anchors
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {

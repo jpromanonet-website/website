@@ -37,6 +37,23 @@
             <nav class="header-nav" id="header-nav" aria-label="Primary">
                 <a href="https://jpromano.net/portfolio" class="nav-link"><span data-text="Portfolio">Portfolio</span></a>
                 <a href="https://jpromano.net/mybooks" class="nav-link"><span data-text="Books">Books</span></a>
+                <div class="nav-dropdown">
+                    <button
+                        type="button"
+                        class="nav-link nav-dropdown__toggle"
+                        aria-expanded="false"
+                        aria-haspopup="true"
+                        aria-controls="teaching-menu"
+                        id="teaching-toggle"
+                    >
+                        <span data-text="Teaching">Teaching</span>
+                        <i class="fas fa-chevron-down nav-dropdown__chevron" aria-hidden="true"></i>
+                    </button>
+                    <div class="nav-dropdown__menu" id="teaching-menu" role="menu" aria-labelledby="teaching-toggle">
+                        <a href="https://jpromano.net/learningia" class="nav-dropdown__item" role="menuitem">Learning IA</a>
+                        <a href="https://jpromano.net/learningtocode" class="nav-dropdown__item" role="menuitem">Learning to Code</a>
+                    </div>
+                </div>
                 <a href="https://jpromano.net/writing" class="nav-link"><span data-text="Writing">Writing</span></a>
                 <a href="https://jpromano.net/ventures" class="nav-link"><span data-text="Ventures">Ventures</span></a>
                 <a href="https://jpromano.net/news" class="nav-link"><span data-text="News">News</span></a>
@@ -73,7 +90,7 @@
                 <span class="hero-title__glitch" data-text="Juan P. Romano">Juan P. Romano</span>
             </h1>
             <p class="hero-subtitle">
-                Engineering Manager at Hybrid Bee Technology. I ship products, lead teams, and write about the stack.
+                Engineering Manager at Hybrid Bee Technology. I ship products, lead teams, and write about stuff.
             </p>
             <div class="hero-actions">
                 <a href="https://www.linkedin.com/in/jpromanonet/" class="hero-btn" target="_blank" rel="noopener noreferrer">
@@ -95,13 +112,13 @@
                 <header class="section-header">
                     <p class="section-eyebrow">01 / about</p>
                     <h2 class="section-title">Curious mind. Builder by trade.</h2>
-                    <p class="section-subtitle">~14 years shipping software, leading teams, and teaching the craft.</p>
+                    <p class="section-subtitle">~15 years shipping software, leading teams, and teaching the craft.</p>
                 </header>
 
                 <div class="about-layout">
                     <div class="about-text">
                         <p>
-                            I’m Juan — a software engineer and Engineering Manager based in Buenos Aires.
+                            I’m Juan, a software engineer and Engineering Manager based in Buenos Aires.
                             I work across Java, Python (Django), C++, and JavaScript (Node, React, Angular, Vue),
                             and I love turning messy problems into clean, shippable systems.
                         </p>
@@ -109,19 +126,16 @@
                             Right now I’m Engineering Manager at
                             <a href="https://hybridbeetechnology.com/" target="_blank" rel="noopener noreferrer" class="text-link">Hybrid Bee Technology</a>,
                             partnering with clients and building the custom tools that keep infrastructure projects moving.
-                            I’m also co-writing
-                            <em>Full-Stack React, TypeScript, and Node</em>
-                            with
-                            <a href="https://www.packtpub.com/" target="_blank" rel="noopener noreferrer" class="text-link">Packt</a>.
+                            I’m also writing stuff and building different ventures.
                         </p>
                         <p>
                             Before that I led front-end at
                             <a href="https://www.oca.com.ar/" target="_blank" rel="noopener noreferrer" class="text-link">OCA</a>,
-                            managed engineering at Adviters, and directed software development at Andreani —
+                            managed engineering at Adviters, and directed software development at Andreani,
                             plus years as a professor and technical writer for freeCodeCamp, Henry, and more.
                             I’m a polyglot
                             <span class="lang-flags" aria-label="Languages: Spanish, Chinese, English, Russian, Portuguese, German, French, Italian, Japanese">🇪🇸 🇨🇳 🇬🇧 🇷🇺 🇧🇷 🇩🇪 🇫🇷 🇮🇹 🇯🇵</span>
-                            and a full-time nerd — in the best way.
+                            and a full-time nerd, in the best way.
                         </p>
                         <p>
                             See the full path on
@@ -140,8 +154,8 @@
                                 <span class="signal-list__value">Engineering Manager · Hybrid Bee Technology</span>
                             </li>
                             <li>
-                                <span class="signal-list__label">writing</span>
-                                <span class="signal-list__value">Packt · Full-Stack React, TypeScript &amp; Node</span>
+                                <span class="signal-list__label">building</span>
+                                <span class="signal-list__value">Soup IT, Puestito, Mate Gestion and more</span>
                             </li>
                             <li>
                                 <span class="signal-list__label">base</span>
@@ -166,11 +180,20 @@
                         <h3 class="category-title">Languages</h3>
                         <ul class="skill-chips">
                             <li><i class="fab fa-js-square" aria-hidden="true"></i> JavaScript</li>
+                            <li><i class="fas fa-code" aria-hidden="true"></i> TypeScript</li>
                             <li><i class="fab fa-python" aria-hidden="true"></i> Python</li>
                             <li><i class="fab fa-java" aria-hidden="true"></i> Java</li>
-                            <li><i class="fas fa-code" aria-hidden="true"></i> TypeScript</li>
-                            <li><i class="fas fa-code" aria-hidden="true"></i> C++</li>
+                            <li><i class="fab fa-php" aria-hidden="true"></i> PHP</li>
                             <li><i class="fab fa-microsoft" aria-hidden="true"></i> C#</li>
+                            <li><i class="fas fa-code" aria-hidden="true"></i> C++</li>
+                            <li><i class="fas fa-code" aria-hidden="true"></i> C</li>
+                            <li><i class="fab fa-r-project" aria-hidden="true"></i> R</li>
+                            <li><i class="fas fa-gem" aria-hidden="true"></i> Ruby</li>
+                            <li><i class="fas fa-code" aria-hidden="true"></i> Elixir</li>
+                            <li><i class="fas fa-code" aria-hidden="true"></i> Perl</li>
+                            <li><i class="fas fa-code" aria-hidden="true"></i> Scala</li>
+                            <li><i class="fas fa-code" aria-hidden="true"></i> Lisp</li>
+                            <li><i class="fas fa-code" aria-hidden="true"></i> COBOL</li>
                         </ul>
                     </div>
 
@@ -178,23 +201,61 @@
                         <h3 class="category-title">Frameworks</h3>
                         <ul class="skill-chips">
                             <li><i class="fab fa-react" aria-hidden="true"></i> React</li>
-                            <li><i class="fab fa-angular" aria-hidden="true"></i> Angular</li>
+                            <li><i class="fab fa-react" aria-hidden="true"></i> React Native</li>
                             <li><i class="fab fa-vuejs" aria-hidden="true"></i> Vue</li>
+                            <li><i class="fab fa-angular" aria-hidden="true"></i> Angular</li>
+                            <li><i class="fas fa-code" aria-hidden="true"></i> Redux</li>
                             <li><i class="fab fa-node-js" aria-hidden="true"></i> Node.js</li>
                             <li><i class="fab fa-python" aria-hidden="true"></i> Django</li>
+                            <li><i class="fas fa-flask" aria-hidden="true"></i> Flask</li>
                             <li><i class="fab fa-microsoft" aria-hidden="true"></i> .NET</li>
                         </ul>
                     </div>
 
                     <div class="skill-band reveal">
-                        <h3 class="category-title">Platforms</h3>
+                        <h3 class="category-title">Style</h3>
                         <ul class="skill-chips">
-                            <li><i class="fab fa-docker" aria-hidden="true"></i> Docker</li>
-                            <li><i class="fab fa-linux" aria-hidden="true"></i> Linux</li>
+                            <li><i class="fab fa-html5" aria-hidden="true"></i> HTML</li>
+                            <li><i class="fab fa-css3-alt" aria-hidden="true"></i> CSS</li>
+                            <li><i class="fab fa-sass" aria-hidden="true"></i> Sass</li>
+                            <li><i class="fas fa-wind" aria-hidden="true"></i> Tailwind</li>
+                            <li><i class="fab fa-bootstrap" aria-hidden="true"></i> Bootstrap</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-band reveal">
+                        <h3 class="category-title">Testing</h3>
+                        <ul class="skill-chips">
+                            <li><i class="fas fa-vial" aria-hidden="true"></i> Jasmine</li>
+                            <li><i class="fas fa-vial" aria-hidden="true"></i> Mocha</li>
+                            <li><i class="fas fa-vial" aria-hidden="true"></i> Chai</li>
+                            <li><i class="fas fa-vial" aria-hidden="true"></i> Cypress</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-band reveal">
+                        <h3 class="category-title">Platforms &amp; tools</h3>
+                        <ul class="skill-chips">
                             <li><i class="fas fa-database" aria-hidden="true"></i> SQL</li>
+                            <li><i class="fas fa-database" aria-hidden="true"></i> MySQL</li>
+                            <li><i class="fab fa-docker" aria-hidden="true"></i> Docker</li>
+                            <li><i class="fas fa-dharmachakra" aria-hidden="true"></i> Kubernetes</li>
+                            <li><i class="fas fa-server" aria-hidden="true"></i> Apache</li>
+                            <li><i class="fas fa-server" aria-hidden="true"></i> NGINX</li>
                             <li><i class="fab fa-aws" aria-hidden="true"></i> AWS</li>
                             <li><i class="fab fa-microsoft" aria-hidden="true"></i> Azure</li>
+                            <li><i class="fab fa-linux" aria-hidden="true"></i> Linux</li>
                             <li><i class="fab fa-git" aria-hidden="true"></i> Git</li>
+                            <li><i class="fab fa-github" aria-hidden="true"></i> GitHub</li>
+                            <li><i class="fab fa-gitlab" aria-hidden="true"></i> GitLab</li>
+                            <li><i class="fab fa-bitbucket" aria-hidden="true"></i> Bitbucket</li>
+                            <li><i class="fab fa-npm" aria-hidden="true"></i> NPM</li>
+                            <li><i class="fas fa-cloud" aria-hidden="true"></i> Netlify</li>
+                            <li><i class="fas fa-cloud" aria-hidden="true"></i> Heroku</li>
+                            <li><i class="fas fa-paper-plane" aria-hidden="true"></i> Postman</li>
+                            <li><i class="fab fa-jira" aria-hidden="true"></i> Jira</li>
+                            <li><i class="fas fa-tasks" aria-hidden="true"></i> Asana</li>
+                            <li><i class="fas fa-paint-brush" aria-hidden="true"></i> GIMP</li>
                         </ul>
                     </div>
                 </div>
@@ -206,7 +267,7 @@
                 <header class="section-header">
                     <p class="section-eyebrow">03 / contact</p>
                     <h2 class="section-title">Let’s build something</h2>
-                    <p class="section-subtitle">Ideas, collaborations, or just a good conversation about tech.</p>
+                    <p class="section-subtitle">Ideas, collaborations, or just a good conversation about anything.</p>
                 </header>
 
                 <div class="contact-panel reveal">
@@ -247,7 +308,7 @@
     <footer class="footer">
         <div class="container footer-inner">
             <p class="footer-brand">Juan P. Romano <span class="footer-blink">_</span></p>
-            <p class="footer-copy">&copy; <span id="year"></span> — Built with curiosity.</p>
+            <p class="footer-copy">&copy; <span id="year"></span> - Built with ❤️.</p>
         </div>
     </footer>
 
