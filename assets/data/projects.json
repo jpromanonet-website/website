@@ -1,0 +1,834 @@
+[ 
+  {
+    "title": "The AI Platform Engineer Journey",
+    "imageSrc": "iaroadmap.png",
+    "liveUrl": "https://theairoadmap.vercel.app",
+    "githubUrl": "https://github.com/jpromanonet/The-AI-Platform-Engineer-Journey",
+    "category": "Web"
+  },
+  {
+    "title": "Simulador de trenes argentinos",
+    "imageSrc": "trenesargentinos.png",
+    "liveUrl": "https://simuladortrenesargentinos.vercel.app",
+    "githubUrl": "https://github.com/jpromanonet/argentina_railrod_simulator",
+    "category": "Web"
+  },
+  {
+    "title": "Hybrid Bee Tech",
+    "imageSrc": "hybrid.png",
+    "liveUrl": "https://hybridbeetechnology.com",
+    "githubUrl": "#",
+    "category": "Web"
+  },
+  {
+    "title": "Imperio Austral",
+    "imageSrc": "imperioaustral.png",
+    "liveUrl": "https://imperioaustral.com.ar",
+    "githubUrl": "#",
+    "category": "Web"
+  },
+  {
+    "title": "Emunars",
+    "imageSrc": "emunars.png",
+    "liveUrl": "https://emunars.com",
+    "githubUrl": "#",
+    "category": "Web"
+  },
+  {
+    "title": "Cositas Goya",
+    "imageSrc": "cositasgoya.png",
+    "liveUrl": "https://cositasgoya.com.ar",
+    "githubUrl": "#",
+    "category": "Web"
+  },
+  {
+    "title": "Fixealo",
+    "imageSrc": "fixealo.png",
+    "liveUrl": "https://fixealo.com.ar",
+    "githubUrl": "#",
+    "category": "Web"
+  },
+  {
+    "title": "Pasión Bostera",
+    "imageSrc": "pasionbostera.png",
+    "liveUrl": "https://pasionbostera.com",
+    "githubUrl": "#",
+    "category": "Web"
+  },
+  {
+    "title": "Casa Eme",
+    "imageSrc": "casaeme.png",
+    "liveUrl": "https://casaeme.com.ar",
+    "githubUrl": "#",
+    "category": "Web"
+  },
+  {
+    "title": "Mayorista G&D",
+    "imageSrc": "gdmayorista.png",
+    "liveUrl": "https://gdmayorista.com",
+    "githubUrl": "#",
+    "category": "Web"
+  },
+  {
+    "title": "Creaciones Marvez",
+    "imageSrc": "marvez.png",
+    "liveUrl": "https://creacionesmarvez.com.ar",
+    "githubUrl": "#",
+    "category": "Web"
+  },
+  {
+    "title": "Bella Madera",
+    "imageSrc": "bellamadera.png",
+    "liveUrl": "https://bellamadera.com.ar",
+    "githubUrl": "#",
+    "category": "Web"
+  },
+  {
+    "title": "Mate Gestión",
+    "imageSrc": "mategestion.png",
+    "liveUrl": "https://mategestion.com.ar",
+    "githubUrl": "#",
+    "category": "Web"
+  },
+  {
+    "title": "Siro Ventures",
+    "imageSrc": "siroventures.png",
+    "liveUrl": "https://siroventures.com.ar",
+    "githubUrl": "#",
+    "category": "Web"
+  },
+  {
+    "title": "Menu semanal",
+    "imageSrc": "generadorcomida.png",
+    "liveUrl": "https://generadorcomidas.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/generador_comidas",
+    "category": "Web"
+  },
+  {
+    "title": "Puestito",
+    "imageSrc": "puestito.png",
+    "liveUrl": "https://puestito.com.ar",
+    "githubUrl": "https://puestito.com.ar",
+    "category": "Web"
+  },
+  {
+    "title": "Soup IT",
+    "imageSrc": "soupit.png",
+    "liveUrl": "https://soupit.ar",
+    "githubUrl": "https://soupit.ar",
+    "category": "Web"
+  },
+  {
+    "title": "Bare Password Manager",
+    "imageSrc": "bare_pass_manager.png",
+    "liveUrl": "https://github.com/BareTools/BareReader/releases",
+    "githubUrl": "https://github.com/BareTools/BareReader",
+    "category": "Desktop"
+  },
+  {
+    "title": "BareReader",
+    "imageSrc": "barereader.png",
+    "liveUrl": "https://github.com/BareTools/BareReader/releases",
+    "githubUrl": "https://github.com/BareTools/BareReader",
+    "category": "Desktop"
+  },
+  {
+    "title": "ElectroFer",
+    "imageSrc": "electrofer.png",
+    "liveUrl": "https://electrofersanmiguel.com.ar",
+    "githubUrl": "https://electrofersanmiguel.com.ar",
+    "category": "Web"
+  },{
+    "title": "HomeSpot",
+    "imageSrc": "homespot.png",
+    "liveUrl": "https://homespot.com.ar",
+    "githubUrl": "https://homespot.com.ar",
+    "category": "Web"
+  },{
+    "title": "JPR - Resumes",
+    "imageSrc": "jpr_resumes.png",
+    "liveUrl": "https://resumes-jpromanonet.vercel.app",
+    "githubUrl": "https://github.com/jpromanonet-website/website_resumes",
+    "category": "Web"
+  },{
+    "title": "JPR - Podcasts",
+    "imageSrc": "jpr_podcasts.png",
+    "liveUrl": "https://podcasts-jpromanonet.vercel.app",
+    "githubUrl": "https://github.com/jpromanonet-website/website_podcasts",
+    "category": "Web"
+  },{
+    "title": "JPR - Open Source",
+    "imageSrc": "jpr_opensource.png",
+    "liveUrl": "https://opensource-jpromanonet.vercel.app",
+    "githubUrl": "https://github.com/jpromanonet-website/website_opensource",
+    "category": "Web"
+  },{
+    "title": "Juan P. Romano - News",
+    "imageSrc": "jpr_news.png",
+    "liveUrl": "https://news-jpromanonet.vercel.app",
+    "githubUrl": "https://github.com/jpromanonet-website/website_news",
+    "category": "Web"
+  },{
+    "title": "JPR - Ventures",
+    "imageSrc": "jpr_ventures.png",
+    "liveUrl": "https://ventures-jpromanonet.vercel.app",
+    "githubUrl": "https://github.com/jpromanonet-website/website_ventures",
+    "category": "Web"
+  },{
+    "title": "Juan P. Romano - Writing",
+    "imageSrc": "jpr_writing.png",
+    "liveUrl": "https://writing-jpromanonet.vercel.app",
+    "githubUrl": "https://github.com/jpromanonet-website/website_writing",
+    "category": "Web"
+  },{
+    "title": "Juan P. Romano - About",
+    "imageSrc": "jpromanonet_about.png",
+    "liveUrl": "https://jpromanonet.vercel.app",
+    "githubUrl": "https://github.com/jpromanonet-website/website_about",
+    "category": "Web"
+  },{
+    "title": "Ututo Linux - Oficial",
+    "imageSrc": "ututo_oficial.png",
+    "liveUrl": "https://ututo.ar",
+    "githubUrl": "https://github.com/ututolinux",
+    "category": "ututo"
+  },{
+    "title": "Ututo Linux",
+    "imageSrc": "ututo.png",
+    "liveUrl": "https://ututo.vercel.app",
+    "githubUrl": "https://github.com/ututolinux",
+    "category": "ututo"
+  },
+  {
+    "title": "OCA",
+    "imageSrc": "oca.png",
+    "liveUrl": "https://oca.com.ar",
+    "githubUrl": "#",
+    "category": "Web"
+  },
+  {
+    "title": "Changelogs Tracker",
+    "imageSrc": "changelog_tracker.png",
+    "liveUrl": "#",
+    "githubUrl": "https://github.com/jpromanonet/changelogsTracker",
+    "category": "Web"
+  },
+  {
+    "title": "Personal Blog",
+    "imageSrc": "personal_blog.png",
+    "liveUrl": "https://jpromanonet-blog.vercel.app",
+    "githubUrl": "https://github.com/jpromanonet/blog",
+    "category": "Web"
+  },
+  {
+    "title": "Ututo Blog",
+    "imageSrc": "ututoblog.png",
+    "liveUrl": "https://blogdeututo.vercel.app",
+    "githubUrl": "https://github.com/ututolinux/blog",
+    "category": "ututo"
+  },
+  {
+    "title": "Hack & Mate",
+    "imageSrc": "hackandmate.png",
+    "liveUrl": "http://hackandmate.com.ar",
+    "githubUrl": "https://github.com/jpromanonet/hackandmate",
+    "category": "Hacking"
+  },
+  {
+    "title": "Yerba Tech",
+    "imageSrc": "yerba.png",
+    "liveUrl": "https://yerba.tech",
+    "githubUrl": "https://github.com/Yerba-Tech",
+    "category": "Web"
+  },
+  {
+    "title": "Salary taxes",
+    "imageSrc": "taxes_salary.png",
+    "liveUrl": "https://calcularsueldonetoarg.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/calculadoraGananciasArg",
+    "category": "Web"
+  },
+  {
+    "title": "Vulnerability Scanner",
+    "imageSrc": "vul_scanner.png",
+    "liveUrl": "#",
+    "githubUrl": "https://github.com/jpromanonet/simple_vulnerability_scanner",
+    "category": "Hacking"
+  },
+  {
+    "title": "Bouncing Ball Game",
+    "imageSrc": "bouncing_game.png",
+    "liveUrl": "#",
+    "githubUrl": "https://github.com/jpromanonet/bouncing_ball_game",
+    "category": "Games"
+  },
+  {
+    "title": "Fibonacci Visualizations",
+    "imageSrc": "fibonacci_visuals.png",
+    "liveUrl": "https://fibonaccivisualization-jpromanonet.streamlit.app/",
+    "githubUrl": "https://github.com/jpromanonet/fibonacci_visualization",
+    "category": "datascience"
+  },
+  {
+    "title": "Network Scanner Tool",
+    "imageSrc": "network_scanner_tkinter.png",
+    "liveUrl": "#",
+    "githubUrl": "https://github.com/jpromanonet/network_scanning_tool_py",
+    "category": "Hacking"
+  },
+  {
+  "title": "Pong with Pygame",
+  "imageSrc": "pypong.png",
+  "liveUrl": "#",
+  "githubUrl": "https://github.com/jpromanonet/pyPong",
+  "category": "Games"
+  },
+  {
+    "title": "Alien Abduction Game",
+    "imageSrc": "alien_abduction_game.png",
+    "liveUrl": "#",
+    "githubUrl": "https://github.com/jpromanonet/alien_abduction_game",
+    "category": "Games"
+  },
+  {
+    "title": "Whiteboard Py + Tk",
+    "imageSrc": "whiteboard_py.png",
+    "liveUrl": "#",
+    "githubUrl": "https://github.com/jpromanonet/white_board_py",
+    "category": "Desktop"
+  },
+  {
+    "title": "Free Coding Resources",
+    "imageSrc": "recursos.png",
+    "liveUrl": "https://recursosprogramacion.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/freeCodingResources",
+    "category": "Web"
+  },
+  {
+    "title": "Personal Website",
+    "imageSrc": "website.png",
+    "liveUrl": "https://jpromanonet.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/webSite2023",
+    "category": "Web"
+  },
+  {
+    "title": "Progress Steps",
+    "imageSrc": "steps.png",
+    "liveUrl": "https://ste-progress.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/steProgress",
+    "category": "Web"
+  },
+  {
+    "title": "Ponzitorto",
+    "imageSrc": "ponzitorto.png",
+    "liveUrl": "https://ponzitorto.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/ponzitorto_piramid_edition",
+    "category": "Games"
+  },
+  {
+    "title": "CRUD with Local Storage",
+    "imageSrc": "crudlocalstorage.png",
+    "liveUrl": "https://crud-local-storage-nu.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/crudLocalStorage",
+    "category": "Web"
+  },
+  {
+    "title": "Meditation App",
+    "imageSrc": "meditation.png",
+    "liveUrl": "https://meditation-time.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/meditationTime",
+    "category": "Web"
+  },
+  {
+    "title": "Simple Budget App",
+    "imageSrc": "budget.png",
+    "liveUrl": "https://jpromanonet.github.io/budgetAppJs/index.html",
+    "githubUrl": "https://github.com/jpromanonet/budgetAppJs",
+    "category": "Web"
+  },
+  {
+    "title": "JS Issue Tracker",
+    "imageSrc": "ticketsJs.png",
+    "liveUrl": "https://jpromanonet.github.io/jsIssueTracker/index.html",
+    "githubUrl": "https://github.com/jpromanonet/jsIssueTracker",
+    "category": "Web"
+  },
+  {
+    "title": "Insect Catch Game",
+    "imageSrc": "catch_insect.png",
+    "liveUrl": "https://insect-catch-game-zeta.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/insectCatchGame",
+    "category": "Games"
+  },
+  {
+    "title": "Space Invaders",
+    "imageSrc": "space_invaders.png",
+    "liveUrl": "https://space-invaders-js-iota.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/spaceInvadersJS",
+    "category": "Games"
+  },
+  {
+    "title": "Battle Ships",
+    "imageSrc": "batalla_naval.png",
+    "liveUrl": "https://batalla-naval-js.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/batallaNavalJS",
+    "category": "Games"
+  },
+  {
+    "title": "Tetris JS",
+    "imageSrc": "tetris.png",
+    "liveUrl": "https://tetris-js-ten.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/tetrisJS",
+    "category": "Games"
+  },
+  
+  {
+    "title": "Truco",
+    "imageSrc": "truco.png",
+    "liveUrl": "https://simple-truco-js.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/simpleTrucoJS",
+    "category": "Games"
+  },
+  {
+    "title": "Snake JS",
+    "imageSrc": "snake_js.png",
+    "liveUrl": "https://snake-js-alpha.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/snakeJS",
+    "category": "Games"
+  },
+  {
+    "title": "Tap Music",
+    "imageSrc": "tap_music.png",
+    "liveUrl": "https://music-maker-one.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/musicMaker",
+    "category": "Games"
+  },
+  {
+    "title": "Rock, Paper & Scissors",
+    "imageSrc": "rock_paper.png",
+    "liveUrl": "https://rock-paper-scissors-topaz-seven.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/rockPaperScissors-",
+    "category": "Games"
+  },
+  {
+    "title": "Rotation Navbar",
+    "imageSrc": "rotation_nav.png",
+    "liveUrl": "https://rotation-nav.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/rotationNav",
+    "category": "Web"
+  },
+  {
+    "title": "Hidden Widget Search",
+    "imageSrc": "hidden_search_widget.png",
+    "liveUrl": "https://hidden-search-widget-henna.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/hiddenSearchWidget",
+    "category": "Web"
+  },
+  {
+    "title": "Blurry Loading",
+    "imageSrc": "blurry_loading.png",
+    "liveUrl": "https://blurry-loading-eosin.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/blurryLoading",
+    "category": "Web"
+  },
+  {
+    "title": "Scroll Animation",
+    "imageSrc": "scroll_animation.png",
+    "liveUrl": "https://scroll-animation-silk.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/scroll_animation",
+    "category": "Web"
+  },
+  {
+    "title": "Split Landing Page",
+    "imageSrc": "split_landing.png",
+    "liveUrl": "https://split-landing-page-kappa.vercel.app",
+    "githubUrl": "https://github.com/jpromanonet/splitLandingPage",
+    "category": "Web"
+  },
+  {
+    "title": "Form Wave",
+    "imageSrc": "form_wave.png",
+    "liveUrl": "https://form-wave-nine.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/form-wave",
+    "category": "Web"
+  },
+  {
+    "title": "Sound Board",
+    "imageSrc": "sound_board.png",
+    "liveUrl": "https://sound-board-five-alpha.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/sound_board",
+    "category": "Web"
+  },
+  {
+    "title": "Dad jokes generator",
+    "imageSrc": "dadjokes.png",
+    "liveUrl": "https://dadjokes-topaz.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/dadJokes",
+    "category": "Web"
+  },
+  {
+    "title": "Event Key Binder",
+    "imageSrc": "eventKey.png",
+    "liveUrl": "https://event-key-codes-fawn.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/eventKeyCodes",
+    "category": "Web"
+  },
+  {
+    "title": "FAQ Collapse",
+    "imageSrc": "faq.png",
+    "liveUrl": "https://faq-collapse-rose.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/faqCollapse",
+    "category": "Web"
+  },
+  {
+    "title": "Random Choice Picker",
+    "imageSrc": "choicepicker.png",
+    "liveUrl": "https://random-choice-picker-one.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/randomChoicePicker",
+    "category": "Web"
+  },
+  {
+    "title": "Animated Navigation",
+    "imageSrc": "animated.png",
+    "liveUrl": "https://animated-navigation-henna.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/animatedNavigation",
+    "category": "Web"
+  },
+  {
+    "title": "Social Media Counter",
+    "imageSrc": "social_media_fans.png",
+    "liveUrl": "https://increment-counter-sandy.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/incrementCounter",
+    "category": "Web"
+  },
+  {
+    "title": "Water Drink Reminder",
+    "imageSrc": "water_reminder.png",
+    "liveUrl": "https://drink-water-reminder.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/drinkWaterReminder",
+    "category": "Web"
+  },
+  {
+    "title": "Expanding Cards",
+    "imageSrc": "expanding_cards.png",
+    "liveUrl": "https://expanding-cards-pi-ivory.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/expandingCards",
+    "category": "Web"
+  },
+  {
+    "title": "Movie App",
+    "imageSrc": "movieapp.png",
+    "liveUrl": "https://movie-app-two-sandy.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/movieApp",
+    "category": "Web"
+  },
+  {
+    "title": "Background Slider",
+    "imageSrc": "bgslider.png",
+    "liveUrl": "https://backgroundslider.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/backgroundSlider",
+    "category": "Web"
+  },
+  {
+    "title": "Dark theme clock",
+    "imageSrc": "dark_clock.png",
+    "liveUrl": "https://dark-mode-clock.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/darkModeClock",
+    "category": "Web"
+  },
+  {
+    "title": "Drag & Drop",
+    "imageSrc": "dragdrop.png",
+    "liveUrl": "https://drag-drop-woad.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/drag-drop",
+    "category": "Web"
+  },
+  {
+    "title": "Button Ripple Effect",
+    "imageSrc": "buttonripple.png",
+    "liveUrl": "https://button-ripple-effect-one.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/buttonRippleEffect",
+    "category": "Web"
+  },
+  {
+    "title": "Simple Drawing App",
+    "imageSrc": "drawing_app.png",
+    "liveUrl": "https://simple-drawing-app.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/simple_drawing_app",
+    "category": "Web"
+  },
+  {
+    "title": "Kinetic Loader",
+    "imageSrc": "kinetic_loader.png",
+    "liveUrl": "https://kinectic-loader.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/kinecticLoader",
+    "category": "Web"
+  },
+  {
+    "title": "Content Place Holder",
+    "imageSrc": "place_holder.png",
+    "liveUrl": "https://content-place-holder.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/contentPlaceHolder",
+    "category": "Web"
+  },
+  {
+    "title": "Sticky Navbar",
+    "imageSrc": "sticky_navbar.png",
+    "liveUrl": "https://sticky-navbar-seven.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/stickyNavbar",
+    "category": "Web"
+  },
+  {
+    "title": "Vertical Slider",
+    "imageSrc": "vertical_slider.png",
+    "liveUrl": "https://vertical-slider-woad.vercel.app",
+    "githubUrl": "https://github.com/jpromanonet/verticalSlider",
+    "category": "Web"
+  },
+  {
+    "title": "Toast Notification",
+    "imageSrc": "toast_notification.png",
+    "liveUrl": "https://toast-notification-teal.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/toastNotification",
+    "category": "Web"
+  },
+  {
+    "title": "Github Profiles Search",
+    "imageSrc": "github_profiles.png",
+    "liveUrl": "https://githubprofilesearch-delta.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/githubProfiles",
+    "category": "Web"
+  },
+  {
+    "title": "Double Click Heart",
+    "imageSrc": "double_click_heart.png",
+    "liveUrl": "https://double-click-heart-iota.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/doubleClickHeart",
+    "category": "Web"
+  },
+  {
+    "title": "Auto Text Effect",
+    "imageSrc": "auto_text.png",
+    "liveUrl": "https://auto-text-effect-mu.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/autoTextEffect",
+    "category": "Web"
+  },
+  {
+    "title": "Password Generator",
+    "imageSrc": "password_generator.png",
+    "liveUrl": "https://password-generator-nine-vert.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/passwordGenerator",
+    "category": "Web"
+  },
+  {
+    "title": "Good Cheap Fast",
+    "imageSrc": "good_cheap_fast.png",
+    "liveUrl": "https://good-cheap-fast-amber.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/goodCheapFast",
+    "category": "Web"
+  },
+  {
+    "title": "Notes App",
+    "imageSrc": "notes_app.png",
+    "liveUrl": "https://simple-notes-app-bice.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/simpleNotesApp",
+    "category": "Web"
+  },
+  {
+    "title": "Animated Countdown",
+    "imageSrc": "animated_countdown.png",
+    "liveUrl": "https://animated-countdown-delta.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/animatedCountdown",
+    "category": "Web"
+  },
+  {
+    "title": "Image Carrousel",
+    "imageSrc": "image_carrousel.png",
+    "liveUrl": "https://image-carrousel.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/imageCarrousel",
+    "category": "Web"
+  },
+  {
+    "title": "Hover Board",
+    "imageSrc": "hover_board.png",
+    "liveUrl": "https://hover-board-drab.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/hoverBoard",
+    "category": "Web"
+  },
+  {
+    "title": "Pokedex",
+    "imageSrc": "pokedex.png",
+    "liveUrl": "https://pokedex-alpha-amber.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/pokedex",
+    "category": "Web"
+  },
+  {
+    "title": "Mobile Tab Navigation",
+    "imageSrc": "tab_nav.png",
+    "liveUrl": "https://mobile-tab-navigation-eight.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/mobileTabNavigation",
+    "category": "Web"
+  },
+  {
+    "title": "Cubes Background",
+    "imageSrc": "cubes_bg.png",
+    "liveUrl": "https://cubes-background.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/cubesBackground",
+    "category": "Web"
+  },
+  {
+    "title": "Password Background",
+    "imageSrc": "password_bg.png",
+    "liveUrl": "https://password-strenght-background.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/passwordStrenghtBackground",
+    "category": "Web"
+  },
+  {
+    "title": "Live User Filter",
+    "imageSrc": "live_filter.png",
+    "liveUrl": "https://live-user-filter-henna.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/liveUserFilter",
+    "category": "Web"
+  },
+  {
+    "title": "Verify Account UI",
+    "imageSrc": "verify_ui.png",
+    "liveUrl": "https://verify-account-ui-psi.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/verifyAccountUI",
+    "category": "Web"
+  },
+  {
+    "title": "Feedback UI Design",
+    "imageSrc": "feedback.png",
+    "liveUrl": "https://feedback-ui-design-one.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/feedbackUIDesign",
+    "category": "Web"
+  },
+  {
+    "title": "Custom Range Slider",
+    "imageSrc": "range_slider.png",
+    "liveUrl": "https://custom-range-slider-alpha.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/customRangeSlider",
+    "category": "Web"
+  },
+  {
+    "title": "Netflix Mobile Navbar",
+    "imageSrc": "netflix_mobile.png",
+    "liveUrl": "https://netflix-mobile-navigation-liart.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/netflixMobileNavigation",
+    "category": "Web"
+  },
+  {
+    "title": "Quiz App",
+    "imageSrc": "quiz_app.png",
+    "liveUrl": "https://quiz-app-rosy-one.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/quizApp",
+    "category": "Web"
+  },
+  {
+    "title": "Testimonial Box",
+    "imageSrc": "testimonial.png",
+    "liveUrl": "https://testimonial-box-switcher-psi.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/testimonialBoxSwitcher",
+    "category": "Web"
+  },
+  {
+    "title": "Random Image Feed",
+    "imageSrc": "random_images.png",
+    "liveUrl": "https://random-image-generator-three.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/randomImageGenerator",
+    "category": "Web"
+  },
+  {
+    "title": "To Do List",
+    "imageSrc": "to_do.png",
+    "liveUrl": "https://another-to-do-list.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/anotherToDoList",
+    "category": "Web"
+  },
+  {
+    "title": "Memotest",
+    "imageSrc": "memotest.png",
+    "liveUrl": "https://js-memory-game-flame.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/jsMemoryGame",
+    "category": "Games"
+  },
+  {
+    "title": "Stranger Things Wall",
+    "imageSrc": "strangerthings.png",
+    "liveUrl": "https://stranger-things-wall.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/strangerThingsWall",
+    "category": "Web"
+  },
+  {
+    "title": "Weight Converter",
+    "imageSrc": "wconverter.png",
+    "liveUrl": "https://weight-converter-seven.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/weightConverter",
+    "category": "Web"
+  },
+  {
+    "title": "Affirmation App",
+    "imageSrc": "affirmationapp.png",
+    "liveUrl": "https://affirmation-app.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/affirmation_app",
+    "category": "Web"
+  },
+  {
+    "title": "Wikipedia Viewer",
+    "imageSrc": "wikipedia.png",
+    "liveUrl": "https://wikipedia-viewer-ashen.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/Wikipedia_Viewer",
+    "category": "Web"
+  },
+  {
+    "title": "Stats Preview",
+    "imageSrc": "stats_card_component.png",
+    "liveUrl": "https://stats-preview-card-component-ashy.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/stats_preview_card_component",
+    "category": "Web"
+  },
+  {
+    "title": "Order Summary",
+    "imageSrc": "order_summary.png",
+    "liveUrl": "https://order-summary-repository.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/order_summary_repository",
+    "category": "Web"
+  },
+  {
+    "title": "Trump Quotes",
+    "imageSrc": "trump_quotes.png",
+    "liveUrl": "https://jpromanonet.github.io/trumpRandomQuotes/index.html",
+    "githubUrl": "https://github.com/jpromanonet/trumpRandomQuotes",
+    "category": "Web"
+  },
+  {
+    "title": "Drum Kit",
+    "imageSrc": "keyboard_drum.png",
+    "liveUrl": "https://jpromanonet.github.io/keywordDrumKitJS/",
+    "githubUrl": "https://github.com/jpromanonet/keywordDrumKitJS",
+    "category": "Games"
+  },
+  {
+    "title": "JS Calculator",
+    "imageSrc": "js_calc.png",
+    "liveUrl": "https://jpromanonet.github.io/jsCalcultator/",
+    "githubUrl": "https://github.com/jpromanonet/jsCalcultator",
+    "category": "Web"
+  },
+  {
+    "title": "Take Umbrella?",
+    "imageSrc": "umbrella.png",
+    "liveUrl": "https://take-the-umbrella.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/takeTheUmbrella",
+    "category": "Web"
+  },
+  {
+    "title": "Length Converter",
+    "imageSrc": "lconverter.png",
+    "liveUrl": "https://length-converter-bay.vercel.app/",
+    "githubUrl": "https://github.com/jpromanonet/lengthConverter",
+    "category": "Web"
+  }
+]
+

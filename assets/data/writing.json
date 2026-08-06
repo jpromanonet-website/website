@@ -1,0 +1,127 @@
+[ 
+  {
+    "title": "DESARROLLA TU LECTOR DE PDFs CON PYTHON",
+    "imageSrc": "ru.png",
+    "url": "https://www.redusers.com/noticias/publicaciones/lector-de-pdfs/",
+    "category": "Red USERS"
+  },
+  {
+    "title": "How to Create a Basic CI/CD Pipeline with Webhooks on Linux",
+    "imageSrc": "fcc.png",
+    "url": "https://www.freecodecamp.org/news/create-a-basic-cicd-pipeline-with-webhooks-on-linux/",
+    "category": "Free Code Camp"
+  },
+  {
+    "title": "¿Qué es Ututo y cómo se come?",
+    "imageSrc": "ututo.png",
+    "url": "https://blogdeututo.vercel.app/posts/que-es-ututo-y-como-se-come",
+    "category": "Ututo"
+  },{
+    "title": "Gestión Ágil de Proyectos Tecnológicos.",
+    "imageSrc": "ene.png",
+    "url": "https://www.enfoquedenegocios.com.ar/gestion-agil-de-proyectos/",
+    "category": "Enfoque de Negocios"
+  },
+  {
+    "title": "How to Build a Bouncing Ball Game.",
+    "imageSrc": "fcc.png",
+    "url": "https://www.freecodecamp.org/news/pygame-tutorial-build-a-bouncing-game/",
+    "category": "Free Code Camp"
+  },
+  {
+    "title": "Innovación Efectiva.",
+    "imageSrc": "ene.png",
+    "url": "https://www.enfoquedenegocios.com.ar/innovacion-efectiva/",
+    "category": "Enfoque de Negocios"
+  },
+  {
+    "title": "How to Build an Alien Abduction Game.",
+    "imageSrc": "fcc.png",
+    "url": "https://www.freecodecamp.org/news/pygame-tutorial-alien-abduction-game/",
+    "category": "Free Code Camp"
+  },
+  {
+    "title": "El arte de simplificar.",
+    "imageSrc": "ene.png",
+    "url": "https://www.enfoquedenegocios.com.ar/innovacion-efectiva/",
+    "category": "Enfoque de Negocios"
+  },
+  {
+    "title": "How to Build a Whiteboard App",
+    "imageSrc": "fcc.png",
+    "url": "https://www.freecodecamp.org/news/build-a-whiteboard-app/",
+    "category": "Free Code Camp"
+  },
+  {
+    "title": "El trabajo que paga las cuentas",
+    "imageSrc": "ene.png",
+    "url": "https://www.enfoquedenegocios.com.ar/trabajo/",
+    "category": "Enfoque de Negocios"
+  },
+  {
+    "title": "Noteworthy Security Breaches",
+    "imageSrc": "adviters.png",
+    "url": "https://www.linkedin.com/pulse/noteworthy-security-breaches-lessons-from-equifax-microsoft-exchange%3FtrackingId=VRdGjWd1T8SrCkzh1U1EDw%253D%253D/?trackingId=VRdGjWd1T8SrCkzh1U1EDw%3D%3D",
+    "category": "Adviters"
+  },
+  {
+    "title": "12 years of Siri",
+    "imageSrc": "adviters.png",
+    "url": "https://www.linkedin.com/pulse/12-years-siri-look-back-its-evolution-impact-adviters%3FtrackingId=6vUyEtmOS2aOrcGGGLzDOg%253D%253D/?trackingId=6vUyEtmOS2aOrcGGGLzDOg%3D%3D",
+    "category": "Adviters"
+  },
+  {
+    "title": "Ingenieria de Software Eficiente",
+    "imageSrc": "ene.png",
+    "url": "https://www.enfoquedenegocios.com.ar/eficiencia-en-ingenieria-de-software/",
+    "category": "Enfoque de Negocios"
+  },
+  {
+    "title": "Día del programador 2023",
+    "imageSrc": "ene.png",
+    "url": "https://www.enfoquedenegocios.com.ar/dia-de-los-programadores-2023/",
+    "category": "Enfoque de Negocios"
+  },
+  {
+    "title": "Programmer's day 2023",
+    "imageSrc": "adviters.png",
+    "url": "https://www.linkedin.com/pulse/why-programmers-day-celebrated-today-adviters/",
+    "category": "Adviters"
+  },
+  {
+    "title": "Transformación Digital",
+    "imageSrc": "ene.png",
+    "url": "https://www.enfoquedenegocios.com.ar/transformacion-digital/",
+    "category": "Enfoque de Negocios"
+  },
+  {
+    "title": "IA & Automatización",
+    "imageSrc": "ene.png",
+    "url": "https://www.enfoquedenegocios.com.ar/ia-y-automatizacion/",
+    "category": "Enfoque de Negocios"
+  },
+  {
+    "title": "Twitter not longer exists",
+    "imageSrc": "adviters.png",
+    "url": "https://adviters.com/technologies/x-the-new-twitter-revolution-all-the-changes-you-need-to-know/",
+    "category": "Adviters"
+  },
+  {
+    "title": "Apple Vision Pro",
+    "imageSrc": "adviters.png",
+    "url": "https://adviters.com/technologies/apple-vision-pro-a-glimpse-into-the-future-of-virtual-augmented-reality/",
+    "category": "Adviters"
+  },
+  {
+    "title": "Chat GPT vs. Google Bard",
+    "imageSrc": "adviters.png",
+    "url": "https://adviters.com/artificial-intelligence/ia-una-guia-completa-herramientas-utiles-y-la-batalla-chat-gpt-vs-google-bard/",
+    "category": "Adviters"
+  },
+  {
+    "title": "Bootcamp Adviters 2023",
+    "imageSrc": "adviters.png",
+    "url": "https://adviters.com/uncategorized/bootcamp-adviters-2023-resumen-y-conclusiones-de-la-experiencia/",
+    "category": "Adviters"
+  }
+]

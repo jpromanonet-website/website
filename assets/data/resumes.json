@@ -1,0 +1,16 @@
+[
+  {
+    "title": "Curriculum Vitae — Español",
+    "file": "cv-es.pdf",
+    "lang": "es",
+    "label": "Español",
+    "description": "CV completo en español."
+  },
+  {
+    "title": "Curriculum Vitae — English",
+    "file": "cv-en.pdf",
+    "lang": "en",
+    "label": "English",
+    "description": "Full CV in English."
+  }
+]

@@ -1,0 +1,17 @@
+DirectoryIndex index.php index.html
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /jpromanonet/
+
+    # Prefer PHP index when both exist
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteCond %{REQUEST_FILENAME}/index.php -f
+    RewriteRule ^(.*)$ $1/index.php [L]
+</IfModule>
+
+# Security headers (best-effort)
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
