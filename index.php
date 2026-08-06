@@ -7,6 +7,10 @@ $pageTitle = $site['name'];
 $pageDescription = 'Juan P. Romano — Engineering Manager at Hybrid Bee Technology, Packt author, and polyglot software engineer based in Buenos Aires.';
 $activeNav = 'home';
 
+// Newest projects first in projects.json — take the latest 9, shown 3 per slide
+$featuredProjects = array_slice(load_json('projects'), 0, 9);
+$featuredSlides = array_chunk($featuredProjects, 3);
+
 require APP_ROOT . '/includes/header.php';
 ?>
 
@@ -75,6 +79,82 @@ require APP_ROOT . '/includes/header.php';
             </ul>
         </section>
 
+        <?php if ($featuredSlides): ?>
+        <section class="section reveal" id="featured">
+            <div class="section-heading-row">
+                <div>
+                    <h2 class="section-heading">Recent work</h2>
+                    <p class="section-lead">A snapshot of the latest projects.</p>
+                </div>
+                <a class="btn btn--soft" href="<?= e(url('/portfolio/')) ?>">Full portfolio</a>
+            </div>
+
+            <div class="project-carousel" data-carousel>
+                <div class="project-carousel__viewport">
+                    <div class="project-carousel__track" data-carousel-track>
+                        <?php foreach ($featuredSlides as $slideIndex => $slide): ?>
+                            <div class="project-carousel__slide" data-carousel-slide<?= $slideIndex === 0 ? ' data-active' : '' ?>>
+                                <div class="project-carousel__grid">
+                                    <?php foreach ($slide as $project):
+                                        $title = (string) ($project['title'] ?? 'Untitled');
+                                        $category = (string) ($project['category'] ?? '');
+                                        $image = (string) ($project['imageSrc'] ?? '');
+                                        $live = (string) ($project['liveUrl'] ?? '');
+                                        $github = (string) ($project['githubUrl'] ?? '');
+                                        $href = ($live !== '' && $live !== '#') ? $live : (($github !== '' && $github !== '#') ? $github : url('/portfolio/'));
+                                        $external = is_external($href);
+                                    ?>
+                                        <a
+                                            class="catalog-item project-carousel__card"
+                                            href="<?= e($href) ?>"
+                                            <?= $external ? 'target="_blank" rel="noopener noreferrer"' : '' ?>
+                                        >
+                                            <div class="catalog-item__media">
+                                                <?php if ($image !== ''): ?>
+                                                    <img src="<?= e(media_url('portfolio', $image)) ?>" alt="<?= e($title) ?>" loading="lazy" />
+                                                <?php endif; ?>
+                                            </div>
+                                            <div class="catalog-item__body">
+                                                <?php if ($category !== ''): ?>
+                                                    <span class="catalog-item__meta"><?= e($category) ?></span>
+                                                <?php endif; ?>
+                                                <h3 class="catalog-item__title"><?= e($title) ?></h3>
+                                            </div>
+                                        </a>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+
+                <div class="project-carousel__controls">
+                    <button type="button" class="project-carousel__btn" data-carousel-prev aria-label="Previous projects">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="project-carousel__dots" data-carousel-dots role="tablist" aria-label="Carousel pages">
+                        <?php foreach ($featuredSlides as $i => $_): ?>
+                            <button
+                                type="button"
+                                class="project-carousel__dot<?= $i === 0 ? ' is-active' : '' ?>"
+                                data-carousel-dot="<?= $i ?>"
+                                aria-label="Show projects <?= ($i * 3) + 1 ?> to <?= min(($i + 1) * 3, count($featuredProjects)) ?>"
+                                <?= $i === 0 ? 'aria-current="true"' : '' ?>
+                            ></button>
+                        <?php endforeach; ?>
+                    </div>
+                    <button type="button" class="project-carousel__btn" data-carousel-next aria-label="Next projects">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <?php endif; ?>
+
         <section class="section reveal" id="skills">
             <h2 class="section-heading">Skills &amp; technologies</h2>
             <p class="section-lead">What I’m actively shipping with — more tools live in the drawer, but these get the most airtime.</p>
@@ -108,32 +188,6 @@ require APP_ROOT . '/includes/header.php';
                         <li>NGINX</li><li>Apache</li><li>Jira</li>
                     </ul>
                 </div>
-            </div>
-        </section>
-
-        <section class="section reveal" id="explore">
-            <h2 class="section-heading">Explore</h2>
-            <p class="section-lead">Everything lives in one place now — projects, writing, ventures, and more.</p>
-            <div class="catalog-grid">
-                <?php
-                $explore = [
-                    ['Portfolio', 'Shipped products, experiments, and open source.', '/portfolio/'],
-                    ['Books', 'Published and upcoming titles.', '/books/'],
-                    ['Writing', 'Articles across freeCodeCamp, ENE, and more.', '/writing/'],
-                    ['Ventures', 'Companies and products I’m building.', '/ventures/'],
-                    ['News', 'Press and media mentions.', '/news/'],
-                    ['Resumes', 'Downloadable CVs in Spanish and English.', '/resumes/'],
-                ];
-                foreach ($explore as [$title, $brief, $path]):
-                ?>
-                    <a class="catalog-item" href="<?= e(url($path)) ?>" style="text-decoration:none;color:inherit;">
-                        <div class="catalog-item__body">
-                            <span class="catalog-item__meta">Section</span>
-                            <h3 class="catalog-item__title"><?= e($title) ?></h3>
-                            <p class="catalog-item__brief"><?= e($brief) ?></p>
-                        </div>
-                    </a>
-                <?php endforeach; ?>
             </div>
         </section>
 

@@ -108,6 +108,67 @@
     reveals.forEach((el) => el.classList.add("is-visible"));
   }
 
+  // Home featured projects carousel (3 per slide)
+  const carousel = document.querySelector("[data-carousel]");
+  if (carousel) {
+    const track = carousel.querySelector("[data-carousel-track]");
+    const slides = Array.from(carousel.querySelectorAll("[data-carousel-slide]"));
+    const dots = Array.from(carousel.querySelectorAll("[data-carousel-dot]"));
+    const prevBtn = carousel.querySelector("[data-carousel-prev]");
+    const nextBtn = carousel.querySelector("[data-carousel-next]");
+    let index = 0;
+    let timer = null;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const goTo = (nextIndex) => {
+      if (!slides.length || !track) return;
+      index = (nextIndex + slides.length) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach((dot, i) => {
+        const active = i === index;
+        dot.classList.toggle("is-active", active);
+        if (active) dot.setAttribute("aria-current", "true");
+        else dot.removeAttribute("aria-current");
+      });
+    };
+
+    const stop = () => {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+    };
+
+    const start = () => {
+      if (reduceMotion || slides.length < 2) return;
+      stop();
+      timer = setInterval(() => goTo(index + 1), 5500);
+    };
+
+    prevBtn?.addEventListener("click", () => {
+      goTo(index - 1);
+      start();
+    });
+    nextBtn?.addEventListener("click", () => {
+      goTo(index + 1);
+      start();
+    });
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        goTo(Number(dot.getAttribute("data-carousel-dot") || 0));
+        start();
+      });
+    });
+
+    carousel.addEventListener("mouseenter", stop);
+    carousel.addEventListener("mouseleave", start);
+    carousel.addEventListener("focusin", stop);
+    carousel.addEventListener("focusout", start);
+
+    goTo(0);
+    start();
+  }
+
   // Catalog filters
   const catalog = document.querySelector("[data-catalog]");
   if (!catalog) return;
