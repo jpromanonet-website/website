@@ -7,9 +7,8 @@ $pageTitle = $site['name'];
 $pageDescription = 'Juan P. Romano — Engineering Manager at Hybrid Bee Technology, Packt author, and polyglot software engineer based in Buenos Aires.';
 $activeNav = 'home';
 
-// Newest projects first in projects.json — take the latest 9, shown 3 per slide
+// Newest projects first in projects.json — take the latest 9
 $featuredProjects = array_slice(load_json('projects'), 0, 9);
-$featuredSlides = array_chunk($featuredProjects, 3);
 
 require APP_ROOT . '/includes/header.php';
 ?>
@@ -79,7 +78,7 @@ require APP_ROOT . '/includes/header.php';
             </ul>
         </section>
 
-        <?php if ($featuredSlides): ?>
+        <?php if ($featuredProjects): ?>
         <section class="section reveal" id="featured">
             <div class="section-heading-row">
                 <div>
@@ -89,41 +88,36 @@ require APP_ROOT . '/includes/header.php';
                 <a class="btn btn--soft" href="<?= e(url('/portfolio/')) ?>">Full portfolio</a>
             </div>
 
-            <div class="project-carousel" data-carousel>
+            <div class="project-carousel" data-carousel data-carousel-desktop="3" data-carousel-mobile="1">
                 <div class="project-carousel__viewport">
                     <div class="project-carousel__track" data-carousel-track>
-                        <?php foreach ($featuredSlides as $slideIndex => $slide): ?>
-                            <div class="project-carousel__slide" data-carousel-slide<?= $slideIndex === 0 ? ' data-active' : '' ?>>
-                                <div class="project-carousel__grid">
-                                    <?php foreach ($slide as $project):
-                                        $title = (string) ($project['title'] ?? 'Untitled');
-                                        $category = (string) ($project['category'] ?? '');
-                                        $image = (string) ($project['imageSrc'] ?? '');
-                                        $live = (string) ($project['liveUrl'] ?? '');
-                                        $github = (string) ($project['githubUrl'] ?? '');
-                                        $href = ($live !== '' && $live !== '#') ? $live : (($github !== '' && $github !== '#') ? $github : url('/portfolio/'));
-                                        $external = is_external($href);
-                                    ?>
-                                        <a
-                                            class="catalog-item project-carousel__card"
-                                            href="<?= e($href) ?>"
-                                            <?= $external ? 'target="_blank" rel="noopener noreferrer"' : '' ?>
-                                        >
-                                            <div class="catalog-item__media">
-                                                <?php if ($image !== ''): ?>
-                                                    <img src="<?= e(media_url('portfolio', $image)) ?>" alt="<?= e($title) ?>" loading="lazy" />
-                                                <?php endif; ?>
-                                            </div>
-                                            <div class="catalog-item__body">
-                                                <?php if ($category !== ''): ?>
-                                                    <span class="catalog-item__meta"><?= e($category) ?></span>
-                                                <?php endif; ?>
-                                                <h3 class="catalog-item__title"><?= e($title) ?></h3>
-                                            </div>
-                                        </a>
-                                    <?php endforeach; ?>
+                        <?php foreach ($featuredProjects as $project):
+                            $title = (string) ($project['title'] ?? 'Untitled');
+                            $category = (string) ($project['category'] ?? '');
+                            $image = (string) ($project['imageSrc'] ?? '');
+                            $live = (string) ($project['liveUrl'] ?? '');
+                            $github = (string) ($project['githubUrl'] ?? '');
+                            $href = ($live !== '' && $live !== '#') ? $live : (($github !== '' && $github !== '#') ? $github : url('/portfolio/'));
+                            $external = is_external($href);
+                        ?>
+                            <a
+                                class="catalog-item project-carousel__card"
+                                data-carousel-item
+                                href="<?= e($href) ?>"
+                                <?= $external ? 'target="_blank" rel="noopener noreferrer"' : '' ?>
+                            >
+                                <div class="catalog-item__media">
+                                    <?php if ($image !== ''): ?>
+                                        <img src="<?= e(media_url('portfolio', $image)) ?>" alt="<?= e($title) ?>" loading="lazy" />
+                                    <?php endif; ?>
                                 </div>
-                            </div>
+                                <div class="catalog-item__body">
+                                    <?php if ($category !== ''): ?>
+                                        <span class="catalog-item__meta"><?= e($category) ?></span>
+                                    <?php endif; ?>
+                                    <h3 class="catalog-item__title"><?= e($title) ?></h3>
+                                </div>
+                            </a>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -134,17 +128,7 @@ require APP_ROOT . '/includes/header.php';
                             <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
-                    <div class="project-carousel__dots" data-carousel-dots role="tablist" aria-label="Carousel pages">
-                        <?php foreach ($featuredSlides as $i => $_): ?>
-                            <button
-                                type="button"
-                                class="project-carousel__dot<?= $i === 0 ? ' is-active' : '' ?>"
-                                data-carousel-dot="<?= $i ?>"
-                                aria-label="Show projects <?= ($i * 3) + 1 ?> to <?= min(($i + 1) * 3, count($featuredProjects)) ?>"
-                                <?= $i === 0 ? 'aria-current="true"' : '' ?>
-                            ></button>
-                        <?php endforeach; ?>
-                    </div>
+                    <div class="project-carousel__dots" data-carousel-dots role="tablist" aria-label="Carousel pages"></div>
                     <button type="button" class="project-carousel__btn" data-carousel-next aria-label="Next projects">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                             <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

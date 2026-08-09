@@ -28,6 +28,15 @@ $fullTitle = $pageTitle === $site['name']
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="<?= e(asset('css/site.css')) ?>" />
+    <?php if (!empty($site['ga_id'])): ?>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<?= e($site['ga_id']) ?>"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '<?= e($site['ga_id']) ?>');
+    </script>
+    <?php endif; ?>
 </head>
 <body data-theme="light">
     <a class="skip-link" href="#main">Skip to content</a>

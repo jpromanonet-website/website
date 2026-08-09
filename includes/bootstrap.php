@@ -21,6 +21,7 @@ $site = [
     'github' => 'https://github.com/jpromanonet',
     'x' => 'https://x.com/jpromanonet',
     'instagram' => 'https://instagram.com/jpromanonet',
+    'ga_id' => 'G-73GRBEG00T',
 ];
 
 $navItems = [

@@ -569,36 +569,31 @@ body.nav-open .nav-item--dropdown .nav-menu {
 
 .project-carousel__viewport {
   overflow: hidden;
-  border-radius: 14px;
+  width: 100%;
 }
 
 .project-carousel__track {
   display: flex;
+  gap: 1rem;
   transition: transform 0.45s var(--ease);
   will-change: transform;
 }
 
-.project-carousel__slide {
+.project-carousel__card {
   flex: 0 0 100%;
-  min-width: 100%;
-}
-
-.project-carousel__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
+  width: 100%;
+  max-width: 100%;
+  text-decoration: none;
+  color: inherit;
+  box-sizing: border-box;
 }
 
 @media (min-width: 720px) {
-  .project-carousel__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .project-carousel__card {
+    flex: 0 0 calc((100% - 2rem) / 3);
+    width: calc((100% - 2rem) / 3);
+    max-width: calc((100% - 2rem) / 3);
   }
-}
-
-.project-carousel__card {
-  text-decoration: none;
-  color: inherit;
-  height: 100%;
 }
 
 .project-carousel__card .catalog-item__title {
@@ -633,8 +628,11 @@ body.nav-open .nav-item--dropdown .nav-menu {
 
 .project-carousel__dots {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 0.45rem;
   align-items: center;
+  max-width: 14rem;
 }
 
 .project-carousel__dot {

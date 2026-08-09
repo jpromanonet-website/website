@@ -108,22 +108,54 @@
     reveals.forEach((el) => el.classList.add("is-visible"));
   }
 
-  // Home featured projects carousel (3 per slide)
+  // Home featured projects carousel — 1 on mobile, 3 on desktop
   const carousel = document.querySelector("[data-carousel]");
   if (carousel) {
     const track = carousel.querySelector("[data-carousel-track]");
-    const slides = Array.from(carousel.querySelectorAll("[data-carousel-slide]"));
-    const dots = Array.from(carousel.querySelectorAll("[data-carousel-dot]"));
+    const items = Array.from(carousel.querySelectorAll("[data-carousel-item]"));
+    const dotsWrap = carousel.querySelector("[data-carousel-dots]");
     const prevBtn = carousel.querySelector("[data-carousel-prev]");
     const nextBtn = carousel.querySelector("[data-carousel-next]");
-    let index = 0;
-    let timer = null;
+    const desktopCount = Number(carousel.getAttribute("data-carousel-desktop") || 3);
+    const mobileCount = Number(carousel.getAttribute("data-carousel-mobile") || 1);
+    const mq = window.matchMedia("(min-width: 720px)");
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+    let index = 0;
+    let timer = null;
+    let dots = [];
+
+    const itemsPerView = () => (mq.matches ? desktopCount : mobileCount);
+    const pageCount = () => Math.max(1, Math.ceil(items.length / itemsPerView()));
+
+    const syncDots = () => {
+      if (!dotsWrap) return;
+      const pages = pageCount();
+      dotsWrap.innerHTML = "";
+      dots = [];
+      for (let i = 0; i < pages; i += 1) {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "project-carousel__dot";
+        dot.setAttribute("data-carousel-dot", String(i));
+        dot.setAttribute("aria-label", `Go to slide ${i + 1}`);
+        dot.addEventListener("click", () => {
+          goTo(i);
+          start();
+        });
+        dotsWrap.appendChild(dot);
+        dots.push(dot);
+      }
+    };
+
     const goTo = (nextIndex) => {
-      if (!slides.length || !track) return;
-      index = (nextIndex + slides.length) % slides.length;
-      track.style.transform = `translateX(-${index * 100}%)`;
+      if (!track || !items.length) return;
+      const pages = pageCount();
+      const ipv = itemsPerView();
+      index = ((nextIndex % pages) + pages) % pages;
+      const startItem = items[index * ipv];
+      const offset = startItem ? startItem.offsetLeft : 0;
+      track.style.transform = `translateX(-${offset}px)`;
       dots.forEach((dot, i) => {
         const active = i === index;
         dot.classList.toggle("is-active", active);
@@ -140,9 +172,15 @@
     };
 
     const start = () => {
-      if (reduceMotion || slides.length < 2) return;
+      if (reduceMotion || pageCount() < 2) return;
       stop();
       timer = setInterval(() => goTo(index + 1), 5500);
+    };
+
+    const refresh = () => {
+      syncDots();
+      goTo(Math.min(index, pageCount() - 1));
+      start();
     };
 
     prevBtn?.addEventListener("click", () => {
@@ -153,20 +191,18 @@
       goTo(index + 1);
       start();
     });
-    dots.forEach((dot) => {
-      dot.addEventListener("click", () => {
-        goTo(Number(dot.getAttribute("data-carousel-dot") || 0));
-        start();
-      });
-    });
 
     carousel.addEventListener("mouseenter", stop);
     carousel.addEventListener("mouseleave", start);
     carousel.addEventListener("focusin", stop);
     carousel.addEventListener("focusout", start);
 
-    goTo(0);
-    start();
+    window.addEventListener("resize", () => {
+      goTo(index);
+    }, { passive: true });
+
+    mq.addEventListener("change", refresh);
+    refresh();
   }
 
   // Catalog filters
