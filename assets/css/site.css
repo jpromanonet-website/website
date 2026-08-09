@@ -58,6 +58,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -65,6 +66,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
   font-family: var(--font-body);
   font-size: 1.05rem;
   line-height: 1.65;
@@ -520,15 +522,24 @@ body.nav-open .nav-item--dropdown .nav-menu {
 #main {
   flex: 1 0 auto;
   width: min(100% - 2rem, var(--max));
+  max-width: 100%;
   margin-inline: auto;
+  min-width: 0;
 }
 
 .layout {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   margin: 0 auto;
   padding: 2.5rem 0 4rem;
   display: grid;
   gap: 2.5rem;
+}
+
+.layout > * {
+  min-width: 0;
+  max-width: 100%;
 }
 
 @media (min-width: 960px) {
@@ -540,6 +551,8 @@ body.nav-open .nav-item--dropdown .nav-menu {
 
 .section {
   margin-bottom: 2.75rem;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .section:last-child {
@@ -565,16 +578,23 @@ body.nav-open .nav-item--dropdown .nav-menu {
 
 .project-carousel {
   position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .project-carousel__viewport {
   overflow: hidden;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .project-carousel__track {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
+  width: 100%;
   transition: transform 0.45s var(--ease);
   will-change: transform;
 }
@@ -582,22 +602,67 @@ body.nav-open .nav-item--dropdown .nav-menu {
 .project-carousel__card {
   flex: 0 0 100%;
   width: 100%;
+  min-width: 0;
   max-width: 100%;
   text-decoration: none;
   color: inherit;
   box-sizing: border-box;
 }
 
+.project-carousel__card .catalog-item__media {
+  aspect-ratio: 16 / 10;
+}
+
+.project-carousel__card .catalog-item__body {
+  padding: 0.7rem 0.8rem 0.85rem;
+  gap: 0.35rem;
+}
+
+.project-carousel__card .catalog-item__title {
+  font-size: 0.92rem;
+  line-height: 1.25;
+}
+
+.project-carousel__card .catalog-item__meta {
+  font-size: 0.68rem;
+}
+
+@media (max-width: 719px) {
+  .project-carousel__card .catalog-item__media {
+    aspect-ratio: 2 / 1;
+  }
+
+  .project-carousel__card .catalog-item__body {
+    padding: 0.55rem 0.7rem 0.7rem;
+  }
+
+  .project-carousel__card .catalog-item__title {
+    font-size: 0.88rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
 @media (min-width: 720px) {
+  .project-carousel__track {
+    gap: 1rem;
+  }
+
   .project-carousel__card {
     flex: 0 0 calc((100% - 2rem) / 3);
     width: calc((100% - 2rem) / 3);
     max-width: calc((100% - 2rem) / 3);
   }
-}
 
-.project-carousel__card .catalog-item__title {
-  font-size: 1rem;
+  .project-carousel__card .catalog-item__title {
+    font-size: 1rem;
+  }
+
+  .project-carousel__card .catalog-item__body {
+    padding: 0.95rem 1rem 1.1rem;
+  }
 }
 
 .project-carousel__controls {

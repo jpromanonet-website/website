@@ -2,7 +2,7 @@
   {
     "title": "The AI Platform Engineer Journey",
     "imageSrc": "iaroadmap.png",
-    "liveUrl": "https://theairoadmap.vercel.app",
+    "liveUrl": "https://learningiaforfree.vercel.app",
     "githubUrl": "https://github.com/jpromanonet/The-AI-Platform-Engineer-Journey",
     "category": "Web"
   },
@@ -300,7 +300,7 @@
   {
     "title": "Free Coding Resources",
     "imageSrc": "recursos.png",
-    "liveUrl": "https://recursosprogramacion.vercel.app/",
+    "liveUrl": "https://learningtocodeforfree.vercel.app/",
     "githubUrl": "https://github.com/jpromanonet/freeCodingResources",
     "category": "Web"
   },
