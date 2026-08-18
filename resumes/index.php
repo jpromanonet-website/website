@@ -17,9 +17,6 @@ render_page_header('Resumes', '', 'CV');
     <div>
         <section class="section">
             <h2 class="section-heading">Download</h2>
-            <p class="section-lead">
-                Two PDF resumes — Spanish and English. Files will appear here as soon as they are uploaded.
-            </p>
 
             <div class="resume-grid">
                 <?php foreach ($resumes as $resume):
@@ -40,12 +37,8 @@ render_page_header('Resumes', '', 'CV');
                             <a class="btn btn--primary" href="<?= e(pdf_url($file)) ?>" download>
                                 Download PDF
                             </a>
-                            <p class="resume-card__status"><?= e($file) ?> · ready</p>
                         <?php else: ?>
                             <span class="btn btn--ghost is-disabled" aria-disabled="true">PDF coming soon</span>
-                            <p class="resume-card__status">
-                                Expected file: <code><?= e($file !== '' ? $file : 'n/a') ?></code>
-                            </p>
                         <?php endif; ?>
                     </article>
                 <?php endforeach; ?>

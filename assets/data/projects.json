@@ -1,5 +1,40 @@
 [ 
   {
+    "title": "Py Doom",
+    "imageSrc": "pydoom.png",
+    "liveUrl": "#",
+    "githubUrl": "https://github.com/jpromanonet/pyGameDoom",
+    "category": "Games"
+  },
+  {
+    "title": "Soup Desk",
+    "imageSrc": "soupdesk.png",
+    "liveUrl": "#",
+    "githubUrl": "#",
+    "category": "Web"
+  },
+  {
+    "title": "PatriumHub",
+    "imageSrc": "patrium.png",
+    "liveUrl": "#",
+    "githubUrl": "#",
+    "category": "Web"
+  },
+  {
+    "title": "Job Search Kit",
+    "imageSrc": "jobkit.png",
+    "liveUrl": "#",
+    "githubUrl": "#",
+    "category": "Web"
+  },
+  {
+    "title": "Homelab",
+    "imageSrc": "homelab.png",
+    "liveUrl": "#",
+    "githubUrl": "#",
+    "category": "Web"
+  },
+  {
     "title": "The AI Platform Engineer Journey",
     "imageSrc": "iaroadmap.png",
     "liveUrl": "https://learningiaforfree.vercel.app",
