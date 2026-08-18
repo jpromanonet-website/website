@@ -4,10 +4,27 @@ declare(strict_types=1);
 require_once dirname(__DIR__) . '/includes/bootstrap.php';
 
 $pageTitle = 'Writing';
-$pageDescription = 'Articles and publications by Juan P. Romano.';
+$pageDescription = 'Articles and publications by Juan P. Romano — including automatic Medium posts.';
 $activeNav = 'writing';
 
-$articles = load_json('writing');
+$mediumPosts = fetch_medium_posts();
+$staticArticles = load_json('writing');
+
+// Static JSON first, then Medium (automatic)
+$articles = [];
+foreach ($staticArticles as $article) {
+    $articles[] = [
+        'title' => (string) ($article['title'] ?? 'Untitled'),
+        'url' => (string) ($article['url'] ?? '#'),
+        'category' => (string) ($article['category'] ?? ''),
+        'imageSrc' => (string) ($article['imageSrc'] ?? ''),
+        'source' => 'static',
+    ];
+}
+foreach ($mediumPosts as $post) {
+    $articles[] = $post;
+}
+
 $categories = unique_categories($articles);
 
 require APP_ROOT . '/includes/header.php';
@@ -33,7 +50,10 @@ render_page_header('Writing', '', 'Articles');
                 $category = (string) ($article['category'] ?? '');
                 $image = (string) ($article['imageSrc'] ?? '');
                 $link = (string) ($article['url'] ?? '#');
+                $source = (string) ($article['source'] ?? 'static');
+                $isMedium = $source === 'medium' || strcasecmp($category, 'Medium') === 0;
                 $search = strtolower($title . ' ' . $category);
+                $imgSrc = $image !== '' ? media_url('writing', $image) : '';
             ?>
                 <article
                     class="catalog-item"
@@ -41,9 +61,9 @@ render_page_header('Writing', '', 'Articles');
                     data-category="<?= e(strtolower($category)) ?>"
                     data-search="<?= e($search) ?>"
                 >
-                    <div class="catalog-item__media">
-                        <?php if ($image !== ''): ?>
-                            <img src="<?= e(media_url('writing', $image)) ?>" alt="<?= e($category !== '' ? $category : $title) ?>" loading="lazy" />
+                    <div class="catalog-item__media<?= $isMedium ? ' catalog-item__media--logo' : '' ?>">
+                        <?php if ($imgSrc !== ''): ?>
+                            <img src="<?= e($imgSrc) ?>" alt="<?= e($isMedium ? 'Medium' : ($category !== '' ? $category : $title)) ?>" loading="lazy" />
                         <?php endif; ?>
                     </div>
                     <div class="catalog-item__body">

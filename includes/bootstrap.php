@@ -10,6 +10,7 @@ $relative = rtrim($relative, '/');
 define('BASE_URL', $relative === '' || $relative === false ? '' : $relative);
 
 require_once APP_ROOT . '/includes/helpers.php';
+require_once APP_ROOT . '/includes/medium.php';
 
 $site = [
     'name' => 'Juan P. Romano',
@@ -22,6 +23,8 @@ $site = [
     'x' => 'https://x.com/jpromanonet',
     'instagram' => 'https://instagram.com/jpromanonet',
     'ga_id' => 'G-73GRBEG00T',
+    'medium_feed' => 'https://medium.com/feed/@jpromanonet',
+    'medium_user_id' => '768cb0ffbcaf',
 ];
 
 $navItems = [

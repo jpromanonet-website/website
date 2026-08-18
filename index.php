@@ -9,6 +9,7 @@ $activeNav = 'home';
 
 // Newest projects first in projects.json — take the latest 9
 $featuredProjects = array_slice(load_json('projects'), 0, 9);
+$latestMedium = latest_medium_post();
 
 require APP_ROOT . '/includes/header.php';
 ?>
@@ -77,6 +78,34 @@ require APP_ROOT . '/includes/header.php';
                 </li>
             </ul>
         </section>
+
+        <?php if ($latestMedium): ?>
+        <section class="section reveal" id="latest-writing">
+            <div class="section-heading-row">
+                <div>
+                    <h2 class="section-heading">Latest on Medium</h2>
+                    <p class="section-lead">The most recent post from my blog.</p>
+                </div>
+                <a class="btn btn--soft" href="<?= e(url('/writing/')) ?>">All writing</a>
+            </div>
+
+            <a
+                class="medium-latest"
+                href="<?= e((string) $latestMedium['url']) ?>"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <div class="medium-latest__logo" aria-hidden="true">
+                    <img src="<?= e(media_url('writing', 'medium.svg')) ?>" alt="" />
+                </div>
+                <div class="medium-latest__body">
+                    <span class="medium-latest__meta">Medium</span>
+                    <h3 class="medium-latest__title"><?= e((string) $latestMedium['title']) ?></h3>
+                    <span class="medium-latest__cta">Read on Medium →</span>
+                </div>
+            </a>
+        </section>
+        <?php endif; ?>
 
         <?php if ($featuredProjects): ?>
         <section class="section reveal" id="featured">

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Medium">
+  <!-- Classic Medium M mark (pre-rebrand), black on white -->
+  <rect width="120" height="120" fill="#ffffff"/>
+  <g fill="#000000" transform="translate(18,30)">
+    <circle cx="24" cy="30" r="24"/>
+    <ellipse cx="58" cy="30" rx="12" ry="24"/>
+    <ellipse cx="80" cy="30" rx="6" ry="24"/>
+  </g>
+</svg>
