@@ -33,7 +33,6 @@ require APP_ROOT . '/includes/header.php';
     <div>
         <section class="section reveal" id="about">
             <h2 class="section-heading">About</h2>
-            <p class="section-lead">Curious mind. Builder by trade. ~15 years shipping software, leading teams, and teaching the craft.</p>
             <div class="prose">
                 <p>
                     I’m Juan, a software engineer and Engineering Manager based in Buenos Aires.

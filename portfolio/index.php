@@ -79,7 +79,6 @@ render_page_header('Portfolio', '', 'Projects');
         </ul>
         <div class="sidebar-cta">
             <a class="btn btn--soft" href="<?= e($site['github']) ?>" target="_blank" rel="noopener noreferrer">GitHub profile</a>
-            <a class="btn btn--ghost" href="<?= e($site['blog']) ?>" target="_blank" rel="noopener noreferrer">Medium blog</a>
         </div>
     </aside>
 </main>

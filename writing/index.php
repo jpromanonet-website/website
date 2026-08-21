@@ -94,7 +94,7 @@ render_page_header('Writing', '', 'Articles');
             <li><a href="<?= e(url('/resumes/')) ?>">Resumes</a></li>
         </ul>
         <div class="sidebar-cta">
-            <a class="btn btn--soft" href="<?= e($site['blog']) ?>" target="_blank" rel="noopener noreferrer">jpromanonet.medium.com</a>
+            <a class="btn btn--soft" href="<?= e($site['blog']) ?>" target="_blank" rel="noopener noreferrer">Read on Medium</a>
         </div>
     </aside>
 </main>
