@@ -183,7 +183,27 @@ a:hover {
   display: none;
   align-items: center;
   gap: 0.15rem;
+}
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   margin-left: auto;
+}
+
+.nav-toggle {
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-elevated);
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
 }
 
 .nav-link {
@@ -251,28 +271,6 @@ a:hover {
   background: var(--bg-soft);
 }
 
-.site-header__actions {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-left: 0.5rem;
-}
-
-.nav-toggle {
-  margin-left: auto;
-  width: 42px;
-  height: 42px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--bg-elevated);
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  cursor: pointer;
-}
-
 .nav-toggle span {
   display: block;
   width: 16px;
@@ -297,6 +295,10 @@ a:hover {
   }
   .site-nav {
     display: flex;
+    margin-left: auto;
+  }
+  .site-header__actions {
+    margin-left: 0.5rem;
   }
 }
 

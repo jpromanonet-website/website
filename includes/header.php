@@ -50,17 +50,6 @@ $fullTitle = $pageTitle === $site['name']
                     <span class="brand__name"><?= e($site['name']) ?></span>
                 </a>
 
-                <button
-                    type="button"
-                    class="nav-toggle"
-                    id="nav-toggle"
-                    aria-label="Toggle menu"
-                    aria-expanded="false"
-                    aria-controls="site-nav"
-                >
-                    <span></span><span></span><span></span>
-                </button>
-
                 <nav class="site-nav" id="site-nav" aria-label="Primary">
                     <?php foreach ($navItems as $item): ?>
                         <?php if (!empty($item['children'])): ?>
@@ -97,6 +86,16 @@ $fullTitle = $pageTitle === $site['name']
 
                 <div class="site-header__actions">
                     <a class="btn btn--ghost" href="<?= e($site['blog']) ?>" target="_blank" rel="noopener noreferrer">Blog</a>
+                    <button
+                        type="button"
+                        class="nav-toggle"
+                        id="nav-toggle"
+                        aria-label="Toggle menu"
+                        aria-expanded="false"
+                        aria-controls="site-nav"
+                    >
+                        <span></span><span></span><span></span>
+                    </button>
                     <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark theme">
                         <svg class="theme-toggle__moon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                             <path d="M21 14.3A8.5 8.5 0 0 1 9.7 3 7 7 0 1 0 21 14.3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
