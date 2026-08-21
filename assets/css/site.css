@@ -139,6 +139,7 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 1rem;
+  width: 100%;
 }
 
 .brand {
@@ -148,6 +149,7 @@ a:hover {
   text-decoration: none;
   color: var(--text);
   flex-shrink: 0;
+  margin-right: auto;
 }
 
 .brand__mark {
@@ -189,7 +191,7 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-left: auto;
+  flex-shrink: 0;
 }
 
 .nav-toggle {
@@ -295,10 +297,6 @@ a:hover {
   }
   .site-nav {
     display: flex;
-    margin-left: auto;
-  }
-  .site-header__actions {
-    margin-left: 0.5rem;
   }
 }
 
