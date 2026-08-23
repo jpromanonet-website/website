@@ -1,4 +1,12 @@
-[ {
+[ 
+  {
+    "title": "MateGestion ERP+CRM",
+    "imageSrc": "mgestion_erp.png",
+    "liveUrl": "#",
+    "githubUrl": "",
+    "category": "ERP"
+  },
+  {
     "title": "Booky",
     "imageSrc": "booky.png",
     "liveUrl": "#",
