@@ -28,7 +28,6 @@ $site = [
 ];
 
 $navItems = [
-    ['label' => 'Home', 'path' => '/', 'key' => 'home'],
     ['label' => 'Portfolio', 'path' => '/portfolio/', 'key' => 'portfolio'],
     ['label' => 'Books', 'path' => '/books/', 'key' => 'books'],
     ['label' => 'Writing', 'path' => '/writing/', 'key' => 'writing'],

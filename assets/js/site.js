@@ -205,6 +205,111 @@
     refresh();
   }
 
+  // Portfolio image lightbox (desktop only)
+  const lightbox = document.getElementById("project-lightbox");
+  if (lightbox) {
+    const desktopMq = window.matchMedia("(min-width: 980px)");
+    const imgEl = lightbox.querySelector("[data-lightbox-image]");
+    const titleEl = lightbox.querySelector("[data-lightbox-heading]");
+    const liveBtn = lightbox.querySelector("[data-lightbox-live]");
+    const codeBtn = lightbox.querySelector("[data-lightbox-code]");
+    const closeBtn = lightbox.querySelector("[data-lightbox-close]");
+
+    const closeLightbox = () => {
+      if (typeof lightbox.close === "function" && lightbox.open) {
+        lightbox.close();
+      } else {
+        lightbox.removeAttribute("open");
+      }
+      body.classList.remove("lightbox-open");
+    };
+
+    const openLightbox = (trigger) => {
+      if (!desktopMq.matches) return;
+
+      const src = trigger.getAttribute("data-lightbox-src") || "";
+      const title = trigger.getAttribute("data-lightbox-title") || "";
+      const live = trigger.getAttribute("data-lightbox-live") || "";
+      const code = trigger.getAttribute("data-lightbox-code") || "";
+      if (!src) return;
+
+      if (imgEl) {
+        imgEl.src = src;
+        imgEl.alt = title;
+      }
+      if (titleEl) titleEl.textContent = title;
+
+      if (liveBtn) {
+        if (live) {
+          liveBtn.href = live;
+          liveBtn.hidden = false;
+        } else {
+          liveBtn.hidden = true;
+          liveBtn.removeAttribute("href");
+        }
+      }
+      if (codeBtn) {
+        if (code) {
+          codeBtn.href = code;
+          codeBtn.hidden = false;
+        } else {
+          codeBtn.hidden = true;
+          codeBtn.removeAttribute("href");
+        }
+      }
+
+      body.classList.add("lightbox-open");
+      if (typeof lightbox.showModal === "function") {
+        lightbox.showModal();
+      } else {
+        lightbox.setAttribute("open", "");
+      }
+      closeBtn?.focus();
+    };
+
+    document.querySelectorAll("[data-lightbox]").forEach((trigger) => {
+      const syncA11y = () => {
+        if (desktopMq.matches) {
+          trigger.setAttribute("role", "button");
+          trigger.setAttribute("tabindex", "0");
+          const title = trigger.getAttribute("data-lightbox-title") || "project";
+          trigger.setAttribute("aria-label", `View larger image of ${title}`);
+        } else {
+          trigger.removeAttribute("role");
+          trigger.removeAttribute("tabindex");
+          trigger.removeAttribute("aria-label");
+        }
+      };
+      syncA11y();
+      desktopMq.addEventListener("change", syncA11y);
+
+      trigger.addEventListener("click", (event) => {
+        if (!desktopMq.matches) return;
+        event.preventDefault();
+        openLightbox(trigger);
+      });
+      trigger.addEventListener("keydown", (event) => {
+        if (!desktopMq.matches) return;
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openLightbox(trigger);
+        }
+      });
+    });
+
+    closeBtn?.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+    lightbox.addEventListener("cancel", (event) => {
+      event.preventDefault();
+      closeLightbox();
+    });
+    desktopMq.addEventListener("change", () => {
+      if (!desktopMq.matches) closeLightbox();
+    });
+  }
+
   // Catalog filters
   const catalog = document.querySelector("[data-catalog]");
   if (!catalog) return;

@@ -42,7 +42,16 @@ render_page_header('Portfolio', '', 'Projects');
                     data-category="<?= e(strtolower($category)) ?>"
                     data-search="<?= e($search) ?>"
                 >
-                    <div class="catalog-item__media">
+                    <div
+                        class="catalog-item__media<?= $image !== '' ? ' catalog-item__media--zoomable' : '' ?>"
+                        <?php if ($image !== ''): ?>
+                            data-lightbox
+                            data-lightbox-src="<?= e(media_url('portfolio', $image)) ?>"
+                            data-lightbox-title="<?= e($title) ?>"
+                            data-lightbox-live="<?= e(($live !== '' && $live !== '#') ? $live : '') ?>"
+                            data-lightbox-code="<?= e(($github !== '' && $github !== '#') ? $github : '') ?>"
+                        <?php endif; ?>
+                    >
                         <?php if ($image !== ''): ?>
                             <img src="<?= e(media_url('portfolio', $image)) ?>" alt="<?= e($title) ?>" loading="lazy" />
                         <?php endif; ?>
@@ -82,5 +91,25 @@ render_page_header('Portfolio', '', 'Projects');
         </div>
     </aside>
 </main>
+
+<dialog class="project-lightbox" id="project-lightbox" aria-label="Project preview">
+    <div class="project-lightbox__panel">
+        <button type="button" class="project-lightbox__close" data-lightbox-close aria-label="Close">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </button>
+        <div class="project-lightbox__media">
+            <img src="" alt="" data-lightbox-image />
+        </div>
+        <div class="project-lightbox__bar">
+            <p class="project-lightbox__title" data-lightbox-heading></p>
+            <div class="project-lightbox__actions" data-lightbox-actions>
+                <a class="btn btn--soft" href="#" target="_blank" rel="noopener noreferrer" data-lightbox-live hidden>Live site</a>
+                <a class="btn btn--ghost" href="#" target="_blank" rel="noopener noreferrer" data-lightbox-code hidden>Code</a>
+            </div>
+        </div>
+    </div>
+</dialog>
 
 <?php require APP_ROOT . '/includes/footer.php'; ?>

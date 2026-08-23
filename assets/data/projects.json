@@ -1,4 +1,17 @@
-[ 
+[ {
+    "title": "Booky",
+    "imageSrc": "booky.png",
+    "liveUrl": "#",
+    "githubUrl": "https://github.com/jpromanonet/booky_the_creation_platform",
+    "category": "Web"
+  },
+  {
+    "title": "Branding Platform",
+    "imageSrc": "brandplatform.png",
+    "liveUrl": "#",
+    "githubUrl": "https://github.com/jpromanonet/personal_brand_platform",
+    "category": "Web"
+  },
   {
     "title": "Py Doom",
     "imageSrc": "pydoom.png",
@@ -17,14 +30,14 @@
     "title": "PatriumHub",
     "imageSrc": "patrium.png",
     "liveUrl": "#",
-    "githubUrl": "#",
+    "githubUrl": "https://github.com/PatriumHub",
     "category": "Web"
   },
   {
     "title": "Job Search Kit",
     "imageSrc": "jobkit.png",
     "liveUrl": "#",
-    "githubUrl": "#",
+    "githubUrl": "https://github.com/jpromanonet/job_search_kit",
     "category": "Web"
   },
   {
