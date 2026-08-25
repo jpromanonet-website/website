@@ -1,5 +1,12 @@
 [ 
   {
+    "title": "LifeQuest",
+    "imageSrc": "lifequest.png",
+    "liveUrl": "#",
+    "githubUrl": "https://github.com/jpromanonet/LifeQuest",
+    "category": "Web"
+  },
+  {
     "title": "MateGestion ERP+CRM",
     "imageSrc": "mgestion_erp.png",
     "liveUrl": "#",
