@@ -7,7 +7,7 @@ $pageTitle = 'News';
 $pageDescription = 'Press and media coverage featuring Juan P. Romano.';
 $activeNav = 'news';
 
-$news = load_json('news');
+$news = load_catalog('news');
 $categories = unique_categories($news);
 
 require APP_ROOT . '/includes/header.php';

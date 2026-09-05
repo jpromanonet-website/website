@@ -8,38 +8,38 @@ $pageDescription = 'Juan P. Romano — Engineering Manager at Hybrid Bee Technol
 $activeNav = 'home';
 
 // Newest projects first — take the latest 9
-$featuredProjects = array_slice(load_json('projects'), 0, 9);
+$featuredProjects = array_slice(load_catalog('projects'), 0, 9);
 $mediumPosts = fetch_medium_posts();
 $latestMedium = $mediumPosts[0] ?? null;
 
 $siteStats = [
     [
         'label' => 'Projects in my portfolio',
-        'count' => count(load_json('projects')),
+        'count' => count(load_catalog('projects')),
         'path' => '/portfolio/',
         'tone' => 'blue',
     ],
     [
         'label' => 'Books written',
-        'count' => count(load_json('books')),
+        'count' => count(load_catalog('books')),
         'path' => '/books/',
         'tone' => 'amber',
     ],
     [
         'label' => 'Publications',
-        'count' => count(load_json('writing')) + count($mediumPosts),
+        'count' => count(load_catalog('writing')) + count($mediumPosts),
         'path' => '/writing/',
         'tone' => 'teal',
     ],
     [
         'label' => 'Ventures launched',
-        'count' => count(load_json('ventures')),
+        'count' => count(load_catalog('ventures')),
         'path' => '/ventures/',
         'tone' => 'green',
     ],
     [
         'label' => 'Times I made the news',
-        'count' => count(load_json('news')),
+        'count' => count(load_catalog('news')),
         'path' => '/news/',
         'tone' => 'coral',
     ],
@@ -58,7 +58,7 @@ if (class_exists(\MicroCMS\Content::class)) {
 
 $siteStats[] = [
     'label' => 'Resumes ready',
-    'count' => count(load_json('resumes')),
+    'count' => count(load_catalog('resumes')),
     'path' => '/resumes/',
     'tone' => 'slate',
 ];
@@ -69,7 +69,7 @@ $signals = $homeBlocks['signals'] ?? [];
 $skills = $homeBlocks['skills'] ?? [];
 $contact = $homeBlocks['contact'] ?? [];
 
-$heroKicker = (string) ($hero['kicker'] ?? 'Engineering Manager · Writer · Polyglot');
+$heroKicker = (string) ($hero['kicker'] ?? 'Engineering Manager Â· Writer Â· Polyglot');
 $heroSubtitle = (string) ($hero['subtitle'] ?? $site['tagline']);
 $primaryLabel = (string) ($hero['primary_cta_label'] ?? 'Connect on LinkedIn');
 $primaryKey = (string) ($hero['primary_cta_url'] ?? 'linkedin');
@@ -175,7 +175,7 @@ require APP_ROOT . '/includes/header.php';
                 <div class="medium-latest__body">
                     <span class="medium-latest__meta">Medium</span>
                     <h3 class="medium-latest__title"><?= e((string) $latestMedium['title']) ?></h3>
-                    <span class="medium-latest__cta">Read on Medium →</span>
+                    <span class="medium-latest__cta">Read on Medium â†’</span>
                 </div>
             </a>
         </section>

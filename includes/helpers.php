@@ -20,30 +20,17 @@ function e(?string $value): string
     return htmlspecialchars((string) $value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
-function load_json(string $name): array
+function load_catalog(string $name): array
 {
-    if (class_exists(\MicroCMS\Content::class)) {
-        try {
-            return \MicroCMS\Content::cardsAsLegacyJson($name);
-        } catch (Throwable $e) {
-            // Fall through to JSON files
-        }
+    if (!class_exists(\MicroCMS\Content::class)) {
+        return [];
     }
 
-    $file = APP_ROOT . '/assets/data/' . $name . '.json';
-    if (!is_file($file)) {
+    try {
+        return \MicroCMS\Content::cardsAsLegacyJson($name);
+    } catch (Throwable $e) {
         return [];
     }
-    $raw = file_get_contents($file);
-    if ($raw === false || $raw === '') {
-        return [];
-    }
-    // Strip UTF-8 BOM if present (common on Windows exports)
-    if (str_starts_with($raw, "\xEF\xBB\xBF")) {
-        $raw = substr($raw, 3);
-    }
-    $data = json_decode($raw, true);
-    return is_array($data) ? $data : [];
 }
 
 function media_url(string $section, string $filename): string

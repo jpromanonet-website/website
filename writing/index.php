@@ -8,9 +8,9 @@ $pageDescription = 'Articles and publications by Juan P. Romano — including au
 $activeNav = 'writing';
 
 $mediumPosts = fetch_medium_posts();
-$staticArticles = load_json('writing');
+$staticArticles = load_catalog('writing');
 
-// Static JSON first, then Medium (automatic)
+// CMS writing elements first, then Medium (automatic)
 $articles = [];
 foreach ($staticArticles as $article) {
     $articles[] = [

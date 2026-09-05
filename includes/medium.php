@@ -7,8 +7,7 @@ declare(strict_types=1);
  * Flow:
  * 1) Try Medium profile stream API (full catalog), via Jina proxy if Cloudflare blocks direct access
  * 2) Merge with RSS (fast source for newest posts)
- * 3) Fall back to local archive JSON if live sources fail
- * 4) Cache merged result (~1 hour)
+ * 3) Cache merged result (~1 hour)
  *
  * @return list<array{title:string,url:string,category:string,pubDate:string,timestamp:int,source:string,imageSrc:string}>
  */
@@ -30,8 +29,7 @@ function fetch_medium_posts(int $limit = 500, int $cacheTtl = 3600): array
 
     $stream = medium_fetch_stream_posts();
     $rss = medium_parse_feed(medium_feed_url());
-    $archive = medium_load_archive();
-    $merged = medium_merge_posts($stream, $rss, $archive);
+    $merged = medium_merge_posts($stream, $rss);
 
     if ($merged !== []) {
         medium_write_cache($cacheCandidates, $merged);
@@ -66,40 +64,6 @@ function medium_username(): string
         return $m[1];
     }
     return 'jpromanonet';
-}
-
-/**
- * @return list<array{title:string,url:string,category:string,pubDate:string,timestamp:int,source:string,imageSrc:string}>
- */
-function medium_load_archive(): array
-{
-    $file = APP_ROOT . '/assets/data/medium-archive.json';
-    if (!is_file($file)) {
-        return [];
-    }
-    $raw = file_get_contents($file);
-    if ($raw === false || $raw === '') {
-        return [];
-    }
-    if (str_starts_with($raw, "\xEF\xBB\xBF")) {
-        $raw = substr($raw, 3);
-    }
-    $data = json_decode($raw, true);
-    if (!is_array($data)) {
-        return [];
-    }
-
-    $posts = [];
-    foreach ($data as $item) {
-        if (!is_array($item)) {
-            continue;
-        }
-        $normalized = medium_normalize_post($item);
-        if ($normalized !== null) {
-            $posts[] = $normalized;
-        }
-    }
-    return $posts;
 }
 
 /**

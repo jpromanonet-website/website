@@ -7,7 +7,7 @@ $pageTitle = 'Resumes';
 $pageDescription = 'Download Juan P. Romano’s CV in Spanish and English.';
 $activeNav = 'resumes';
 
-$resumes = load_json('resumes');
+$resumes = load_catalog('resumes');
 
 require APP_ROOT . '/includes/header.php';
 render_page_header('Resumes', '', 'CV');

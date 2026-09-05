@@ -7,7 +7,7 @@ $pageTitle = 'Portfolio';
 $pageDescription = 'Selected projects by Juan P. Romano — web, desktop, games, and more.';
 $activeNav = 'portfolio';
 
-$projects = load_json('projects');
+$projects = load_catalog('projects');
 $categories = unique_categories($projects);
 
 require APP_ROOT . '/includes/header.php';

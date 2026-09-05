@@ -7,7 +7,7 @@ $pageTitle = 'Ventures';
 $pageDescription = 'Ventures and products built by Juan P. Romano.';
 $activeNav = 'ventures';
 
-$ventures = load_json('ventures');
+$ventures = load_catalog('ventures');
 $categories = unique_categories($ventures);
 
 // Sort by year descending when category is a year

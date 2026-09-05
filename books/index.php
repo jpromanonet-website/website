@@ -7,7 +7,7 @@ $pageTitle = 'Books';
 $pageDescription = 'Books by Juan P. Romano.';
 $activeNav = 'books';
 
-$books = load_json('books');
+$books = load_catalog('books');
 $categories = unique_categories($books);
 
 require APP_ROOT . '/includes/header.php';
