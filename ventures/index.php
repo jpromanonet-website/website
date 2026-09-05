@@ -69,14 +69,7 @@ render_page_header('Ventures', '', 'Business');
 
     <aside class="sidebar">
         <h2>On this site</h2>
-        <ul class="sidebar-nav">
-            <li><a href="<?= e(url('/portfolio/')) ?>">Portfolio</a></li>
-            <li><a href="<?= e(url('/books/')) ?>">Books</a></li>
-            <li><a href="<?= e(url('/writing/')) ?>">Writing</a></li>
-            <li><a class="is-active" href="<?= e(url('/ventures/')) ?>">Ventures</a></li>
-            <li><a href="<?= e(url('/news/')) ?>">News</a></li>
-            <li><a href="<?= e(url('/resumes/')) ?>">Resumes</a></li>
-        </ul>
+        <?php render_sidebar_nav('ventures'); ?>
     </aside>
 </main>
 

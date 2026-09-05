@@ -794,6 +794,164 @@ body.nav-open .nav-item--dropdown .nav-menu {
   font-weight: 500;
 }
 
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.35rem;
+}
+
+@media (min-width: 720px) {
+  .stat-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.stat-card {
+  display: grid;
+  gap: 0.2rem;
+  padding: 1rem 1.05rem;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s var(--ease), border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  color: inherit;
+}
+
+.stat-card__count {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 750;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.stat-card__label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+  opacity: 0.88;
+}
+
+.stat-card--blue {
+  --stat: #1a4f8b;
+  background: color-mix(in srgb, var(--stat) 16%, var(--bg-elevated));
+  border-color: color-mix(in srgb, var(--stat) 28%, transparent);
+  color: color-mix(in srgb, var(--stat) 72%, var(--text));
+}
+
+.stat-card--amber {
+  --stat: #b7791f;
+  background: color-mix(in srgb, var(--stat) 16%, var(--bg-elevated));
+  border-color: color-mix(in srgb, var(--stat) 28%, transparent);
+  color: color-mix(in srgb, var(--stat) 72%, var(--text));
+}
+
+.stat-card--teal {
+  --stat: #0f766e;
+  background: color-mix(in srgb, var(--stat) 16%, var(--bg-elevated));
+  border-color: color-mix(in srgb, var(--stat) 28%, transparent);
+  color: color-mix(in srgb, var(--stat) 72%, var(--text));
+}
+
+.stat-card--green {
+  --stat: #2f855a;
+  background: color-mix(in srgb, var(--stat) 16%, var(--bg-elevated));
+  border-color: color-mix(in srgb, var(--stat) 28%, transparent);
+  color: color-mix(in srgb, var(--stat) 72%, var(--text));
+}
+
+.stat-card--coral {
+  --stat: #c05621;
+  background: color-mix(in srgb, var(--stat) 16%, var(--bg-elevated));
+  border-color: color-mix(in srgb, var(--stat) 28%, transparent);
+  color: color-mix(in srgb, var(--stat) 72%, var(--text));
+}
+
+.stat-card--slate {
+  --stat: #4a5568;
+  background: color-mix(in srgb, var(--stat) 16%, var(--bg-elevated));
+  border-color: color-mix(in srgb, var(--stat) 28%, transparent);
+  color: color-mix(in srgb, var(--stat) 72%, var(--text));
+}
+
+.stat-card--violet {
+  --stat: #6b46c1;
+  background: color-mix(in srgb, var(--stat) 16%, var(--bg-elevated));
+  border-color: color-mix(in srgb, var(--stat) 28%, transparent);
+  color: color-mix(in srgb, var(--stat) 72%, var(--text));
+}
+
+.stat-card--rose {
+  --stat: #b83280;
+  background: color-mix(in srgb, var(--stat) 16%, var(--bg-elevated));
+  border-color: color-mix(in srgb, var(--stat) 28%, transparent);
+  color: color-mix(in srgb, var(--stat) 72%, var(--text));
+}
+
+.stat-card--cyan {
+  --stat: #0987a0;
+  background: color-mix(in srgb, var(--stat) 16%, var(--bg-elevated));
+  border-color: color-mix(in srgb, var(--stat) 28%, transparent);
+  color: color-mix(in srgb, var(--stat) 72%, var(--text));
+}
+
+.stat-card--lime {
+  --stat: #5b8c2a;
+  background: color-mix(in srgb, var(--stat) 16%, var(--bg-elevated));
+  border-color: color-mix(in srgb, var(--stat) 28%, transparent);
+  color: color-mix(in srgb, var(--stat) 72%, var(--text));
+}
+
+.stat-card--indigo {
+  --stat: #434190;
+  background: color-mix(in srgb, var(--stat) 16%, var(--bg-elevated));
+  border-color: color-mix(in srgb, var(--stat) 28%, transparent);
+  color: color-mix(in srgb, var(--stat) 72%, var(--text));
+}
+
+.stat-card--orange {
+  --stat: #c05621;
+  background: color-mix(in srgb, var(--stat) 16%, var(--bg-elevated));
+  border-color: color-mix(in srgb, var(--stat) 28%, transparent);
+  color: color-mix(in srgb, var(--stat) 72%, var(--text));
+}
+
+.stat-card--pink {
+  --stat: #d53f8c;
+  background: color-mix(in srgb, var(--stat) 16%, var(--bg-elevated));
+  border-color: color-mix(in srgb, var(--stat) 28%, transparent);
+  color: color-mix(in srgb, var(--stat) 72%, var(--text));
+}
+
+.stat-card--mint {
+  --stat: #2c7a7b;
+  background: color-mix(in srgb, var(--stat) 16%, var(--bg-elevated));
+  border-color: color-mix(in srgb, var(--stat) 28%, transparent);
+  color: color-mix(in srgb, var(--stat) 72%, var(--text));
+}
+
+[data-theme="dark"] .stat-card--blue { --stat: #6babf5; }
+[data-theme="dark"] .stat-card--amber { --stat: #ecc94b; }
+[data-theme="dark"] .stat-card--teal { --stat: #38b2ac; }
+[data-theme="dark"] .stat-card--green { --stat: #68d391; }
+[data-theme="dark"] .stat-card--coral { --stat: #f6ad55; }
+[data-theme="dark"] .stat-card--slate { --stat: #a0aec0; }
+[data-theme="dark"] .stat-card--violet { --stat: #b794f4; }
+[data-theme="dark"] .stat-card--rose { --stat: #f687b3; }
+[data-theme="dark"] .stat-card--cyan { --stat: #76e4f7; }
+[data-theme="dark"] .stat-card--lime { --stat: #c6f6d5; }
+[data-theme="dark"] .stat-card--indigo { --stat: #a3bffa; }
+[data-theme="dark"] .stat-card--orange { --stat: #f6ad55; }
+[data-theme="dark"] .stat-card--pink { --stat: #fbb6ce; }
+[data-theme="dark"] .stat-card--mint { --stat: #81e6d9; }
+
 .lang-flags {
   display: inline;
   letter-spacing: 0.08em;

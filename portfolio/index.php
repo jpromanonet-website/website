@@ -78,14 +78,7 @@ render_page_header('Portfolio', '', 'Projects');
 
     <aside class="sidebar">
         <h2>On this site</h2>
-        <ul class="sidebar-nav">
-            <li><a class="is-active" href="<?= e(url('/portfolio/')) ?>">Portfolio</a></li>
-            <li><a href="<?= e(url('/books/')) ?>">Books</a></li>
-            <li><a href="<?= e(url('/writing/')) ?>">Writing</a></li>
-            <li><a href="<?= e(url('/ventures/')) ?>">Ventures</a></li>
-            <li><a href="<?= e(url('/news/')) ?>">News</a></li>
-            <li><a href="<?= e(url('/resumes/')) ?>">Resumes</a></li>
-        </ul>
+        <?php render_sidebar_nav('portfolio'); ?>
         <div class="sidebar-cta">
             <a class="btn btn--soft" href="<?= e($site['github']) ?>" target="_blank" rel="noopener noreferrer">GitHub profile</a>
         </div>

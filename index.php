@@ -7,24 +7,105 @@ $pageTitle = $site['name'];
 $pageDescription = 'Juan P. Romano — Engineering Manager at Hybrid Bee Technology, Packt author, and polyglot software engineer based in Buenos Aires.';
 $activeNav = 'home';
 
-// Newest projects first in projects.json — take the latest 9
+// Newest projects first — take the latest 9
 $featuredProjects = array_slice(load_json('projects'), 0, 9);
-$latestMedium = latest_medium_post();
+$mediumPosts = fetch_medium_posts();
+$latestMedium = $mediumPosts[0] ?? null;
+
+$siteStats = [
+    [
+        'label' => 'Projects in my portfolio',
+        'count' => count(load_json('projects')),
+        'path' => '/portfolio/',
+        'tone' => 'blue',
+    ],
+    [
+        'label' => 'Books written',
+        'count' => count(load_json('books')),
+        'path' => '/books/',
+        'tone' => 'amber',
+    ],
+    [
+        'label' => 'Publications',
+        'count' => count(load_json('writing')) + count($mediumPosts),
+        'path' => '/writing/',
+        'tone' => 'teal',
+    ],
+    [
+        'label' => 'Ventures launched',
+        'count' => count(load_json('ventures')),
+        'path' => '/ventures/',
+        'tone' => 'green',
+    ],
+    [
+        'label' => 'Times I made the news',
+        'count' => count(load_json('news')),
+        'path' => '/news/',
+        'tone' => 'coral',
+    ],
+];
+
+// Custom CMS pages appear here (before resumes), even with 0 elements
+if (class_exists(\MicroCMS\Content::class)) {
+    try {
+        foreach (\MicroCMS\Content::customPageStats() as $customStat) {
+            $siteStats[] = $customStat;
+        }
+    } catch (Throwable $e) {
+        // ignore
+    }
+}
+
+$siteStats[] = [
+    'label' => 'Resumes ready',
+    'count' => count(load_json('resumes')),
+    'path' => '/resumes/',
+    'tone' => 'slate',
+];
+
+$hero = $homeBlocks['hero'] ?? [];
+$about = $homeBlocks['about'] ?? [];
+$signals = $homeBlocks['signals'] ?? [];
+$skills = $homeBlocks['skills'] ?? [];
+$contact = $homeBlocks['contact'] ?? [];
+
+$heroKicker = (string) ($hero['kicker'] ?? 'Engineering Manager · Writer · Polyglot');
+$heroSubtitle = (string) ($hero['subtitle'] ?? $site['tagline']);
+$primaryLabel = (string) ($hero['primary_cta_label'] ?? 'Connect on LinkedIn');
+$primaryKey = (string) ($hero['primary_cta_url'] ?? 'linkedin');
+$secondaryLabel = (string) ($hero['secondary_cta_label'] ?? 'View portfolio');
+$secondaryPath = (string) ($hero['secondary_cta_path'] ?? '/portfolio/');
+
+if ($primaryKey === 'email') {
+    $primaryHref = 'mailto:' . $site['email'];
+    $primaryExternal = false;
+} else {
+    $primaryHref = (string) ($site[$primaryKey] ?? $site['linkedin']);
+    $primaryExternal = true;
+}
+
+$aboutParagraphs = $about['paragraphs'] ?? [];
+if ($aboutParagraphs === []) {
+    $aboutParagraphs = [
+        'I’m Juan, a software engineer and Engineering Manager based in Buenos Aires.',
+    ];
+}
+$signalItems = $signals['items'] ?? [];
+$skillsLead = (string) ($skills['lead'] ?? '');
+$skillGroups = $skills['groups'] ?? [];
+$contactLead = (string) ($contact['lead'] ?? 'Ideas, collaborations, or a good conversation about building things.');
 
 require APP_ROOT . '/includes/header.php';
 ?>
 
 <section class="hero" aria-label="Introduction">
     <div class="hero__inner">
-        <p class="hero__kicker">Engineering Manager · Writer · Polyglot</p>
+        <p class="hero__kicker"><?= e($heroKicker) ?></p>
         <h1 class="hero__title"><?= e($site['name']) ?></h1>
-        <p class="hero__subtitle">
-            I ship products, lead teams, and write about software.
-            Based in Buenos Aires — currently Engineering Manager at Hybrid Bee Technology.
-        </p>
+        <p class="hero__subtitle"><?= e($heroSubtitle) ?></p>
         <div class="hero__actions">
-            <a class="btn btn--primary" href="<?= e($site['linkedin']) ?>" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
-            <a class="btn btn--ghost" href="<?= e(url('/portfolio/')) ?>">View portfolio</a>
+            <a class="btn btn--primary" href="<?= e($primaryHref) ?>"<?= $primaryExternal ? ' target="_blank" rel="noopener noreferrer"' : '' ?>><?= e($primaryLabel) ?></a>
+            <a class="btn btn--ghost" href="<?= e(url($secondaryPath)) ?>"><?= e($secondaryLabel) ?></a>
         </div>
     </div>
 </section>
@@ -34,26 +115,9 @@ require APP_ROOT . '/includes/header.php';
         <section class="section reveal" id="about">
             <h2 class="section-heading">About</h2>
             <div class="prose">
-                <p>
-                    I’m Juan, a software engineer and Engineering Manager based in Buenos Aires.
-                    I work across Java, Python (Django), C++, and JavaScript (Node, React, Angular, Vue),
-                    and I love turning messy problems into clean, shippable systems.
-                </p>
-                <p>
-                    Right now I’m Engineering Manager at
-                    <a href="https://hybridbeetechnology.com/" target="_blank" rel="noopener noreferrer">Hybrid Bee Technology</a>,
-                    partnering with clients and building the custom tools that keep infrastructure projects moving.
-                    I’m also writing and building different ventures.
-                </p>
-                <p>
-                    Before that I led front-end at
-                    <a href="https://www.oca.com.ar/" target="_blank" rel="noopener noreferrer">OCA</a>,
-                    managed engineering at Adviters, and directed software development at Andreani,
-                    plus years as a professor and technical writer for freeCodeCamp, Henry, and more.
-                    I’m a polyglot
-                    (<span class="lang-flags" aria-label="Languages: Spanish, Chinese, English, Russian, Portuguese, German, French, Italian, Japanese">🇪🇸 🇨🇳 🇬🇧 🇷🇺 🇧🇷 🇩🇪 🇫🇷 🇮🇹 🇯🇵</span>)
-                    and a full-time nerd — in the best way.
-                </p>
+                <?php foreach ($aboutParagraphs as $paragraph): ?>
+                    <p><?= e((string) $paragraph) ?></p>
+                <?php endforeach; ?>
                 <p>
                     See the full path on
                     <a href="<?= e($site['linkedin']) ?>" target="_blank" rel="noopener noreferrer">LinkedIn</a>,
@@ -62,20 +126,31 @@ require APP_ROOT . '/includes/header.php';
                 </p>
             </div>
 
+            <?php if ($signalItems): ?>
             <ul class="signal-list">
-                <li>
-                    <span class="signal-list__label">Now</span>
-                    <span class="signal-list__value">Engineering Manager · Hybrid Bee Technology</span>
-                </li>
-                <li>
-                    <span class="signal-list__label">Building</span>
-                    <span class="signal-list__value">Soup IT, Puestito, Mate Gestión and more</span>
-                </li>
-                <li>
-                    <span class="signal-list__label">Base</span>
-                    <span class="signal-list__value">Buenos Aires, Argentina</span>
-                </li>
+                <?php foreach ($signalItems as $signal): ?>
+                    <li>
+                        <span class="signal-list__label"><?= e((string) ($signal['label'] ?? '')) ?></span>
+                        <span class="signal-list__value"><?= e((string) ($signal['value'] ?? '')) ?></span>
+                    </li>
+                <?php endforeach; ?>
             </ul>
+            <?php endif; ?>
+        </section>
+
+        <section class="section reveal" id="at-a-glance" aria-label="Myself in numbers">
+            <h2 class="section-heading">Myself in numbers</h2>
+            <div class="stat-grid">
+                <?php foreach ($siteStats as $stat): ?>
+                    <a
+                        class="stat-card stat-card--<?= e((string) $stat['tone']) ?>"
+                        href="<?= e(url((string) $stat['path'])) ?>"
+                    >
+                        <span class="stat-card__count"><?= (int) $stat['count'] ?></span>
+                        <span class="stat-card__label"><?= e((string) $stat['label']) ?></span>
+                    </a>
+                <?php endforeach; ?>
+            </div>
         </section>
 
         <?php if ($latestMedium): ?>
@@ -169,43 +244,26 @@ require APP_ROOT . '/includes/header.php';
 
         <section class="section reveal" id="skills">
             <h2 class="section-heading">Skills &amp; technologies</h2>
-            <p class="section-lead">What I’m actively shipping with — more tools live in the drawer, but these get the most airtime.</p>
+            <?php if ($skillsLead !== ''): ?>
+                <p class="section-lead"><?= e($skillsLead) ?></p>
+            <?php endif; ?>
             <div class="skills-grid">
-                <div class="skill-block">
-                    <h3>Languages</h3>
-                    <ul class="skill-list">
-                        <li>JavaScript</li><li>TypeScript</li><li>Python</li><li>Java</li>
-                        <li>PHP</li><li>C#</li><li>C++</li><li>C</li>
-                        <li>R</li><li>Ruby</li><li>Elixir</li><li>Perl</li><li>Scala</li>
-                    </ul>
-                </div>
-                <div class="skill-block">
-                    <h3>Frameworks</h3>
-                    <ul class="skill-list">
-                        <li>React</li><li>React Native</li><li>Vue</li><li>Angular</li>
-                        <li>Node.js</li><li>Django</li><li>Flask</li><li>.NET</li>
-                    </ul>
-                </div>
-                <div class="skill-block">
-                    <h3>Style &amp; UI</h3>
-                    <ul class="skill-list">
-                        <li>HTML</li><li>CSS</li><li>Sass</li><li>Tailwind</li><li>Bootstrap</li>
-                    </ul>
-                </div>
-                <div class="skill-block">
-                    <h3>Platforms &amp; tools</h3>
-                    <ul class="skill-list">
-                        <li>SQL</li><li>MySQL</li><li>Docker</li><li>Kubernetes</li>
-                        <li>AWS</li><li>Azure</li><li>Linux</li><li>Git</li>
-                        <li>NGINX</li><li>Apache</li><li>Jira</li>
-                    </ul>
-                </div>
+                <?php foreach ($skillGroups as $group): ?>
+                    <div class="skill-block">
+                        <h3><?= e((string) ($group['title'] ?? '')) ?></h3>
+                        <ul class="skill-list">
+                            <?php foreach (($group['items'] ?? []) as $item): ?>
+                                <li><?= e((string) $item) ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </section>
 
         <section class="section reveal" id="contact">
             <h2 class="section-heading">Contact</h2>
-            <p class="section-lead">Ideas, collaborations, or a good conversation about building things.</p>
+            <p class="section-lead"><?= e($contactLead) ?></p>
             <div class="contact-list">
                 <a class="contact-row" href="<?= e($site['linkedin']) ?>" target="_blank" rel="noopener noreferrer">
                     <span class="contact-row__meta">LinkedIn</span>
@@ -215,6 +273,12 @@ require APP_ROOT . '/includes/header.php';
                     <span class="contact-row__meta">Email</span>
                     <span class="contact-row__value"><?= e($site['email']) ?></span>
                 </a>
+                <?php if (!empty($site['phone'])): ?>
+                <a class="contact-row" href="tel:<?= e(preg_replace('/\s+/', '', $site['phone']) ?? $site['phone']) ?>">
+                    <span class="contact-row__meta">Phone</span>
+                    <span class="contact-row__value"><?= e($site['phone']) ?></span>
+                </a>
+                <?php endif; ?>
                 <a class="contact-row" href="<?= e($site['blog']) ?>" target="_blank" rel="noopener noreferrer">
                     <span class="contact-row__meta">Blog</span>
                     <span class="contact-row__value">jpromanonet.medium.com</span>

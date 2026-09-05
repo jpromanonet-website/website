@@ -8,7 +8,16 @@ DirectoryIndex index.php index.html
     RewriteCond %{REQUEST_FILENAME} -d
     RewriteCond %{REQUEST_FILENAME}/index.php -f
     RewriteRule ^(.*)$ $1/index.php [L]
+
+    # Custom CMS pages without a physical folder
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} !/microCMS/
+    RewriteRule ^([a-z0-9-]+)/?$ microCMS/public/page.php?slug=$1 [L,QSA,NC]
 </IfModule>
+
+# Fallback when rewrite is restricted: route missing pretty URLs to CMS
+ErrorDocument 404 /jpromanonet/microCMS/public/router.php
 
 # Security headers (best-effort)
 <IfModule mod_headers.c>
