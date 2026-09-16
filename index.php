@@ -144,7 +144,7 @@ require APP_ROOT . '/includes/header.php';
                 <?php foreach ($siteStats as $stat): ?>
                     <a
                         class="stat-card stat-card--<?= e((string) $stat['tone']) ?>"
-                        href="<?= e(url((string) $stat['path'])) ?>"
+                        href="<?= e(url((string) ($stat['path'] ?? '/'))) ?>"
                     >
                         <span class="stat-card__count"><?= (int) $stat['count'] ?></span>
                         <span class="stat-card__label"><?= e((string) $stat['label']) ?></span>
@@ -285,10 +285,21 @@ require APP_ROOT . '/includes/header.php';
                 </a>
             </div>
             <div class="social-row" aria-label="Social links">
+                <?php if (!empty($site['linkedin'])): ?>
                 <a href="<?= e($site['linkedin']) ?>" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">in</a>
+                <?php endif; ?>
+                <?php if (!empty($site['github'])): ?>
                 <a href="<?= e($site['github']) ?>" target="_blank" rel="noopener noreferrer" aria-label="GitHub">gh</a>
+                <?php endif; ?>
+                <?php if (!empty($site['x'])): ?>
                 <a href="<?= e($site['x']) ?>" target="_blank" rel="noopener noreferrer" aria-label="X">x</a>
+                <?php endif; ?>
+                <?php if (!empty($site['instagram'])): ?>
                 <a href="<?= e($site['instagram']) ?>" target="_blank" rel="noopener noreferrer" aria-label="Instagram">ig</a>
+                <?php endif; ?>
+                <?php if (!empty($site['deviantart'])): ?>
+                <a href="<?= e($site['deviantart']) ?>" target="_blank" rel="noopener noreferrer" aria-label="DeviantArt">da</a>
+                <?php endif; ?>
             </div>
         </section>
     </div>

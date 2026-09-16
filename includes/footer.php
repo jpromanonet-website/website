@@ -12,6 +12,9 @@ declare(strict_types=1);
             <div class="site-footer__links">
                 <a href="<?= e($site['linkedin']) ?>" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 <a href="<?= e($site['github']) ?>" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <?php if (!empty($site['deviantart'])): ?>
+                <a href="<?= e($site['deviantart']) ?>" target="_blank" rel="noopener noreferrer">DeviantArt</a>
+                <?php endif; ?>
                 <a href="<?= e($site['blog']) ?>" target="_blank" rel="noopener noreferrer">Medium</a>
                 <a href="mailto:<?= e($site['email']) ?>">Email</a>
             </div>

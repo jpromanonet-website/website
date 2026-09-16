@@ -58,6 +58,7 @@ $site = [
     'github' => $cmsSettings['github'] ?? '',
     'x' => $cmsSettings['x'] ?? '',
     'instagram' => $cmsSettings['instagram'] ?? '',
+    'deviantart' => 'https://www.deviantart.com/jpromanonet',
     'ga_id' => $cmsSettings['ga_id'] ?? '',
     'medium_feed' => $cmsSettings['medium_feed'] ?? '',
     'medium_user_id' => $cmsSettings['medium_user_id'] ?? '',
