@@ -56,7 +56,7 @@ $fullTitle = $pageTitle === $site['name']
                             <div class="nav-item nav-item--dropdown">
                                 <button
                                     type="button"
-                                    class="nav-link nav-link--button<?= $activeNav === $item['key'] ? ' is-active' : '' ?>"
+                                    class="nav-link nav-link--button<?= ($activeNav === $item['key'] || (!empty($item['children']) && in_array($activeNav, array_column($item['children'], 'key'), true))) ? ' is-active' : '' ?>"
                                     aria-expanded="false"
                                     aria-haspopup="true"
                                 >
@@ -64,13 +64,19 @@ $fullTitle = $pageTitle === $site['name']
                                     <span class="nav-chevron" aria-hidden="true"></span>
                                 </button>
                                 <div class="nav-menu" role="menu">
-                                    <?php foreach ($item['children'] as $child): ?>
+                                    <?php foreach ($item['children'] as $child):
+                                        $childUrl = (string) ($child['url'] ?? '');
+                                        $childPath = (string) ($child['path'] ?? '');
+                                        $childHref = $childUrl !== '' ? $childUrl : url($childPath);
+                                        $childExternal = $childUrl !== '';
+                                        $childKey = (string) ($child['key'] ?? '');
+                                        $childActive = $childKey !== '' && $activeNav === $childKey;
+                                    ?>
                                         <a
-                                            class="nav-menu__link"
+                                            class="nav-menu__link<?= $childActive ? ' is-active' : '' ?>"
                                             role="menuitem"
-                                            href="<?= e($child['url']) ?>"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
+                                            href="<?= e($childHref) ?>"
+                                            <?= $childExternal ? 'target="_blank" rel="noopener noreferrer"' : '' ?>
                                         ><?= e($child['label']) ?></a>
                                     <?php endforeach; ?>
                                 </div>

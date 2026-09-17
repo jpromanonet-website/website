@@ -119,9 +119,26 @@ function render_sidebar_nav(string $active = ''): void
     ?>
     <ul class="sidebar-nav">
         <?php foreach ($items as $item): ?>
-            <?php if (!empty($item['children'])) {
-                continue;
-            } ?>
+            <?php if (!empty($item['children'])): ?>
+                <?php foreach ($item['children'] as $child):
+                    $childUrl = (string) ($child['url'] ?? '');
+                    $childPath = (string) ($child['path'] ?? '');
+                    if ($childUrl === '' && $childPath === '') {
+                        continue;
+                    }
+                    $href = $childUrl !== '' ? $childUrl : url($childPath);
+                    $key = (string) ($child['key'] ?? '');
+                ?>
+                    <li>
+                        <a
+                            class="<?= ($active !== '' && $key === $active) ? 'is-active' : '' ?>"
+                            href="<?= e($href) ?>"
+                            <?= $childUrl !== '' ? 'target="_blank" rel="noopener noreferrer"' : '' ?>
+                        ><?= e((string) ($child['label'] ?? '')) ?></a>
+                    </li>
+                <?php endforeach; ?>
+                <?php continue; ?>
+            <?php endif; ?>
             <li>
                 <a
                     class="<?= ($active !== '' && ($item['key'] ?? '') === $active) ? 'is-active' : '' ?>"

@@ -1504,6 +1504,197 @@ body.nav-open .nav-item--dropdown .nav-menu {
   font-size: 0.88rem;
 }
 
+.recipe-card__text {
+  margin: 0.35rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+/* Lifestyle pages */
+.lang-section {
+  margin: 0 0 2rem;
+}
+
+.lang-section__title {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+}
+
+.lang-section__grid {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 720px) {
+  .lang-section__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.lang-cert {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 0.9rem;
+  align-items: center;
+  padding: 0.85rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.lang-cert__media {
+  width: 96px;
+  height: 96px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg-soft);
+}
+
+.lang-cert__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lang-cert__placeholder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.lang-cert__title {
+  margin: 0 0 0.55rem;
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+.music-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.music-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem 1rem;
+  padding: 1rem 1.1rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.music-row__meta {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.music-row__title {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+
+.sport-stack {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.sport-hero {
+  padding: 1.4rem 1.35rem;
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, #c05621 30%, var(--border));
+  background: color-mix(in srgb, #c05621 12%, var(--bg-elevated));
+}
+
+.sport-hero__meta {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: color-mix(in srgb, #c05621 70%, var(--text));
+  font-weight: 700;
+}
+
+.sport-hero__value {
+  margin: 0.35rem 0 0.1rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 8vw, 3.6rem);
+  font-weight: 750;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: color-mix(in srgb, #c05621 75%, var(--text));
+}
+
+.sport-hero__title {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.sport-hero__note {
+  margin: 0.35rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+.sport-exercises__heading {
+  margin: 0.5rem 0 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+}
+
+.sport-exercise__count {
+  min-width: 88px;
+  min-height: 88px;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  background: var(--bg-soft);
+  border-right: 1px solid var(--border);
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 750;
+  color: var(--accent);
+}
+
+@media (min-width: 720px) {
+  .catalog-item--horizontal.sport-exercise .sport-exercise__count {
+    flex: 0 0 120px;
+    border-right: 1px solid var(--border);
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 719px) {
+  .sport-exercise__count {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+    width: 100%;
+    aspect-ratio: auto;
+    padding: 1rem 0;
+  }
+}
+
+.nav-menu__link.is-active {
+  background: var(--bg-soft);
+  color: var(--accent);
+}
+
 /* Back to top */
 .back-to-top {
   position: fixed;

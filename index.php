@@ -48,6 +48,9 @@ $siteStats = [
 // Custom CMS pages appear here (before resumes), even with 0 elements
 if (class_exists(\MicroCMS\Content::class)) {
     try {
+        foreach (\MicroCMS\Content::lifestyleStats() as $lifeStat) {
+            $siteStats[] = $lifeStat;
+        }
         foreach (\MicroCMS\Content::customPageStats() as $customStat) {
             $siteStats[] = $customStat;
         }
