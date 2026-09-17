@@ -45,7 +45,10 @@ render_page_header('Ventures', '', 'Business');
                     data-category="<?= e(strtolower($category)) ?>"
                     data-search="<?= e($search) ?>"
                 >
-                    <div class="catalog-item__media">
+                    <div
+                        class="catalog-item__media<?= $image !== '' ? ' catalog-item__media--zoomable' : '' ?>"
+                        <?= $image !== '' ? lightbox_data_attrs(media_url('ventures', $image), $title, $link) : '' ?>
+                    >
                         <?php if ($image !== ''): ?>
                             <img src="<?= e(media_url('ventures', $image)) ?>" alt="<?= e($title) ?>" loading="lazy" />
                         <?php endif; ?>

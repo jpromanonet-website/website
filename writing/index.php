@@ -61,7 +61,10 @@ render_page_header('Writing', '', 'Articles');
                     data-category="<?= e(strtolower($category)) ?>"
                     data-search="<?= e($search) ?>"
                 >
-                    <div class="catalog-item__media<?= $isMedium ? ' catalog-item__media--logo' : '' ?>">
+                    <div
+                        class="catalog-item__media<?= $isMedium ? ' catalog-item__media--logo' : ($imgSrc !== '' ? ' catalog-item__media--zoomable' : '') ?>"
+                        <?= (!$isMedium && $imgSrc !== '') ? lightbox_data_attrs($imgSrc, $title, $link, '', 'Read') : '' ?>
+                    >
                         <?php if ($imgSrc !== ''): ?>
                             <img src="<?= e($imgSrc) ?>" alt="<?= e($isMedium ? 'Medium' : ($category !== '' ? $category : $title)) ?>" loading="lazy" />
                         <?php endif; ?>

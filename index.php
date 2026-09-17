@@ -12,7 +12,7 @@ $featuredProjects = array_slice(load_catalog('projects'), 0, 9);
 $mediumPosts = fetch_medium_posts();
 $latestMedium = $mediumPosts[0] ?? null;
 
-$siteStats = [
+$proStats = [
     [
         'label' => 'Projects in my portfolio',
         'count' => count(load_catalog('projects')),
@@ -45,21 +45,23 @@ $siteStats = [
     ],
 ];
 
-// Custom CMS pages appear here (before resumes), even with 0 elements
+$hobbyStats = [];
+
+// Custom CMS pages appear with professional stats; hobbies stay separate
 if (class_exists(\MicroCMS\Content::class)) {
     try {
-        foreach (\MicroCMS\Content::lifestyleStats() as $lifeStat) {
-            $siteStats[] = $lifeStat;
-        }
         foreach (\MicroCMS\Content::customPageStats() as $customStat) {
-            $siteStats[] = $customStat;
+            $proStats[] = $customStat;
+        }
+        foreach (\MicroCMS\Content::lifestyleStats() as $lifeStat) {
+            $hobbyStats[] = $lifeStat;
         }
     } catch (Throwable $e) {
         // ignore
     }
 }
 
-$siteStats[] = [
+$proStats[] = [
     'label' => 'Resumes ready',
     'count' => count(load_catalog('resumes')),
     'path' => '/resumes/',
@@ -144,7 +146,7 @@ require APP_ROOT . '/includes/header.php';
         <section class="section reveal" id="at-a-glance" aria-label="Myself in numbers">
             <h2 class="section-heading">Myself in numbers</h2>
             <div class="stat-grid">
-                <?php foreach ($siteStats as $stat): ?>
+                <?php foreach ($proStats as $stat): ?>
                     <a
                         class="stat-card stat-card--<?= e((string) $stat['tone']) ?>"
                         href="<?= e(url((string) ($stat['path'] ?? '/'))) ?>"
@@ -154,6 +156,21 @@ require APP_ROOT . '/includes/header.php';
                     </a>
                 <?php endforeach; ?>
             </div>
+
+            <?php if ($hobbyStats): ?>
+                <div class="stat-divider" role="separator" aria-label="Hobbies"></div>
+                <div class="stat-grid">
+                    <?php foreach ($hobbyStats as $stat): ?>
+                        <a
+                            class="stat-card stat-card--<?= e((string) $stat['tone']) ?>"
+                            href="<?= e(url((string) ($stat['path'] ?? '/'))) ?>"
+                        >
+                            <span class="stat-card__count"><?= (int) $stat['count'] ?></span>
+                            <span class="stat-card__label"><?= e((string) $stat['label']) ?></span>
+                        </a>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
         </section>
 
         <?php if ($latestMedium): ?>

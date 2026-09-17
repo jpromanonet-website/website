@@ -243,6 +243,7 @@
         if (live) {
           liveBtn.href = live;
           liveBtn.hidden = false;
+          liveBtn.textContent = trigger.getAttribute("data-lightbox-live-label") || "Open link";
         } else {
           liveBtn.hidden = true;
           liveBtn.removeAttribute("href");
@@ -252,6 +253,7 @@
         if (code) {
           codeBtn.href = code;
           codeBtn.hidden = false;
+          codeBtn.textContent = trigger.getAttribute("data-lightbox-code-label") || "Code";
         } else {
           codeBtn.hidden = true;
           codeBtn.removeAttribute("href");

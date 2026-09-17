@@ -120,23 +120,31 @@ function render_sidebar_nav(string $active = ''): void
     <ul class="sidebar-nav">
         <?php foreach ($items as $item): ?>
             <?php if (!empty($item['children'])): ?>
-                <?php foreach ($item['children'] as $child):
-                    $childUrl = (string) ($child['url'] ?? '');
-                    $childPath = (string) ($child['path'] ?? '');
-                    if ($childUrl === '' && $childPath === '') {
-                        continue;
-                    }
-                    $href = $childUrl !== '' ? $childUrl : url($childPath);
-                    $key = (string) ($child['key'] ?? '');
-                ?>
-                    <li>
-                        <a
-                            class="<?= ($active !== '' && $key === $active) ? 'is-active' : '' ?>"
-                            href="<?= e($href) ?>"
-                            <?= $childUrl !== '' ? 'target="_blank" rel="noopener noreferrer"' : '' ?>
-                        ><?= e((string) ($child['label'] ?? '')) ?></a>
-                    </li>
-                <?php endforeach; ?>
+                <li class="sidebar-nav__group sidebar-nav__group--<?= e((string) ($item['key'] ?? 'section')) ?>">
+                    <span class="sidebar-nav__group-label">
+                        <span class="sidebar-nav__group-pip" aria-hidden="true"></span>
+                        <?= e((string) ($item['label'] ?? '')) ?>
+                    </span>
+                    <ul class="sidebar-nav__children">
+                        <?php foreach ($item['children'] as $child):
+                            $childUrl = (string) ($child['url'] ?? '');
+                            $childPath = (string) ($child['path'] ?? '');
+                            if ($childUrl === '' && $childPath === '') {
+                                continue;
+                            }
+                            $href = $childUrl !== '' ? $childUrl : url($childPath);
+                            $key = (string) ($child['key'] ?? '');
+                        ?>
+                            <li>
+                                <a
+                                    class="sidebar-nav__child<?= ($active !== '' && $key === $active) ? ' is-active' : '' ?><?= $childUrl !== '' ? ' sidebar-nav__child--external' : '' ?>"
+                                    href="<?= e($href) ?>"
+                                    <?= $childUrl !== '' ? 'target="_blank" rel="noopener noreferrer"' : '' ?>
+                                ><?= e((string) ($child['label'] ?? '')) ?></a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </li>
                 <?php continue; ?>
             <?php endif; ?>
             <li>
@@ -148,4 +156,34 @@ function render_sidebar_nav(string $active = ''): void
         <?php endforeach; ?>
     </ul>
     <?php
+}
+
+/**
+ * HTML attributes for desktop image lightbox triggers.
+ */
+function lightbox_data_attrs(
+    string $src,
+    string $title,
+    string $live = '',
+    string $code = '',
+    string $liveLabel = '',
+    string $codeLabel = ''
+): string {
+    if ($src === '') {
+        return '';
+    }
+    $parts = [
+        'data-lightbox',
+        'data-lightbox-src="' . e($src) . '"',
+        'data-lightbox-title="' . e($title) . '"',
+        'data-lightbox-live="' . e(($live !== '' && $live !== '#') ? $live : '') . '"',
+        'data-lightbox-code="' . e(($code !== '' && $code !== '#') ? $code : '') . '"',
+    ];
+    if ($liveLabel !== '') {
+        $parts[] = 'data-lightbox-live-label="' . e($liveLabel) . '"';
+    }
+    if ($codeLabel !== '') {
+        $parts[] = 'data-lightbox-code-label="' . e($codeLabel) . '"';
+    }
+    return implode(' ', $parts);
 }

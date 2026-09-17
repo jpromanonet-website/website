@@ -45,7 +45,10 @@ render_page_header('Books', '', 'Writing');
                     data-category="<?= e(strtolower($category)) ?>"
                     data-search="<?= e($search) ?>"
                 >
-                    <div class="catalog-item__media">
+                    <div
+                        class="catalog-item__media<?= $image !== '' ? ' catalog-item__media--zoomable' : '' ?>"
+                        <?= $image !== '' ? lightbox_data_attrs(media_url('books', $image), $title, $buying, '', 'Buy') : '' ?>
+                    >
                         <?php if ($image !== ''): ?>
                             <img src="<?= e(media_url('books', $image)) ?>" alt="<?= e($title) ?>" loading="lazy" />
                         <?php endif; ?>
