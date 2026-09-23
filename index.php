@@ -77,6 +77,15 @@ $proStats[] = [
     'tone' => 'slate',
 ];
 
+$proStats = array_values(array_filter(
+    $proStats,
+    static fn(array $stat): bool => (int) ($stat['count'] ?? 0) > 0
+));
+$hobbyStats = array_values(array_filter(
+    $hobbyStats,
+    static fn(array $stat): bool => (int) ($stat['count'] ?? 0) > 0
+));
+
 $hero = $homeBlocks['hero'] ?? [];
 $about = $homeBlocks['about'] ?? [];
 $signals = $homeBlocks['signals'] ?? [];
