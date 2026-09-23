@@ -11,6 +11,7 @@ $activeNav = 'home';
 $featuredProjects = array_slice(load_catalog('projects'), 0, 9);
 $mediumPosts = fetch_medium_posts();
 $latestMedium = $mediumPosts[0] ?? null;
+$githubCommits = github_commit_count();
 
 $proStats = [
     [
@@ -157,9 +158,10 @@ require APP_ROOT . '/includes/header.php';
                 <?php foreach ($proStats as $stat): ?>
                     <a
                         class="stat-card stat-card--<?= e((string) $stat['tone']) ?>"
-                        href="<?= e(url((string) ($stat['path'] ?? '/'))) ?>"
+                        href="<?= e(stat_href($stat)) ?>"
+                        <?= !empty($stat['url']) ? 'target="_blank" rel="noopener noreferrer"' : '' ?>
                     >
-                        <span class="stat-card__count"><?= (int) $stat['count'] ?></span>
+                        <span class="stat-card__count"><?= e(number_format((int) $stat['count'])) ?></span>
                         <span class="stat-card__label"><?= e((string) $stat['label']) ?></span>
                     </a>
                 <?php endforeach; ?>
@@ -171,9 +173,9 @@ require APP_ROOT . '/includes/header.php';
                     <?php foreach ($hobbyStats as $stat): ?>
                         <a
                             class="stat-card stat-card--<?= e((string) $stat['tone']) ?>"
-                            href="<?= e(url((string) ($stat['path'] ?? '/'))) ?>"
+                            href="<?= e(stat_href($stat)) ?>"
                         >
-                            <span class="stat-card__count"><?= (int) $stat['count'] ?></span>
+                            <span class="stat-card__count"><?= e(number_format((int) $stat['count'])) ?></span>
                             <span class="stat-card__label"><?= e((string) $stat['label']) ?></span>
                         </a>
                     <?php endforeach; ?>
@@ -204,6 +206,34 @@ require APP_ROOT . '/includes/header.php';
                     <span class="medium-latest__meta">Medium</span>
                     <h3 class="medium-latest__title"><?= e((string) $latestMedium['title']) ?></h3>
                     <span class="medium-latest__cta">Read on Medium &rarr;</span>
+                </div>
+            </a>
+        </section>
+        <?php endif; ?>
+
+        <?php if ($githubCommits > 0): ?>
+        <section class="section reveal" id="github-commits">
+            <div class="section-heading-row">
+                <div>
+                    <h2 class="section-heading">On GitHub</h2>
+                    <p class="section-lead">Every commit since I opened the account, public and private.</p>
+                </div>
+                <a class="btn btn--soft" href="<?= e(github_profile_url()) ?>" target="_blank" rel="noopener noreferrer">View profile</a>
+            </div>
+
+            <a
+                class="medium-latest github-latest"
+                href="<?= e(github_profile_url()) ?>"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <div class="medium-latest__logo" aria-hidden="true">
+                    <img src="<?= e(media_url('github', 'github.svg')) ?>" alt="" />
+                </div>
+                <div class="medium-latest__body">
+                    <span class="medium-latest__meta">GitHub</span>
+                    <h3 class="github-latest__count"><?= e(number_format($githubCommits)) ?></h3>
+                    <span class="medium-latest__cta">Commits and counting &rarr;</span>
                 </div>
             </a>
         </section>

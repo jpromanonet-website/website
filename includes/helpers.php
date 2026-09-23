@@ -10,6 +10,16 @@ function url(string $path = ''): string
     return BASE_URL . $path;
 }
 
+/** @param array<string, mixed> $stat */
+function stat_href(array $stat): string
+{
+    $raw = (string) ($stat['url'] ?? $stat['path'] ?? '/');
+    if (preg_match('#^https?://#i', $raw) === 1) {
+        return $raw;
+    }
+    return url($raw);
+}
+
 function asset(string $path): string
 {
     return url('assets/' . ltrim($path, '/'));
