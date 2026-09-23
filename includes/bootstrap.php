@@ -11,6 +11,7 @@ define('BASE_URL', $relative === '' || $relative === false ? '' : $relative);
 
 require_once APP_ROOT . '/includes/helpers.php';
 require_once APP_ROOT . '/includes/medium.php';
+require_once APP_ROOT . '/includes/goodreads.php';
 
 $cmsBootstrapCandidates = [
     APP_ROOT . '/microCMS/bootstrap.php',
@@ -65,3 +66,38 @@ $site = [
 ];
 $navItems = \MicroCMS\Content::navItems();
 $homeBlocks = \MicroCMS\Content::homeBlocks();
+
+// Goodreads "Books read" lives outside the CMS — inject into Hobbies nav only.
+$readingNavItem = [
+    'label' => 'Books read',
+    'path' => '/reading/',
+    'key' => 'reading',
+];
+$hobbiesInjected = false;
+foreach ($navItems as &$navItem) {
+    if (($navItem['key'] ?? '') !== 'hobbies') {
+        continue;
+    }
+    $children = is_array($navItem['children'] ?? null) ? $navItem['children'] : [];
+    $already = false;
+    foreach ($children as $child) {
+        if (($child['key'] ?? '') === 'reading') {
+            $already = true;
+            break;
+        }
+    }
+    if (!$already) {
+        $children[] = $readingNavItem;
+        $navItem['children'] = $children;
+    }
+    $hobbiesInjected = true;
+    break;
+}
+unset($navItem);
+if (!$hobbiesInjected) {
+    $navItems[] = [
+        'label' => 'Hobbies',
+        'key' => 'hobbies',
+        'children' => [$readingNavItem],
+    ];
+}

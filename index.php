@@ -61,6 +61,14 @@ if (class_exists(\MicroCMS\Content::class)) {
     }
 }
 
+$goodreadsStats = goodreads_read_stats();
+$hobbyStats[] = [
+    'label' => 'Books read',
+    'count' => (int) $goodreadsStats['books'],
+    'path' => '/reading/',
+    'tone' => 'amber',
+];
+
 $proStats[] = [
     'label' => 'Resumes ready',
     'count' => count(load_catalog('resumes')),
