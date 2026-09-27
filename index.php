@@ -11,6 +11,7 @@ $activeNav = 'home';
 $featuredProjects = array_slice(load_catalog('projects'), 0, 9);
 $mediumPosts = fetch_medium_posts();
 $latestMedium = $mediumPosts[0] ?? null;
+$writingArticles = writing_catalog_with_medium();
 $githubCommits = github_commit_count();
 
 $proStats = [
@@ -28,7 +29,7 @@ $proStats = [
     ],
     [
         'label' => 'Publications',
-        'count' => count(load_catalog('writing')) + count($mediumPosts),
+        'count' => count($writingArticles),
         'path' => '/writing/',
         'tone' => 'teal',
     ],
@@ -212,7 +213,7 @@ require APP_ROOT . '/includes/header.php';
                     <img src="<?= e(media_url('writing', 'medium.svg')) ?>" alt="" />
                 </div>
                 <div class="medium-latest__body">
-                    <span class="medium-latest__meta">Medium</span>
+                    <span class="medium-latest__meta">Medium · <?= e(number_format(count($mediumPosts))) ?> posts</span>
                     <h3 class="medium-latest__title"><?= e((string) $latestMedium['title']) ?></h3>
                     <span class="medium-latest__cta">Read on Medium &rarr;</span>
                 </div>

@@ -5,8 +5,8 @@ declare(strict_types=1);
  * Medium posts — fully automatic from PHP.
  *
  * Flow:
- * 1) Try Medium profile stream API (full catalog), via Jina proxy if Cloudflare blocks direct access
- * 2) Merge with RSS (fast source for newest posts)
+ * 1) Profile stream API (direct, then Jina with the target URL encoded)
+ * 2) Public sitemap + RSS, and profile links if still short
  * 3) Cache merged result (~1 hour)
  *
  * @return list<array{title:string,url:string,category:string,pubDate:string,timestamp:int,source:string,imageSrc:string}>
@@ -14,8 +14,8 @@ declare(strict_types=1);
 function fetch_medium_posts(int $limit = 500, int $cacheTtl = 3600): array
 {
     $cacheCandidates = [
-        APP_ROOT . '/cache/medium-live.json',
-        rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR) . '/jpromanonet-medium-live.json',
+        APP_ROOT . '/cache/medium-live-v3.json',
+        rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR) . '/jpromanonet-medium-live-v3.json',
     ];
 
     foreach ($cacheCandidates as $cacheFile) {
@@ -28,8 +28,12 @@ function fetch_medium_posts(int $limit = 500, int $cacheTtl = 3600): array
     }
 
     $stream = medium_fetch_stream_posts();
+    $sitemap = medium_parse_sitemap();
     $rss = medium_parse_feed(medium_feed_url());
-    $merged = medium_merge_posts($stream, $rss);
+    $merged = medium_merge_posts($stream, $sitemap, $rss);
+    if (count($merged) < 30) {
+        $merged = medium_merge_posts($merged, medium_fetch_profile_links());
+    }
 
     if ($merged !== []) {
         medium_write_cache($cacheCandidates, $merged);
@@ -47,23 +51,79 @@ function latest_medium_post(): ?array
 function medium_feed_url(): string
 {
     global $site;
-    return (string) ($site['medium_feed'] ?? 'https://medium.com/feed/@jpromanonet');
+    $feed = trim((string) ($site['medium_feed'] ?? ''));
+    return $feed !== '' ? $feed : 'https://medium.com/feed/@jpromanonet';
 }
 
 function medium_user_id(): string
 {
     global $site;
-    return (string) ($site['medium_user_id'] ?? '768cb0ffbcaf');
+    $id = trim((string) ($site['medium_user_id'] ?? ''));
+    return $id !== '' ? $id : '768cb0ffbcaf';
 }
 
 function medium_username(): string
 {
     global $site;
-    $blog = (string) ($site['blog'] ?? 'https://jpromanonet.medium.com');
-    if (preg_match('#https?://([a-z0-9\-]+)\.medium\.com#i', $blog, $m)) {
+    $blog = trim((string) ($site['blog'] ?? ''));
+    if ($blog !== '' && preg_match('#https?://([a-z0-9\-]+)\.medium\.com#i', $blog, $m)) {
+        return $m[1];
+    }
+    if ($blog !== '' && preg_match('#https?://medium\.com/@([a-z0-9\-]+)#i', $blog, $m)) {
         return $m[1];
     }
     return 'jpromanonet';
+}
+
+/**
+ * CMS writing cards + Medium catalog, without the same URL twice.
+ *
+ * @return list<array<string,mixed>>
+ */
+function writing_catalog_with_medium(): array
+{
+    $articles = [];
+    $seen = [];
+
+    foreach (load_catalog('writing') as $article) {
+        if (!is_array($article)) {
+            continue;
+        }
+        $row = [
+            'title' => (string) ($article['title'] ?? 'Untitled'),
+            'url' => (string) ($article['url'] ?? '#'),
+            'category' => (string) ($article['category'] ?? ''),
+            'imageSrc' => (string) ($article['imageSrc'] ?? ''),
+            'source' => 'static',
+        ];
+        $key = writing_article_dedupe_key($row);
+        $seen[$key] = true;
+        $articles[] = $row;
+    }
+
+    foreach (fetch_medium_posts() as $post) {
+        $key = writing_article_dedupe_key($post);
+        if (isset($seen[$key])) {
+            continue;
+        }
+        $seen[$key] = true;
+        $articles[] = $post;
+    }
+
+    return $articles;
+}
+
+/**
+ * @param array<string,mixed> $item
+ */
+function writing_article_dedupe_key(array $item): string
+{
+    $url = medium_canonical_url(trim((string) ($item['url'] ?? '')));
+    if ($url !== '' && $url !== '#') {
+        return 'url:' . strtolower($url);
+    }
+    $title = trim((string) ($item['title'] ?? ''));
+    return 'title:' . (function_exists('mb_strtolower') ? mb_strtolower($title) : strtolower($title));
 }
 
 /**
@@ -83,9 +143,19 @@ function medium_merge_posts(array ...$groups): array
                 continue;
             }
             $url = $normalized['url'];
-            if (!isset($byUrl[$url]) || $normalized['timestamp'] >= $byUrl[$url]['timestamp']) {
+            if (!isset($byUrl[$url])) {
                 $byUrl[$url] = $normalized;
+                continue;
             }
+            $current = $byUrl[$url];
+            if (medium_title_score($normalized['title']) > medium_title_score((string) $current['title'])) {
+                $current['title'] = $normalized['title'];
+            }
+            if ($normalized['timestamp'] > (int) $current['timestamp']) {
+                $current['timestamp'] = $normalized['timestamp'];
+                $current['pubDate'] = $normalized['pubDate'];
+            }
+            $byUrl[$url] = $current;
         }
     }
 
@@ -135,6 +205,12 @@ function medium_canonical_url(string $url): string
     $path = rawurldecode($parts['path'] ?? '/');
     $scheme = $parts['scheme'] ?? 'https';
     $host = strtolower($parts['host']);
+
+    // RSS uses medium.com/@user/slug; stream/sitemap use user.medium.com/slug
+    if ($host === 'medium.com' && preg_match('#^/@([a-z0-9\-]+)/(.+)$#i', $path, $m)) {
+        $host = strtolower($m[1]) . '.medium.com';
+        $path = '/' . $m[2];
+    }
 
     return $scheme . '://' . $host . $path;
 }
@@ -255,10 +331,13 @@ function medium_fetch_stream_payload(string $apiUrl): ?array
         return $data['payload'] ?? null;
     }
 
-    // 2) Via Jina reader proxy (works when Cloudflare blocks the server IP)
-    $proxied = medium_http_get('https://r.jina.ai/' . $apiUrl, [
+    // 2) Via Jina — encode the whole target URL so ?limit=&source=&to= stay
+    // on Medium. An unencoded URL makes Jina swallow those query params
+    // and Medium only returns the first ~10–25 posts.
+    $proxied = medium_http_get('https://r.jina.ai/' . rawurlencode($apiUrl), [
         'Accept: text/plain',
         'X-Return-Format: text',
+        'X-Retain-Images: none',
         'User-Agent: Mozilla/5.0',
     ]);
     $data = medium_decode_stream_response($proxied);
@@ -278,24 +357,152 @@ function medium_decode_stream_response(?string $raw): ?array
         return null;
     }
 
-    $json = $raw;
+    $candidates = [];
     $marker = '])}while(1);</x>';
     $pos = strpos($raw, $marker);
     if ($pos !== false) {
-        $json = substr($raw, $pos + strlen($marker));
-    } else {
-        $pos = strpos($raw, '{"success"');
-        if ($pos === false) {
-            return null;
-        }
-        $json = substr($raw, $pos);
+        $candidates[] = substr($raw, $pos + strlen($marker));
+    }
+    $pos = strpos($raw, '{"success"');
+    if ($pos !== false) {
+        $candidates[] = substr($raw, $pos);
     }
 
-    $data = json_decode($json, true);
-    if (!is_array($data) || empty($data['success'])) {
-        return null;
+    foreach ($candidates as $json) {
+        $json = trim((string) $json);
+        $json = (string) preg_replace('/^```(?:json)?\s*/i', '', $json);
+        $data = json_decode($json, true);
+        if (is_string($data)) {
+            $data = json_decode($data, true);
+        }
+        if (is_array($data) && !empty($data['success'])) {
+            return $data;
+        }
     }
-    return $data;
+
+    return null;
+}
+
+/**
+ * Public user sitemap — works without Jina when Cloudflare blocks the stream API.
+ *
+ * @return list<array{title:string,url:string,category:string,pubDate:string,timestamp:int,source:string,imageSrc:string}>
+ */
+function medium_parse_sitemap(): array
+{
+    $username = medium_username();
+    $xml = medium_http_get('https://' . $username . '.medium.com/sitemap/sitemap.xml');
+    if ($xml === null || $xml === '') {
+        return [];
+    }
+
+    $previous = libxml_use_internal_errors(true);
+    $feed = simplexml_load_string($xml);
+    libxml_clear_errors();
+    libxml_use_internal_errors($previous);
+    if ($feed === false) {
+        return [];
+    }
+
+    $posts = [];
+    foreach ($feed->url as $node) {
+        $loc = trim((string) ($node->loc ?? ''));
+        if (!medium_is_story_url($loc)) {
+            continue;
+        }
+        $lastmod = trim((string) ($node->lastmod ?? ''));
+        $ts = $lastmod !== '' ? (strtotime($lastmod) ?: 0) : 0;
+        $normalized = medium_normalize_post([
+            'title' => medium_title_from_url($loc),
+            'url' => $loc,
+            'timestamp' => $ts,
+            'pubDate' => $ts > 0 ? gmdate('D, d M Y H:i:s', $ts) . ' GMT' : '',
+        ]);
+        if ($normalized !== null) {
+            $posts[] = $normalized;
+        }
+    }
+    return $posts;
+}
+
+/**
+ * Extra story URLs from the public profile / latest listing.
+ *
+ * @return list<array{title:string,url:string,category:string,pubDate:string,timestamp:int,source:string,imageSrc:string}>
+ */
+function medium_fetch_profile_links(): array
+{
+    $username = medium_username();
+    $pages = [
+        'https://' . $username . '.medium.com',
+        'https://medium.com/@' . $username . '/latest',
+    ];
+
+    $posts = [];
+    foreach ($pages as $page) {
+        $html = medium_http_get('https://r.jina.ai/' . rawurlencode($page), [
+            'Accept: text/plain',
+            'X-Return-Format: text',
+            'X-Retain-Images: none',
+            'User-Agent: Mozilla/5.0',
+        ]);
+        if ($html === null || $html === '') {
+            $html = medium_http_get($page);
+        }
+        if ($html === null || $html === '') {
+            continue;
+        }
+        if (!preg_match_all('#https?://(?:[a-z0-9\-]+\.)?medium\.com/[^\s"\'<>]+#i', $html, $matches)) {
+            continue;
+        }
+        foreach ($matches[0] as $rawUrl) {
+            $url = medium_canonical_url(preg_replace('/[),.;]+$/', '', $rawUrl) ?? $rawUrl);
+            if (!medium_is_story_url($url)) {
+                continue;
+            }
+            $normalized = medium_normalize_post([
+                'title' => medium_title_from_url($url),
+                'url' => $url,
+            ]);
+            if ($normalized !== null) {
+                $posts[] = $normalized;
+            }
+        }
+    }
+    return $posts;
+}
+
+function medium_is_story_url(string $url): bool
+{
+    $path = trim((string) (parse_url($url, PHP_URL_PATH) ?? ''), '/');
+    if ($path === '' || strcasecmp($path, 'about') === 0) {
+        return false;
+    }
+    return (bool) preg_match('/-[a-f0-9]{8,}$/i', $path);
+}
+
+function medium_title_score(string $title): int
+{
+    $score = 0;
+    if (preg_match('/\p{Lu}/u', $title)) {
+        $score += 3;
+    }
+    if (preg_match('/[\[\]|&“”"]/', $title)) {
+        $score += 2;
+    }
+    if (str_contains($title, ' ')) {
+        $score += 1;
+    }
+    return $score + min(2, intdiv(strlen($title), 40));
+}
+
+function medium_title_from_url(string $url): string
+{
+    $path = trim((string) (parse_url($url, PHP_URL_PATH) ?? ''), '/');
+    $path = preg_replace('/-[a-f0-9]{8,}$/i', '', $path) ?? $path;
+    $path = rawurldecode(str_replace('-', ' ', $path));
+    $path = trim(preg_replace('/\s+/', ' ', $path) ?? $path);
+    return $path !== '' ? $path : $url;
 }
 
 /**
@@ -335,8 +542,9 @@ function medium_http_get(string $url, array $headers = []): ?string
         curl_setopt_array($ch, [
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_TIMEOUT => 45,
-            CURLOPT_CONNECTTIMEOUT => 8,
+            CURLOPT_TIMEOUT => 60,
+            CURLOPT_CONNECTTIMEOUT => 10,
+            CURLOPT_ENCODING => '',
             CURLOPT_HTTPHEADER => $headers,
         ]);
         $body = curl_exec($ch);

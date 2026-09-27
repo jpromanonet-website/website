@@ -7,23 +7,7 @@ $pageTitle = 'Writing';
 $pageDescription = 'Articles and publications by Juan P. Romano — including automatic Medium posts.';
 $activeNav = 'writing';
 
-$mediumPosts = fetch_medium_posts();
-$staticArticles = load_catalog('writing');
-
-// CMS writing elements first, then Medium (automatic)
-$articles = [];
-foreach ($staticArticles as $article) {
-    $articles[] = [
-        'title' => (string) ($article['title'] ?? 'Untitled'),
-        'url' => (string) ($article['url'] ?? '#'),
-        'category' => (string) ($article['category'] ?? ''),
-        'imageSrc' => (string) ($article['imageSrc'] ?? ''),
-        'source' => 'static',
-    ];
-}
-foreach ($mediumPosts as $post) {
-    $articles[] = $post;
-}
+$articles = writing_catalog_with_medium();
 
 $categories = unique_categories($articles);
 
