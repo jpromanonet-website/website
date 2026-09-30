@@ -68,6 +68,34 @@ $site = [
 $navItems = \MicroCMS\Content::navItems();
 $homeBlocks = \MicroCMS\Content::homeBlocks();
 
+// Teaching is hardcoded site links — not CMS content.
+$teachingNavItem = [
+    'label' => 'Teaching',
+    'key' => 'teaching',
+    'children' => [
+        ['label' => 'Learning IA', 'url' => 'https://learningiaforfree.vercel.app/'],
+        ['label' => 'Learning to Code', 'url' => 'https://learningtocodeforfree.vercel.app/'],
+        ['label' => 'Aprendiendo Guaraní', 'url' => 'https://aprendiendoguarani.vercel.app/'],
+    ],
+];
+$teachingAlready = false;
+foreach ($navItems as $navItem) {
+    if (($navItem['key'] ?? '') === 'teaching') {
+        $teachingAlready = true;
+        break;
+    }
+}
+if (!$teachingAlready) {
+    $insertAt = count($navItems);
+    foreach ($navItems as $i => $navItem) {
+        if (($navItem['key'] ?? '') === 'hobbies') {
+            $insertAt = $i;
+            break;
+        }
+    }
+    array_splice($navItems, $insertAt, 0, [$teachingNavItem]);
+}
+
 // Goodreads "Books read" lives outside the CMS — inject into Hobbies nav only.
 $readingNavItem = [
     'label' => 'Books read',
