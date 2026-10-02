@@ -351,6 +351,12 @@ require APP_ROOT . '/includes/header.php';
                     <span class="contact-row__meta">Blog</span>
                     <span class="contact-row__value">jpromanonet.medium.com</span>
                 </a>
+                <?php if (!empty($site['linktree'])): ?>
+                <a class="contact-row" href="<?= e($site['linktree']) ?>" target="_blank" rel="noopener noreferrer">
+                    <span class="contact-row__meta">Linktree</span>
+                    <span class="contact-row__value">linktr.ee/jpromanonet</span>
+                </a>
+                <?php endif; ?>
             </div>
             <div class="social-row" aria-label="Social links">
                 <?php if (!empty($site['linkedin'])): ?>
@@ -367,6 +373,9 @@ require APP_ROOT . '/includes/header.php';
                 <?php endif; ?>
                 <?php if (!empty($site['deviantart'])): ?>
                 <a href="<?= e($site['deviantart']) ?>" target="_blank" rel="noopener noreferrer" aria-label="DeviantArt">da</a>
+                <?php endif; ?>
+                <?php if (!empty($site['linktree'])): ?>
+                <a href="<?= e($site['linktree']) ?>" target="_blank" rel="noopener noreferrer" aria-label="Linktree">lt</a>
                 <?php endif; ?>
             </div>
         </section>
