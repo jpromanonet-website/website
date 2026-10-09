@@ -5,37 +5,42 @@ declare(strict_types=1);
  * Medium posts — fully automatic from PHP.
  *
  * Flow:
- * 1) Profile stream API (direct, then Jina with the target URL encoded)
- * 2) Public sitemap + RSS, and profile links if still short
- * 3) Cache merged result (~1 hour)
+ * 1) Profile stream API via Jina (encoded URL), direct request only as a short fallback
+ * 2) Public sitemap + RSS, and profile links if the catalog is still short
+ * 3) Merge with the previous cache so a partial fetch cannot drop posts
  *
  * @return list<array{title:string,url:string,category:string,pubDate:string,timestamp:int,source:string,imageSrc:string}>
  */
 function fetch_medium_posts(int $limit = 500, int $cacheTtl = 3600): array
 {
     $cacheCandidates = [
+        APP_ROOT . '/cache/medium-live-v4.json',
+        rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR) . '/jpromanonet-medium-live-v4.json',
+    ];
+    $previousCandidates = array_merge($cacheCandidates, [
         APP_ROOT . '/cache/medium-live-v3.json',
         rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR) . '/jpromanonet-medium-live-v3.json',
-    ];
+    ]);
 
-    foreach ($cacheCandidates as $cacheFile) {
-        if (is_file($cacheFile) && (time() - filemtime($cacheFile)) < $cacheTtl) {
-            $cached = json_decode((string) file_get_contents($cacheFile), true);
-            if (is_array($cached) && $cached !== []) {
-                return array_slice($cached, 0, $limit);
-            }
+    $freshCache = medium_read_cache($cacheCandidates, $cacheTtl);
+    if ($freshCache !== []) {
+        $age = medium_cache_age($cacheCandidates);
+        if (count($freshCache) >= 33 || ($age !== null && $age < 600)) {
+            return array_slice($freshCache, 0, $limit);
         }
     }
+
+    $previous = $freshCache !== [] ? $freshCache : medium_read_cache($previousCandidates, null);
 
     $stream = medium_fetch_stream_posts();
     $sitemap = medium_parse_sitemap();
     $rss = medium_parse_feed(medium_feed_url());
-    $merged = medium_merge_posts($stream, $sitemap, $rss);
-    if (count($merged) < 30) {
+    $merged = medium_merge_posts($stream, $sitemap, $rss, $previous);
+    if (count($merged) < 33) {
         $merged = medium_merge_posts($merged, medium_fetch_profile_links());
     }
 
-    if ($merged !== []) {
+    if ($merged !== [] && count($merged) >= count($previous)) {
         medium_write_cache($cacheCandidates, $merged);
     }
 
@@ -279,6 +284,7 @@ function medium_fetch_stream_posts(): array
             break;
         }
 
+        $pageCount = 0;
         foreach ($posts as $post) {
             if (!is_array($post)) {
                 continue;
@@ -288,6 +294,7 @@ function medium_fetch_stream_posts(): array
             if ($title === '' || $slug === '') {
                 continue;
             }
+            $pageCount++;
             $ts = (int) ($post['firstPublishedAt'] ?? $post['latestPublishedAt'] ?? 0);
             if ($ts > 10_000_000_000) {
                 $ts = intdiv($ts, 1000);
@@ -303,8 +310,10 @@ function medium_fetch_stream_posts(): array
             }
         }
 
+        // A short page is the end of the catalog. Medium still sends a next
+        // cursor that returns an empty payload.
         $nextTo = $payload['paging']['next']['to'] ?? null;
-        if ($nextTo === null || $nextTo === $to) {
+        if ($pageCount < 100 || $nextTo === null || $nextTo === $to) {
             break;
         }
         $to = $nextTo;
@@ -320,27 +329,27 @@ function medium_fetch_stream_posts(): array
  */
 function medium_fetch_stream_payload(string $apiUrl): ?array
 {
-    // 1) Direct
-    $raw = medium_http_get($apiUrl, [
+    $browserHeaders = [
         'Accept: application/json',
         'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
         'Referer: https://medium.com/',
-    ]);
-    $data = medium_decode_stream_response($raw);
-    if ($data !== null) {
-        return $data['payload'] ?? null;
-    }
+    ];
 
-    // 2) Via Jina — encode the whole target URL so ?limit=&source=&to= stay
-    // on Medium. An unencoded URL makes Jina swallow those query params
-    // and Medium only returns the first ~10–25 posts.
+    // Jina first. A direct Medium call often hangs on Cloudflare and burns
+    // the whole PHP request before the full catalog can be read.
     $proxied = medium_http_get('https://r.jina.ai/' . rawurlencode($apiUrl), [
         'Accept: text/plain',
         'X-Return-Format: text',
         'X-Retain-Images: none',
         'User-Agent: Mozilla/5.0',
-    ]);
+    ], 40);
     $data = medium_decode_stream_response($proxied);
+    if ($data !== null) {
+        return $data['payload'] ?? null;
+    }
+
+    $raw = medium_http_get($apiUrl, $browserHeaders, 8);
+    $data = medium_decode_stream_response($raw);
     if ($data !== null) {
         return $data['payload'] ?? null;
     }
@@ -371,9 +380,13 @@ function medium_decode_stream_response(?string $raw): ?array
     foreach ($candidates as $json) {
         $json = trim((string) $json);
         $json = (string) preg_replace('/^```(?:json)?\s*/i', '', $json);
-        $data = json_decode($json, true);
+        $flags = 0;
+        if (defined('JSON_INVALID_UTF8_SUBSTITUTE')) {
+            $flags |= JSON_INVALID_UTF8_SUBSTITUTE;
+        }
+        $data = json_decode($json, true, 512, $flags);
         if (is_string($data)) {
-            $data = json_decode($data, true);
+            $data = json_decode($data, true, 512, $flags);
         }
         if (is_array($data) && !empty($data['success'])) {
             return $data;
@@ -509,6 +522,37 @@ function medium_title_from_url(string $url): string
  * @param list<string> $cacheCandidates
  * @param list<array<string,mixed>> $posts
  */
+function medium_cache_age(array $cacheCandidates): ?int
+{
+    foreach ($cacheCandidates as $cacheFile) {
+        if (is_file($cacheFile)) {
+            return time() - filemtime($cacheFile);
+        }
+    }
+    return null;
+}
+
+/**
+ * @param list<string> $cacheCandidates
+ * @return list<array<string,mixed>>
+ */
+function medium_read_cache(array $cacheCandidates, ?int $maxAge): array
+{
+    foreach ($cacheCandidates as $cacheFile) {
+        if (!is_file($cacheFile)) {
+            continue;
+        }
+        if ($maxAge !== null && (time() - filemtime($cacheFile)) >= $maxAge) {
+            continue;
+        }
+        $cached = json_decode((string) file_get_contents($cacheFile), true);
+        if (is_array($cached) && $cached !== []) {
+            return $cached;
+        }
+    }
+    return [];
+}
+
 function medium_write_cache(array $cacheCandidates, array $posts): void
 {
     $json = json_encode($posts, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
@@ -526,13 +570,25 @@ function medium_write_cache(array $cacheCandidates, array $posts): void
     }
 }
 
-function medium_http_get(string $url, array $headers = []): ?string
+function medium_http_get(string $url, array $headers = [], int $timeout = 25): ?string
 {
-    $defaultHeaders = [
-        'User-Agent: jpromanonet-site/1.0 (+https://jpromano.net)',
-        'Accept: application/rss+xml, application/xml, text/xml, application/json, */*',
+    $merged = [
+        'User-Agent' => 'User-Agent: jpromanonet-site/1.0 (+https://jpromano.net)',
+        'Accept' => 'Accept: application/rss+xml, application/xml, text/xml, application/json, */*',
     ];
-    $headers = array_values(array_unique(array_merge($defaultHeaders, $headers)));
+    foreach ($headers as $header) {
+        $colon = strpos($header, ':');
+        if ($colon === false) {
+            continue;
+        }
+        $name = strtolower(trim(substr($header, 0, $colon)));
+        if ($name === '') {
+            continue;
+        }
+        $merged[$name] = $header;
+    }
+    $headers = array_values($merged);
+    $timeout = max(5, $timeout);
 
     if (function_exists('curl_init')) {
         $ch = curl_init($url);
@@ -542,8 +598,8 @@ function medium_http_get(string $url, array $headers = []): ?string
         curl_setopt_array($ch, [
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_TIMEOUT => 60,
-            CURLOPT_CONNECTTIMEOUT => 10,
+            CURLOPT_TIMEOUT => $timeout,
+            CURLOPT_CONNECTTIMEOUT => min(8, $timeout),
             CURLOPT_ENCODING => '',
             CURLOPT_HTTPHEADER => $headers,
         ]);
@@ -558,7 +614,7 @@ function medium_http_get(string $url, array $headers = []): ?string
 
     $ctx = stream_context_create([
         'http' => [
-            'timeout' => 45,
+            'timeout' => $timeout,
             'header' => implode("\r\n", $headers) . "\r\n",
         ],
     ]);
