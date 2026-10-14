@@ -17,20 +17,46 @@ function fetch_medium_posts(int $limit = 500, int $cacheTtl = 3600): array
         APP_ROOT . '/cache/medium-live-v4.json',
         rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR) . '/jpromanonet-medium-live-v4.json',
     ];
+
+    $freshCache = medium_read_cache($cacheCandidates, null);
+    $age = medium_cache_age($cacheCandidates);
+    $isFresh = $freshCache !== []
+        && $age !== null
+        && $age < $cacheTtl
+        && count($freshCache) >= 33;
+    if ($freshCache !== []) {
+        if (!$isFresh) {
+            $deferred = defer_after_response(
+                static function (): void {
+                    medium_refresh_posts();
+                },
+                'medium-posts'
+            );
+            if (!$deferred && $age !== null && $age >= 21600) {
+                return array_slice(medium_refresh_posts(), 0, $limit);
+            }
+        }
+        return array_slice($freshCache, 0, $limit);
+    }
+
+    return array_slice(medium_refresh_posts(), 0, $limit);
+}
+
+/**
+ * @return list<array{title:string,url:string,category:string,pubDate:string,timestamp:int,source:string,imageSrc:string}>
+ */
+function medium_refresh_posts(): array
+{
+    $cacheCandidates = [
+        APP_ROOT . '/cache/medium-live-v4.json',
+        rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR) . '/jpromanonet-medium-live-v4.json',
+    ];
     $previousCandidates = array_merge($cacheCandidates, [
         APP_ROOT . '/cache/medium-live-v3.json',
         rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR) . '/jpromanonet-medium-live-v3.json',
     ]);
 
-    $freshCache = medium_read_cache($cacheCandidates, $cacheTtl);
-    if ($freshCache !== []) {
-        $age = medium_cache_age($cacheCandidates);
-        if (count($freshCache) >= 33 || ($age !== null && $age < 600)) {
-            return array_slice($freshCache, 0, $limit);
-        }
-    }
-
-    $previous = $freshCache !== [] ? $freshCache : medium_read_cache($previousCandidates, null);
+    $previous = medium_read_cache($previousCandidates, null);
 
     $stream = medium_fetch_stream_posts();
     $sitemap = medium_parse_sitemap();
@@ -44,7 +70,7 @@ function fetch_medium_posts(int $limit = 500, int $cacheTtl = 3600): array
         medium_write_cache($cacheCandidates, $merged);
     }
 
-    return array_slice($merged, 0, $limit);
+    return $merged;
 }
 
 function latest_medium_post(): ?array

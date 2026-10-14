@@ -26,7 +26,10 @@ $fullTitle = $pageTitle === $site['name']
     <link rel="icon" type="image/x-icon" href="<?= e(asset('img/favicon.ico')) ?>" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <?php $fontCss = 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap'; ?>
+    <link rel="preload" as="style" href="<?= e($fontCss) ?>" />
+    <link rel="stylesheet" href="<?= e($fontCss) ?>" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="<?= e($fontCss) ?>" /></noscript>
     <link rel="stylesheet" href="<?= e(asset('css/site.css')) ?>" />
     <?php if (!empty($site['ga_id'])): ?>
     <script async src="https://www.googletagmanager.com/gtag/js?id=<?= e($site['ga_id']) ?>"></script>

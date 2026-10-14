@@ -197,3 +197,49 @@ function lightbox_data_attrs(
     }
     return implode(' ', $parts);
 }
+
+/**
+ * Run work after the HTML has already been sent, so a slow API refresh
+ * does not leave the browser on a blank page.
+ *
+ * Returns false when the host cannot finish the response early. Callers
+ * should keep serving the cache in that case.
+ */
+function defer_after_response(callable $task, string $key): bool
+{
+    if (!function_exists('fastcgi_finish_request') && !function_exists('litespeed_finish_request')) {
+        return false;
+    }
+
+    static $queued = [];
+    static $registered = false;
+
+    if (isset($queued[$key])) {
+        return true;
+    }
+    $queued[$key] = $task;
+    if ($registered) {
+        return true;
+    }
+    $registered = true;
+
+    register_shutdown_function(static function () use (&$queued): void {
+        if (function_exists('fastcgi_finish_request')) {
+            fastcgi_finish_request();
+        } else {
+            litespeed_finish_request();
+        }
+
+        ignore_user_abort(true);
+        @set_time_limit(120);
+        foreach ($queued as $job) {
+            try {
+                $job();
+            } catch (Throwable $e) {
+                // A failed refresh must not affect the page already sent.
+            }
+        }
+    });
+
+    return true;
+}

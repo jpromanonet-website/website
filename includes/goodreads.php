@@ -19,30 +19,24 @@ function fetch_goodreads_read_books(int $cacheTtl = 3600): array
         rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR) . '/jpromanonet-goodreads-read.json',
     ];
 
-    foreach ($cacheCandidates as $cacheFile) {
-        if (is_file($cacheFile) && (time() - filemtime($cacheFile)) < $cacheTtl) {
-            $cached = json_decode((string) file_get_contents($cacheFile), true);
-            if (is_array($cached) && isset($cached['books']) && is_array($cached['books'])) {
-                return $cached['books'];
-            }
-            if (is_array($cached) && $cached !== [] && isset($cached[0]) && is_array($cached[0])) {
-                return $cached;
+    $cached = goodreads_stale_cache($cacheCandidates);
+    $age = goodreads_cache_age($cacheCandidates);
+    if ($cached !== []) {
+        if ($age === null || $age >= $cacheTtl) {
+            $deferred = defer_after_response(
+                static function () use ($cacheCandidates): void {
+                    goodreads_refresh_books($cacheCandidates);
+                },
+                'goodreads-read'
+            );
+            if (!$deferred && $age !== null && $age >= 21600) {
+                return goodreads_refresh_books($cacheCandidates);
             }
         }
+        return $cached;
     }
 
-    $userId = goodreads_user_id();
-    $books = goodreads_fetch_all_read($userId);
-    if ($books !== []) {
-        goodreads_write_cache($cacheCandidates, [
-            'fetchedAt' => time(),
-            'userId' => $userId,
-            'books' => $books,
-        ]);
-        return $books;
-    }
-
-    return goodreads_stale_cache($cacheCandidates);
+    return goodreads_refresh_books($cacheCandidates);
 }
 
 /**
@@ -196,6 +190,39 @@ function goodreads_upgrade_cover(string $url): string
     // Prefer a readable cover size over the tiny RSS default
     $url = preg_replace('/\._S[XY]\d+_/', '._SX300_', $url) ?? $url;
     return $url;
+}
+
+/**
+ * @param list<string> $cacheCandidates
+ */
+function goodreads_cache_age(array $cacheCandidates): ?int
+{
+    foreach ($cacheCandidates as $cacheFile) {
+        if (is_file($cacheFile)) {
+            return time() - filemtime($cacheFile);
+        }
+    }
+    return null;
+}
+
+/**
+ * @param list<string> $cacheCandidates
+ * @return list<array<string,mixed>>
+ */
+function goodreads_refresh_books(array $cacheCandidates): array
+{
+    $userId = goodreads_user_id();
+    $books = goodreads_fetch_all_read($userId);
+    if ($books !== []) {
+        goodreads_write_cache($cacheCandidates, [
+            'fetchedAt' => time(),
+            'userId' => $userId,
+            'books' => $books,
+        ]);
+        return $books;
+    }
+
+    return goodreads_stale_cache($cacheCandidates);
 }
 
 /**

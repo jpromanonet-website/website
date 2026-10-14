@@ -14,16 +14,34 @@ function github_commit_stats(int $cacheTtl = 3600): array
         APP_ROOT . '/cache/github-commits.json',
     ];
 
-    foreach ($cacheCandidates as $cacheFile) {
-        if (is_file($cacheFile) && (time() - filemtime($cacheFile)) < $cacheTtl) {
-            $cached = json_decode((string) file_get_contents($cacheFile), true);
-            if (is_array($cached) && isset($cached['count']) && (int) $cached['count'] > 0) {
-                return [
-                    'count' => (int) $cached['count'],
-                    'fetchedAt' => (int) ($cached['fetchedAt'] ?? filemtime($cacheFile)),
-                ];
+    $cached = github_read_cached_stats($cacheCandidates);
+    $age = github_cache_age($cacheCandidates);
+    if ($cached !== null) {
+        if ($age === null || $age >= $cacheTtl) {
+            $deferred = defer_after_response(
+                static function () use ($cacheCandidates): void {
+                    $count = github_fetch_commit_total();
+                    if ($count > 0) {
+                        github_write_cache($cacheCandidates, [
+                            'count' => $count,
+                            'fetchedAt' => time(),
+                        ]);
+                    }
+                },
+                'github-commits'
+            );
+            if (!$deferred && $age !== null && $age >= 21600) {
+                $count = github_fetch_commit_total();
+                if ($count > 0) {
+                    $cached = [
+                        'count' => $count,
+                        'fetchedAt' => time(),
+                    ];
+                    github_write_cache($cacheCandidates, $cached);
+                }
             }
         }
+        return $cached;
     }
 
     $count = github_fetch_commit_total();
@@ -34,19 +52,6 @@ function github_commit_stats(int $cacheTtl = 3600): array
         ];
         github_write_cache($cacheCandidates, $payload);
         return $payload;
-    }
-
-    foreach ($cacheCandidates as $cacheFile) {
-        if (!is_file($cacheFile)) {
-            continue;
-        }
-        $cached = json_decode((string) file_get_contents($cacheFile), true);
-        if (is_array($cached) && isset($cached['count']) && (int) $cached['count'] > 0) {
-            return [
-                'count' => (int) $cached['count'],
-                'fetchedAt' => (int) ($cached['fetchedAt'] ?? filemtime($cacheFile)),
-            ];
-        }
     }
 
     return ['count' => 0, 'fetchedAt' => 0];
@@ -217,6 +222,40 @@ function github_http(string $url, array $headers, ?array $payload = null): ?stri
         return (string) $body;
     }
 
+    return null;
+}
+
+/**
+ * @param list<string> $cacheCandidates
+ * @return array{count:int,fetchedAt:int}|null
+ */
+function github_read_cached_stats(array $cacheCandidates): ?array
+{
+    foreach ($cacheCandidates as $cacheFile) {
+        if (!is_file($cacheFile)) {
+            continue;
+        }
+        $cached = json_decode((string) file_get_contents($cacheFile), true);
+        if (is_array($cached) && isset($cached['count']) && (int) $cached['count'] > 0) {
+            return [
+                'count' => (int) $cached['count'],
+                'fetchedAt' => (int) ($cached['fetchedAt'] ?? filemtime($cacheFile)),
+            ];
+        }
+    }
+    return null;
+}
+
+/**
+ * @param list<string> $cacheCandidates
+ */
+function github_cache_age(array $cacheCandidates): ?int
+{
+    foreach ($cacheCandidates as $cacheFile) {
+        if (is_file($cacheFile)) {
+            return time() - filemtime($cacheFile);
+        }
+    }
     return null;
 }
 
