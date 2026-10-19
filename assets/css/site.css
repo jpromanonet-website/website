@@ -887,6 +887,14 @@ body.nav-open .nav-item--dropdown .nav-menu {
   color: inherit;
 }
 
+.stat-card--static {
+  cursor: default;
+}
+
+.stat-card--static:hover {
+  transform: none;
+}
+
 .stat-card__count {
   font-family: var(--font-display);
   font-size: 1.7rem;

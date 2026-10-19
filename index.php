@@ -72,23 +72,18 @@ $hobbyStats[] = [
 ];
 
 $teachingPathCount = 0;
-$teachingFirstUrl = '';
 foreach ($navItems as $navItem) {
     if (($navItem['key'] ?? '') !== 'teaching') {
         continue;
     }
     foreach (($navItem['children'] ?? []) as $child) {
-        if (!empty($child['divider'])) {
+        if (!empty($child['divider']) || !empty($child['heading'])) {
             continue;
         }
-        $childUrl = trim((string) ($child['url'] ?? ''));
-        if ($childUrl === '') {
+        if (trim((string) ($child['url'] ?? '')) === '') {
             continue;
         }
         $teachingPathCount++;
-        if ($teachingFirstUrl === '') {
-            $teachingFirstUrl = $childUrl;
-        }
     }
     break;
 }
@@ -96,8 +91,8 @@ if ($teachingPathCount > 0) {
     $proStats[] = [
         'label' => 'Learning paths',
         'count' => $teachingPathCount,
-        'url' => $teachingFirstUrl,
         'tone' => 'indigo',
+        'nolink' => true,
     ];
 }
 
@@ -195,15 +190,25 @@ require APP_ROOT . '/includes/header.php';
         <section class="section reveal" id="at-a-glance" aria-label="Myself in numbers">
             <h2 class="section-heading">Myself in numbers</h2>
             <div class="stat-grid">
-                <?php foreach ($proStats as $stat): ?>
-                    <a
-                        class="stat-card stat-card--<?= e((string) $stat['tone']) ?>"
-                        href="<?= e(stat_href($stat)) ?>"
-                        <?= !empty($stat['url']) ? 'target="_blank" rel="noopener noreferrer"' : '' ?>
-                    >
-                        <span class="stat-card__count"><?= e(number_format((int) $stat['count'])) ?></span>
-                        <span class="stat-card__label"><?= e((string) $stat['label']) ?></span>
-                    </a>
+                <?php foreach ($proStats as $stat):
+                    $statClass = 'stat-card stat-card--' . e((string) $stat['tone']);
+                    $isStatic = !empty($stat['nolink']);
+                ?>
+                    <?php if ($isStatic): ?>
+                        <div class="<?= $statClass ?> stat-card--static">
+                            <span class="stat-card__count"><?= e(number_format((int) $stat['count'])) ?></span>
+                            <span class="stat-card__label"><?= e((string) $stat['label']) ?></span>
+                        </div>
+                    <?php else: ?>
+                        <a
+                            class="<?= $statClass ?>"
+                            href="<?= e(stat_href($stat)) ?>"
+                            <?= !empty($stat['url']) ? 'target="_blank" rel="noopener noreferrer"' : '' ?>
+                        >
+                            <span class="stat-card__count"><?= e(number_format((int) $stat['count'])) ?></span>
+                            <span class="stat-card__label"><?= e((string) $stat['label']) ?></span>
+                        </a>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             </div>
 
