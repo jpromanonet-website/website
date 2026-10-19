@@ -69,7 +69,16 @@ $fullTitle = $pageTitle === $site['name']
                                 <div class="nav-menu" role="menu">
                                     <?php foreach ($item['children'] as $child):
                                         if (!empty($child['divider'])) {
-                                            echo '<div class="nav-menu__divider" role="separator" aria-hidden="true"></div>';
+                                            $dividerLabel = trim((string) ($child['label'] ?? ''));
+                                            if ($dividerLabel !== '') {
+                                                echo '<div class="nav-menu__divider nav-menu__divider--labeled" role="separator" aria-label="' . e($dividerLabel) . '">'
+                                                    . '<span class="nav-menu__divider-line" aria-hidden="true"></span>'
+                                                    . '<span class="nav-menu__divider-label">' . e($dividerLabel) . '</span>'
+                                                    . '<span class="nav-menu__divider-line" aria-hidden="true"></span>'
+                                                    . '</div>';
+                                            } else {
+                                                echo '<div class="nav-menu__divider" role="separator" aria-hidden="true"></div>';
+                                            }
                                             continue;
                                         }
                                         $childUrl = (string) ($child['url'] ?? '');

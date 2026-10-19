@@ -138,7 +138,16 @@ function render_sidebar_nav(string $active = ''): void
                     <ul class="sidebar-nav__children">
                         <?php foreach ($item['children'] as $child):
                             if (!empty($child['divider'])) {
-                                echo '<li class="sidebar-nav__divider" role="separator" aria-hidden="true"></li>';
+                                $dividerLabel = trim((string) ($child['label'] ?? ''));
+                                if ($dividerLabel !== '') {
+                                    echo '<li class="sidebar-nav__divider sidebar-nav__divider--labeled" role="separator" aria-label="' . e($dividerLabel) . '">'
+                                        . '<span class="sidebar-nav__divider-line" aria-hidden="true"></span>'
+                                        . '<span class="sidebar-nav__divider-label">' . e($dividerLabel) . '</span>'
+                                        . '<span class="sidebar-nav__divider-line" aria-hidden="true"></span>'
+                                        . '</li>';
+                                } else {
+                                    echo '<li class="sidebar-nav__divider" role="separator" aria-hidden="true"></li>';
+                                }
                                 continue;
                             }
                             $childUrl = (string) ($child['url'] ?? '');

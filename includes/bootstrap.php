@@ -70,15 +70,31 @@ $navItems = \MicroCMS\Content::navItems();
 $homeBlocks = \MicroCMS\Content::homeBlocks();
 
 // Teaching is hardcoded site links — not CMS content.
+$teachingLinks = [
+    ['label' => 'Learning IA', 'url' => 'https://learningiaforfree.vercel.app/', 'group' => 'tech'],
+    ['label' => 'Learning to Code', 'url' => 'https://learningtocodeforfree.vercel.app/', 'group' => 'tech'],
+    ['label' => 'Aprendiendo Guaraní', 'url' => 'https://guarani.jpromano.net', 'group' => 'language'],
+];
+$teachingNavChildren = [];
+$teachingLastGroup = null;
+foreach ($teachingLinks as $link) {
+    $group = (string) ($link['group'] ?? '');
+    if ($teachingLastGroup !== null && $group !== '' && $group !== $teachingLastGroup) {
+        $teachingNavChildren[] = [
+            'divider' => true,
+            'label' => $group === 'language' ? 'Language' : 'Technology',
+        ];
+    }
+    $teachingNavChildren[] = [
+        'label' => $link['label'],
+        'url' => $link['url'],
+    ];
+    $teachingLastGroup = $group !== '' ? $group : $teachingLastGroup;
+}
 $teachingNavItem = [
     'label' => 'Teaching',
     'key' => 'teaching',
-    'children' => [
-        ['label' => 'Learning IA', 'url' => 'https://learningiaforfree.vercel.app/'],
-        ['label' => 'Learning to Code', 'url' => 'https://learningtocodeforfree.vercel.app/'],
-        ['divider' => true],
-        ['label' => 'Aprendiendo Guaraní', 'url' => 'https://guarani.jpromano.net'],
-    ],
+    'children' => $teachingNavChildren,
 ];
 $teachingAlready = false;
 foreach ($navItems as $navItem) {

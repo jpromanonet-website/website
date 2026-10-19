@@ -71,6 +71,36 @@ $hobbyStats[] = [
     'tone' => 'amber',
 ];
 
+$teachingPathCount = 0;
+$teachingFirstUrl = '';
+foreach ($navItems as $navItem) {
+    if (($navItem['key'] ?? '') !== 'teaching') {
+        continue;
+    }
+    foreach (($navItem['children'] ?? []) as $child) {
+        if (!empty($child['divider'])) {
+            continue;
+        }
+        $childUrl = trim((string) ($child['url'] ?? ''));
+        if ($childUrl === '') {
+            continue;
+        }
+        $teachingPathCount++;
+        if ($teachingFirstUrl === '') {
+            $teachingFirstUrl = $childUrl;
+        }
+    }
+    break;
+}
+if ($teachingPathCount > 0) {
+    $proStats[] = [
+        'label' => 'Learning paths',
+        'count' => $teachingPathCount,
+        'url' => $teachingFirstUrl,
+        'tone' => 'indigo',
+    ];
+}
+
 $proStats[] = [
     'label' => 'Resumes ready',
     'count' => count(load_catalog('resumes')),
