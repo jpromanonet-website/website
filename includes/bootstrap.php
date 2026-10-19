@@ -76,7 +76,8 @@ $teachingNavItem = [
     'children' => [
         ['label' => 'Learning IA', 'url' => 'https://learningiaforfree.vercel.app/'],
         ['label' => 'Learning to Code', 'url' => 'https://learningtocodeforfree.vercel.app/'],
-        ['label' => 'Aprendiendo Guaraní', 'url' => 'https://aprendiendoguarani.vercel.app/'],
+        ['divider' => true],
+        ['label' => 'Aprendiendo Guaraní', 'url' => 'https://guarani.jpromano.net'],
     ],
 ];
 $teachingAlready = false;

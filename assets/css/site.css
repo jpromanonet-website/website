@@ -272,6 +272,12 @@ a:hover {
   background: var(--bg-soft);
 }
 
+.nav-menu__divider {
+  height: 1px;
+  margin: 0.35rem 0.55rem;
+  background: var(--border-strong);
+}
+
 .nav-toggle span {
   display: block;
   width: 16px;
@@ -1182,6 +1188,13 @@ body.nav-open .nav-item--dropdown .nav-menu {
   border-radius: 999px;
   background: currentColor;
   box-shadow: 0 0 0 3px color-mix(in srgb, currentColor 18%, transparent);
+}
+
+.sidebar-nav__divider {
+  height: 1px;
+  margin: 0.4rem 0.35rem;
+  background: var(--border-strong);
+  list-style: none;
 }
 
 .sidebar-nav__children {

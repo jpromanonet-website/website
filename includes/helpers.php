@@ -137,6 +137,10 @@ function render_sidebar_nav(string $active = ''): void
                     </span>
                     <ul class="sidebar-nav__children">
                         <?php foreach ($item['children'] as $child):
+                            if (!empty($child['divider'])) {
+                                echo '<li class="sidebar-nav__divider" role="separator" aria-hidden="true"></li>';
+                                continue;
+                            }
                             $childUrl = (string) ($child['url'] ?? '');
                             $childPath = (string) ($child['path'] ?? '');
                             if ($childUrl === '' && $childPath === '') {

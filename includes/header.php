@@ -68,6 +68,10 @@ $fullTitle = $pageTitle === $site['name']
                                 </button>
                                 <div class="nav-menu" role="menu">
                                     <?php foreach ($item['children'] as $child):
+                                        if (!empty($child['divider'])) {
+                                            echo '<div class="nav-menu__divider" role="separator" aria-hidden="true"></div>';
+                                            continue;
+                                        }
                                         $childUrl = (string) ($child['url'] ?? '');
                                         $childPath = (string) ($child['path'] ?? '');
                                         $childHref = $childUrl !== '' ? $childUrl : url($childPath);
