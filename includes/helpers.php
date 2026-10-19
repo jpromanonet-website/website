@@ -137,17 +137,15 @@ function render_sidebar_nav(string $active = ''): void
                     </span>
                     <ul class="sidebar-nav__children">
                         <?php foreach ($item['children'] as $child):
+                            if (!empty($child['heading'])) {
+                                $headingTone = preg_replace('/[^a-z0-9\-]/i', '', (string) ($child['tone'] ?? 'default')) ?: 'default';
+                                echo '<li class="sidebar-nav__heading sidebar-nav__heading--' . e($headingTone) . '" role="presentation">'
+                                    . e((string) ($child['label'] ?? ''))
+                                    . '</li>';
+                                continue;
+                            }
                             if (!empty($child['divider'])) {
-                                $dividerLabel = trim((string) ($child['label'] ?? ''));
-                                if ($dividerLabel !== '') {
-                                    echo '<li class="sidebar-nav__divider sidebar-nav__divider--labeled" role="separator" aria-label="' . e($dividerLabel) . '">'
-                                        . '<span class="sidebar-nav__divider-line" aria-hidden="true"></span>'
-                                        . '<span class="sidebar-nav__divider-label">' . e($dividerLabel) . '</span>'
-                                        . '<span class="sidebar-nav__divider-line" aria-hidden="true"></span>'
-                                        . '</li>';
-                                } else {
-                                    echo '<li class="sidebar-nav__divider" role="separator" aria-hidden="true"></li>';
-                                }
+                                echo '<li class="sidebar-nav__divider" role="separator" aria-hidden="true"></li>';
                                 continue;
                             }
                             $childUrl = (string) ($child['url'] ?? '');

@@ -278,29 +278,35 @@ a:hover {
   background: var(--border-strong);
 }
 
-.nav-menu__divider--labeled {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 0.45rem;
-  height: auto;
-  margin: 0.55rem 0.4rem 0.4rem;
-  background: transparent;
-}
-
-.nav-menu__divider-line {
-  display: block;
-  height: 1px;
-  background: color-mix(in srgb, var(--accent) 35%, var(--border-strong));
-}
-
-.nav-menu__divider-label {
+.nav-menu__heading {
+  margin: 0.55rem 0.55rem 0.15rem;
+  padding: 0;
   font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--accent) 70%, var(--text-muted));
-  white-space: nowrap;
+  color: var(--text-muted);
+}
+
+.nav-menu__heading:first-child {
+  margin-top: 0.2rem;
+}
+
+.nav-menu__heading--tech {
+  color: #5b9fd4;
+}
+
+.nav-menu__heading--language {
+  color: #d4a34a;
+  margin-top: 0.75rem;
+}
+
+[data-theme="light"] .nav-menu__heading--tech {
+  color: #1a4f8b;
+}
+
+[data-theme="light"] .nav-menu__heading--language {
+  color: #9a6b16;
 }
 
 .nav-toggle span {
@@ -1222,29 +1228,36 @@ body.nav-open .nav-item--dropdown .nav-menu {
   list-style: none;
 }
 
-.sidebar-nav__divider--labeled {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 0.4rem;
-  height: auto;
-  margin: 0.55rem 0.2rem 0.35rem;
-  background: transparent;
-}
-
-.sidebar-nav__divider-line {
-  display: block;
-  height: 1px;
-  background: color-mix(in srgb, var(--accent) 35%, var(--border-strong));
-}
-
-.sidebar-nav__divider-label {
+.sidebar-nav__heading {
+  margin: 0.45rem 0.2rem 0.1rem;
+  padding: 0 0.35rem;
   font-size: 0.65rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--accent) 70%, var(--text-muted));
-  white-space: nowrap;
+  color: var(--text-muted);
+  list-style: none;
+}
+
+.sidebar-nav__heading:first-child {
+  margin-top: 0.1rem;
+}
+
+.sidebar-nav__heading--tech {
+  color: #5b9fd4;
+}
+
+.sidebar-nav__heading--language {
+  color: #d4a34a;
+  margin-top: 0.7rem;
+}
+
+[data-theme="light"] .sidebar-nav__heading--tech {
+  color: #1a4f8b;
+}
+
+[data-theme="light"] .sidebar-nav__heading--language {
+  color: #9a6b16;
 }
 
 .sidebar-nav__children {

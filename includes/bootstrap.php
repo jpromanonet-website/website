@@ -75,21 +75,26 @@ $teachingLinks = [
     ['label' => 'Learning to Code', 'url' => 'https://learningtocodeforfree.vercel.app/', 'group' => 'tech'],
     ['label' => 'Aprendiendo Guaraní', 'url' => 'https://guarani.jpromano.net', 'group' => 'language'],
 ];
+$teachingGroupLabels = [
+    'tech' => 'Tech',
+    'language' => 'Language',
+];
 $teachingNavChildren = [];
 $teachingLastGroup = null;
 foreach ($teachingLinks as $link) {
     $group = (string) ($link['group'] ?? '');
-    if ($teachingLastGroup !== null && $group !== '' && $group !== $teachingLastGroup) {
+    if ($group !== '' && $group !== $teachingLastGroup) {
         $teachingNavChildren[] = [
-            'divider' => true,
-            'label' => $group === 'language' ? 'Language' : 'Technology',
+            'heading' => true,
+            'label' => $teachingGroupLabels[$group] ?? ucfirst($group),
+            'tone' => $group,
         ];
+        $teachingLastGroup = $group;
     }
     $teachingNavChildren[] = [
         'label' => $link['label'],
         'url' => $link['url'],
     ];
-    $teachingLastGroup = $group !== '' ? $group : $teachingLastGroup;
 }
 $teachingNavItem = [
     'label' => 'Teaching',

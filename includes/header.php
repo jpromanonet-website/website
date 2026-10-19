@@ -68,17 +68,15 @@ $fullTitle = $pageTitle === $site['name']
                                 </button>
                                 <div class="nav-menu" role="menu">
                                     <?php foreach ($item['children'] as $child):
+                                        if (!empty($child['heading'])) {
+                                            $headingTone = preg_replace('/[^a-z0-9\-]/i', '', (string) ($child['tone'] ?? 'default')) ?: 'default';
+                                            echo '<div class="nav-menu__heading nav-menu__heading--' . e($headingTone) . '" role="presentation">'
+                                                . e((string) ($child['label'] ?? ''))
+                                                . '</div>';
+                                            continue;
+                                        }
                                         if (!empty($child['divider'])) {
-                                            $dividerLabel = trim((string) ($child['label'] ?? ''));
-                                            if ($dividerLabel !== '') {
-                                                echo '<div class="nav-menu__divider nav-menu__divider--labeled" role="separator" aria-label="' . e($dividerLabel) . '">'
-                                                    . '<span class="nav-menu__divider-line" aria-hidden="true"></span>'
-                                                    . '<span class="nav-menu__divider-label">' . e($dividerLabel) . '</span>'
-                                                    . '<span class="nav-menu__divider-line" aria-hidden="true"></span>'
-                                                    . '</div>';
-                                            } else {
-                                                echo '<div class="nav-menu__divider" role="separator" aria-hidden="true"></div>';
-                                            }
+                                            echo '<div class="nav-menu__divider" role="separator" aria-hidden="true"></div>';
                                             continue;
                                         }
                                         $childUrl = (string) ($child['url'] ?? '');
