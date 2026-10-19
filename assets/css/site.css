@@ -299,7 +299,7 @@ a:hover {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--accent) 70%, var(--muted));
+  color: color-mix(in srgb, var(--accent) 70%, var(--text-muted));
   white-space: nowrap;
 }
 
@@ -1243,7 +1243,7 @@ body.nav-open .nav-item--dropdown .nav-menu {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--accent) 70%, var(--muted));
+  color: color-mix(in srgb, var(--accent) 70%, var(--text-muted));
   white-space: nowrap;
 }
 
