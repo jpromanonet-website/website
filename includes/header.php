@@ -85,9 +85,13 @@ $fullTitle = $pageTitle === $site['name']
                                         $childExternal = $childUrl !== '';
                                         $childKey = (string) ($child['key'] ?? '');
                                         $childActive = $childKey !== '' && $activeNav === $childKey;
+                                        $childTone = preg_replace('/[^a-z0-9\-]/i', '', (string) ($child['tone'] ?? '')) ?: '';
+                                        $childClass = 'nav-menu__link'
+                                            . ($childActive ? ' is-active' : '')
+                                            . ($childTone !== '' ? ' nav-menu__link--card nav-menu__link--' . $childTone : '');
                                     ?>
                                         <a
-                                            class="nav-menu__link<?= $childActive ? ' is-active' : '' ?>"
+                                            class="<?= e($childClass) ?>"
                                             role="menuitem"
                                             href="<?= e($childHref) ?>"
                                             <?= $childExternal ? 'target="_blank" rel="noopener noreferrer"' : '' ?>

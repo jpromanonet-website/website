@@ -84,6 +84,9 @@ $teachingLastGroup = null;
 foreach ($teachingLinks as $link) {
     $group = (string) ($link['group'] ?? '');
     if ($group !== '' && $group !== $teachingLastGroup) {
+        if ($teachingLastGroup !== null) {
+            $teachingNavChildren[] = ['divider' => true];
+        }
         $teachingNavChildren[] = [
             'heading' => true,
             'label' => $teachingGroupLabels[$group] ?? ucfirst($group),
@@ -94,6 +97,7 @@ foreach ($teachingLinks as $link) {
     $teachingNavChildren[] = [
         'label' => $link['label'],
         'url' => $link['url'],
+        'tone' => $group,
     ];
 }
 $teachingNavItem = [

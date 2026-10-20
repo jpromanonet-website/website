@@ -155,10 +155,15 @@ function render_sidebar_nav(string $active = ''): void
                             }
                             $href = $childUrl !== '' ? $childUrl : url($childPath);
                             $key = (string) ($child['key'] ?? '');
+                            $tone = preg_replace('/[^a-z0-9\-]/i', '', (string) ($child['tone'] ?? '')) ?: '';
+                            $childClass = 'sidebar-nav__child'
+                                . (($active !== '' && $key === $active) ? ' is-active' : '')
+                                . ($childUrl !== '' ? ' sidebar-nav__child--external' : '')
+                                . ($tone !== '' ? ' sidebar-nav__child--card sidebar-nav__child--' . $tone : '');
                         ?>
                             <li>
                                 <a
-                                    class="sidebar-nav__child<?= ($active !== '' && $key === $active) ? ' is-active' : '' ?><?= $childUrl !== '' ? ' sidebar-nav__child--external' : '' ?>"
+                                    class="<?= e($childClass) ?>"
                                     href="<?= e($href) ?>"
                                     <?= $childUrl !== '' ? 'target="_blank" rel="noopener noreferrer"' : '' ?>
                                 ><?= e((string) ($child['label'] ?? '')) ?></a>
