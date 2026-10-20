@@ -279,47 +279,47 @@ a:hover {
 }
 
 .nav-menu__link--tech {
-  color: #8ec5f0;
-  background: color-mix(in srgb, #1a4f8b 28%, var(--bg-elevated));
-  border-color: color-mix(in srgb, #5b9fd4 40%, transparent);
+  color: #8fd4a8;
+  background: color-mix(in srgb, #2f855a 28%, var(--bg-elevated));
+  border-color: color-mix(in srgb, #68d391 40%, transparent);
 }
 
 .nav-menu__link--tech:hover {
-  background: color-mix(in srgb, #1a4f8b 40%, var(--bg-elevated));
-  color: #d7ecff;
+  background: color-mix(in srgb, #2f855a 40%, var(--bg-elevated));
+  color: #d8ffe6;
 }
 
 .nav-menu__link--language {
-  color: #e6c37a;
-  background: color-mix(in srgb, #9a6b16 26%, var(--bg-elevated));
-  border-color: color-mix(in srgb, #d4a34a 42%, transparent);
+  color: #f0a0b8;
+  background: color-mix(in srgb, #9b2c5a 28%, var(--bg-elevated));
+  border-color: color-mix(in srgb, #e0537d 42%, transparent);
 }
 
 .nav-menu__link--language:hover {
-  background: color-mix(in srgb, #9a6b16 38%, var(--bg-elevated));
-  color: #ffe9b5;
+  background: color-mix(in srgb, #9b2c5a 40%, var(--bg-elevated));
+  color: #ffd6e3;
 }
 
 [data-theme="light"] .nav-menu__link--tech {
-  color: #1a4f8b;
-  background: color-mix(in srgb, #1a4f8b 12%, var(--bg-elevated));
-  border-color: color-mix(in srgb, #1a4f8b 22%, transparent);
+  color: #276749;
+  background: color-mix(in srgb, #2f855a 12%, var(--bg-elevated));
+  border-color: color-mix(in srgb, #2f855a 22%, transparent);
 }
 
 [data-theme="light"] .nav-menu__link--tech:hover {
-  background: color-mix(in srgb, #1a4f8b 18%, var(--bg-elevated));
-  color: #123a66;
+  background: color-mix(in srgb, #2f855a 18%, var(--bg-elevated));
+  color: #1c4532;
 }
 
 [data-theme="light"] .nav-menu__link--language {
-  color: #8a5a10;
-  background: color-mix(in srgb, #b7791f 14%, var(--bg-elevated));
-  border-color: color-mix(in srgb, #b7791f 24%, transparent);
+  color: #9b2c5a;
+  background: color-mix(in srgb, #c5305a 12%, var(--bg-elevated));
+  border-color: color-mix(in srgb, #c5305a 24%, transparent);
 }
 
 [data-theme="light"] .nav-menu__link--language:hover {
-  background: color-mix(in srgb, #b7791f 22%, var(--bg-elevated));
-  color: #6f4709;
+  background: color-mix(in srgb, #c5305a 20%, var(--bg-elevated));
+  color: #702459;
 }
 
 .nav-menu__divider {
@@ -344,20 +344,20 @@ a:hover {
 }
 
 .nav-menu__heading--tech {
-  color: #7eb6e0;
+  color: #68d391;
 }
 
 .nav-menu__heading--language {
-  color: #d4a34a;
+  color: #e0537d;
   margin-top: 0.35rem;
 }
 
 [data-theme="light"] .nav-menu__heading--tech {
-  color: #1a4f8b;
+  color: #276749;
 }
 
 [data-theme="light"] .nav-menu__heading--language {
-  color: #9a6b16;
+  color: #9b2c5a;
 }
 
 .nav-toggle span {
@@ -1304,20 +1304,20 @@ body.nav-open .nav-item--dropdown .nav-menu {
 }
 
 .sidebar-nav__heading--tech {
-  color: #7eb6e0;
+  color: #68d391;
 }
 
 .sidebar-nav__heading--language {
-  color: #d4a34a;
+  color: #e0537d;
   margin-top: 0.3rem;
 }
 
 [data-theme="light"] .sidebar-nav__heading--tech {
-  color: #1a4f8b;
+  color: #276749;
 }
 
 [data-theme="light"] .sidebar-nav__heading--language {
-  color: #9a6b16;
+  color: #9b2c5a;
 }
 
 .sidebar-nav__children {
@@ -1349,47 +1349,47 @@ body.nav-open .nav-item--dropdown .nav-menu {
 }
 
 .sidebar-nav__child--tech {
-  color: #8ec5f0;
-  background: color-mix(in srgb, #1a4f8b 28%, var(--bg-elevated));
-  border-color: color-mix(in srgb, #5b9fd4 40%, transparent);
+  color: #8fd4a8;
+  background: color-mix(in srgb, #2f855a 28%, var(--bg-elevated));
+  border-color: color-mix(in srgb, #68d391 40%, transparent);
 }
 
 .sidebar-nav__child--tech:hover {
-  background: color-mix(in srgb, #1a4f8b 40%, var(--bg-elevated));
-  color: #d7ecff;
+  background: color-mix(in srgb, #2f855a 40%, var(--bg-elevated));
+  color: #d8ffe6;
 }
 
 .sidebar-nav__child--language {
-  color: #e6c37a;
-  background: color-mix(in srgb, #9a6b16 26%, var(--bg-elevated));
-  border-color: color-mix(in srgb, #d4a34a 42%, transparent);
+  color: #f0a0b8;
+  background: color-mix(in srgb, #9b2c5a 28%, var(--bg-elevated));
+  border-color: color-mix(in srgb, #e0537d 42%, transparent);
 }
 
 .sidebar-nav__child--language:hover {
-  background: color-mix(in srgb, #9a6b16 38%, var(--bg-elevated));
-  color: #ffe9b5;
+  background: color-mix(in srgb, #9b2c5a 40%, var(--bg-elevated));
+  color: #ffd6e3;
 }
 
 [data-theme="light"] .sidebar-nav__child--tech {
-  color: #1a4f8b;
-  background: color-mix(in srgb, #1a4f8b 12%, var(--bg-elevated));
-  border-color: color-mix(in srgb, #1a4f8b 22%, transparent);
+  color: #276749;
+  background: color-mix(in srgb, #2f855a 12%, var(--bg-elevated));
+  border-color: color-mix(in srgb, #2f855a 22%, transparent);
 }
 
 [data-theme="light"] .sidebar-nav__child--tech:hover {
-  background: color-mix(in srgb, #1a4f8b 18%, var(--bg-elevated));
-  color: #123a66;
+  background: color-mix(in srgb, #2f855a 18%, var(--bg-elevated));
+  color: #1c4532;
 }
 
 [data-theme="light"] .sidebar-nav__child--language {
-  color: #8a5a10;
-  background: color-mix(in srgb, #b7791f 14%, var(--bg-elevated));
-  border-color: color-mix(in srgb, #b7791f 24%, transparent);
+  color: #9b2c5a;
+  background: color-mix(in srgb, #c5305a 12%, var(--bg-elevated));
+  border-color: color-mix(in srgb, #c5305a 24%, transparent);
 }
 
 [data-theme="light"] .sidebar-nav__child--language:hover {
-  background: color-mix(in srgb, #b7791f 22%, var(--bg-elevated));
-  color: #6f4709;
+  background: color-mix(in srgb, #c5305a 20%, var(--bg-elevated));
+  color: #702459;
 }
 
 .sidebar-nav__child.is-active {
