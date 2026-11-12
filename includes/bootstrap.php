@@ -60,7 +60,6 @@ $site = [
     'github' => $cmsSettings['github'] ?? '',
     'x' => $cmsSettings['x'] ?? '',
     'instagram' => $cmsSettings['instagram'] ?? '',
-    'deviantart' => 'https://www.deviantart.com/jpromanonet',
     'linktree' => 'https://linktr.ee/jpromanonet',
     'ga_id' => $cmsSettings['ga_id'] ?? '',
     'medium_feed' => $cmsSettings['medium_feed'] ?? '',

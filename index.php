@@ -406,9 +406,6 @@ require APP_ROOT . '/includes/header.php';
                 <?php if (!empty($site['instagram'])): ?>
                 <a href="<?= e($site['instagram']) ?>" target="_blank" rel="noopener noreferrer" aria-label="Instagram">ig</a>
                 <?php endif; ?>
-                <?php if (!empty($site['deviantart'])): ?>
-                <a href="<?= e($site['deviantart']) ?>" target="_blank" rel="noopener noreferrer" aria-label="DeviantArt">da</a>
-                <?php endif; ?>
                 <?php if (!empty($site['linktree'])): ?>
                 <a href="<?= e($site['linktree']) ?>" target="_blank" rel="noopener noreferrer" aria-label="Linktree">lt</a>
                 <?php endif; ?>
