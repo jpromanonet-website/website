@@ -337,11 +337,18 @@
       if (recipeSection) recipeSection.textContent = section;
       if (recipeContent) {
         recipeContent.textContent = "";
-        raw.split(/\r?\n/).forEach((line) => {
-          const p = document.createElement("p");
-          p.textContent = line === "" ? " " : line;
-          recipeContent.appendChild(p);
-        });
+        const list = document.createElement("ul");
+        list.className = "recipe-modal__list";
+        raw
+          .split(/\r?\n/)
+          .map((line) => line.trim())
+          .filter((line) => line !== "")
+          .forEach((line) => {
+            const li = document.createElement("li");
+            li.textContent = line;
+            list.appendChild(li);
+          });
+        recipeContent.appendChild(list);
       }
       body.classList.add("recipe-modal-open");
       if (typeof recipeModal.showModal === "function") {
