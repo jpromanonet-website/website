@@ -161,9 +161,15 @@ function writing_catalog_with_medium(): array
     usort(
         $articles,
         static function (array $a, array $b): int {
+            $pa = writing_publisher_sort_rank($a);
+            $pb = writing_publisher_sort_rank($b);
+            if ($pa !== $pb) {
+                return $pa <=> $pb;
+            }
+
             $ta = (int) ($a['timestamp'] ?? 0);
             $tb = (int) ($b['timestamp'] ?? 0);
-            // Undated CMS cards go last so the timeline stays clean.
+            // Undated cards go last inside the same publisher group.
             if ($ta === 0 && $tb === 0) {
                 return strcasecmp((string) ($a['title'] ?? ''), (string) ($b['title'] ?? ''));
             }
@@ -173,12 +179,44 @@ function writing_catalog_with_medium(): array
             if ($tb === 0) {
                 return -1;
             }
-            // Oldest → newest
+            // Oldest → newest within each publisher.
             return $ta <=> $tb;
         }
     );
 
     return $articles;
+}
+
+/**
+ * Writing display order: Medium → Soup IT → HomeSpot → everything else.
+ */
+function writing_publisher_sort_rank(array $item): int
+{
+    $source = strtolower(trim((string) ($item['source'] ?? '')));
+    $category = strtolower(trim((string) ($item['category'] ?? '')));
+    $url = strtolower(trim((string) ($item['url'] ?? '')));
+
+    if ($source === 'medium' || $category === 'medium' || str_contains($url, 'medium.com')) {
+        return 0;
+    }
+    if (
+        $source === 'soupit'
+        || $category === 'soup it'
+        || $category === 'soupit'
+        || str_contains($url, 'soupit.ar')
+    ) {
+        return 1;
+    }
+    if (
+        $source === 'homespot'
+        || $category === 'homespot'
+        || $category === 'home spot'
+        || str_contains($url, 'homespot.com.ar')
+    ) {
+        return 2;
+    }
+
+    return 3;
 }
 
 /**
