@@ -130,6 +130,8 @@ function writing_catalog_with_medium(): array
             'category' => (string) ($article['category'] ?? ''),
             'imageSrc' => (string) ($article['imageSrc'] ?? ''),
             'source' => 'static',
+            'timestamp' => (int) ($article['timestamp'] ?? 0),
+            'pubDate' => (string) ($article['pubDate'] ?? ''),
         ];
         if (function_exists('writing_is_auto_publisher_article')
             && writing_is_auto_publisher_article($row['category'], $row['url'])) {
@@ -155,6 +157,19 @@ function writing_catalog_with_medium(): array
             $articles[] = $post;
         }
     }
+
+    usort(
+        $articles,
+        static function (array $a, array $b): int {
+            $ta = (int) ($a['timestamp'] ?? 0);
+            $tb = (int) ($b['timestamp'] ?? 0);
+            if ($ta === $tb) {
+                return strcasecmp((string) ($a['title'] ?? ''), (string) ($b['title'] ?? ''));
+            }
+            // Oldest → newest
+            return $ta <=> $tb;
+        }
+    );
 
     return $articles;
 }
