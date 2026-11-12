@@ -1767,6 +1767,7 @@ body.nav-open .nav-item--dropdown .nav-menu {
 }
 
 .catalog-item__actions a,
+.catalog-item__actions button,
 .catalog-item__actions span {
   font-size: 0.85rem;
   font-weight: 600;
@@ -1775,9 +1776,13 @@ body.nav-open .nav-item--dropdown .nav-menu {
   border-radius: 999px;
   border: 1px solid var(--border);
   color: var(--text-muted);
+  background: transparent;
+  font-family: inherit;
+  cursor: pointer;
 }
 
-.catalog-item__actions a:hover {
+.catalog-item__actions a:hover,
+.catalog-item__actions button:hover {
   border-color: var(--accent);
   color: var(--accent);
 }
@@ -1893,6 +1898,84 @@ body.nav-open .nav-item--dropdown .nav-menu {
   font-size: 0.95rem;
   line-height: 1.55;
   white-space: pre-wrap;
+}
+
+.recipe-modal {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  max-width: min(560px, calc(100vw - 2rem));
+  width: 100%;
+}
+
+.recipe-modal::backdrop {
+  background: rgba(8, 14, 24, 0.72);
+}
+
+.recipe-modal__panel {
+  position: relative;
+  padding: 1.35rem 1.35rem 1.5rem;
+  border-radius: 16px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow);
+  color: var(--text);
+}
+
+.recipe-modal__close {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
+  color: var(--text);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.recipe-modal__close:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.recipe-modal__eyebrow {
+  margin: 0 2rem 0.35rem 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.recipe-modal__title {
+  margin: 0 2rem 0.9rem 0;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.recipe-modal__body {
+  display: grid;
+  gap: 0.45rem;
+  max-height: min(60vh, 420px);
+  overflow: auto;
+  padding-right: 0.25rem;
+}
+
+.recipe-modal__body p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+body.recipe-modal-open {
+  overflow: hidden;
 }
 
 /* Lifestyle pages */

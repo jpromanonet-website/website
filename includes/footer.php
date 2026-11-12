@@ -45,6 +45,19 @@ declare(strict_types=1);
         </div>
     </dialog>
 
+    <dialog class="recipe-modal" id="recipe-modal" aria-label="Recipe details">
+        <div class="recipe-modal__panel">
+            <button type="button" class="recipe-modal__close" data-recipe-close aria-label="Close">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <p class="recipe-modal__eyebrow" data-recipe-section></p>
+            <h2 class="recipe-modal__title" data-recipe-heading></h2>
+            <div class="recipe-modal__body" data-recipe-content></div>
+        </div>
+    </dialog>
+
     <script src="<?= e(asset('js/site.js')) ?>"></script>
 </body>
 </html>

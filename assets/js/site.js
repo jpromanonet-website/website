@@ -312,6 +312,58 @@
     });
   }
 
+  // Recipe Ingredients / Preparation modal
+  const recipeModal = document.getElementById("recipe-modal");
+  if (recipeModal) {
+    const recipeHeading = recipeModal.querySelector("[data-recipe-heading]");
+    const recipeSection = recipeModal.querySelector("[data-recipe-section]");
+    const recipeContent = recipeModal.querySelector("[data-recipe-content]");
+    const recipeClose = recipeModal.querySelector("[data-recipe-close]");
+
+    const closeRecipeModal = () => {
+      if (typeof recipeModal.close === "function" && recipeModal.open) {
+        recipeModal.close();
+      } else {
+        recipeModal.removeAttribute("open");
+      }
+      body.classList.remove("recipe-modal-open");
+    };
+
+    const openRecipeModal = (trigger) => {
+      const title = trigger.getAttribute("data-recipe-title") || "Recipe";
+      const section = trigger.getAttribute("data-recipe-section") || "";
+      const raw = trigger.getAttribute("data-recipe-body") || "";
+      if (recipeHeading) recipeHeading.textContent = title;
+      if (recipeSection) recipeSection.textContent = section;
+      if (recipeContent) {
+        recipeContent.textContent = "";
+        raw.split(/\r?\n/).forEach((line) => {
+          const p = document.createElement("p");
+          p.textContent = line === "" ? " " : line;
+          recipeContent.appendChild(p);
+        });
+      }
+      body.classList.add("recipe-modal-open");
+      if (typeof recipeModal.showModal === "function") {
+        recipeModal.showModal();
+      } else {
+        recipeModal.setAttribute("open", "");
+      }
+    };
+
+    document.querySelectorAll("[data-recipe-modal]").forEach((btn) => {
+      btn.addEventListener("click", () => openRecipeModal(btn));
+    });
+    recipeClose?.addEventListener("click", closeRecipeModal);
+    recipeModal.addEventListener("click", (event) => {
+      if (event.target === recipeModal) closeRecipeModal();
+    });
+    recipeModal.addEventListener("cancel", (event) => {
+      event.preventDefault();
+      closeRecipeModal();
+    });
+  }
+
   // Catalog filters
   const catalog = document.querySelector("[data-catalog]");
   if (!catalog) return;
