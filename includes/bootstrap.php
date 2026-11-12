@@ -11,6 +11,7 @@ define('BASE_URL', $relative === '' || $relative === false ? '' : $relative);
 
 require_once APP_ROOT . '/includes/helpers.php';
 require_once APP_ROOT . '/includes/medium.php';
+require_once APP_ROOT . '/includes/writing_sources.php';
 require_once APP_ROOT . '/includes/goodreads.php';
 require_once APP_ROOT . '/includes/github.php';
 

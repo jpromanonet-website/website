@@ -43,6 +43,18 @@ function load_catalog(string $name): array
     }
 }
 
+function writing_article_image_url(string $image): string
+{
+    $image = trim($image);
+    if ($image === '') {
+        return '';
+    }
+    if (preg_match('#^https?://#i', $image) === 1) {
+        return $image;
+    }
+    return media_url('writing', $image);
+}
+
 function media_url(string $section, string $filename): string
 {
     $filename = basename(str_replace('\\', '/', $filename));

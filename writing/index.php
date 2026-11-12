@@ -4,7 +4,7 @@ declare(strict_types=1);
 require_once dirname(__DIR__) . '/includes/bootstrap.php';
 
 $pageTitle = 'Writing';
-$pageDescription = 'Articles and publications by Juan P. Romano — including automatic Medium posts.';
+$pageDescription = 'Articles and publications by Juan P. Romano — including automatic Medium, HomeSpot and Soup IT posts.';
 $activeNav = 'writing';
 
 $articles = writing_catalog_with_medium();
@@ -36,8 +36,14 @@ render_page_header('Writing', '', 'Articles');
                 $link = (string) ($article['url'] ?? '#');
                 $source = (string) ($article['source'] ?? 'static');
                 $isMedium = $source === 'medium' || strcasecmp($category, 'Medium') === 0;
+                $isLogoSource = $isMedium
+                    || $source === 'homespot'
+                    || $source === 'soupit'
+                    || strcasecmp($category, 'HomeSpot') === 0
+                    || strcasecmp($category, 'Soup IT') === 0;
                 $search = strtolower($title . ' ' . $category);
-                $imgSrc = $image !== '' ? media_url('writing', $image) : '';
+                $imgSrc = writing_article_image_url($image);
+                $useLogoMedia = $isMedium || ($isLogoSource && $image !== '' && !preg_match('#^https?://#i', $image));
             ?>
                 <article
                     class="catalog-item"
@@ -46,8 +52,8 @@ render_page_header('Writing', '', 'Articles');
                     data-search="<?= e($search) ?>"
                 >
                     <div
-                        class="catalog-item__media<?= $isMedium ? ' catalog-item__media--logo' : ($imgSrc !== '' ? ' catalog-item__media--zoomable' : '') ?>"
-                        <?= (!$isMedium && $imgSrc !== '') ? lightbox_data_attrs($imgSrc, $title, $link, '', 'Read') : '' ?>
+                        class="catalog-item__media<?= $useLogoMedia ? ' catalog-item__media--logo' : ($imgSrc !== '' ? ' catalog-item__media--zoomable' : '') ?>"
+                        <?= (!$useLogoMedia && $imgSrc !== '') ? lightbox_data_attrs($imgSrc, $title, $link, '', 'Read') : '' ?>
                     >
                         <?php if ($imgSrc !== ''): ?>
                             <img src="<?= e($imgSrc) ?>" alt="<?= e($isMedium ? 'Medium' : ($category !== '' ? $category : $title)) ?>" loading="lazy" />

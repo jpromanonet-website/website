@@ -107,12 +107,16 @@ function medium_username(): string
 }
 
 /**
- * CMS writing cards + Medium catalog, without the same URL twice.
+ * CMS writing cards + auto sources (Medium, HomeSpot, Soup IT), without duplicates.
  *
  * @return list<array<string,mixed>>
  */
 function writing_catalog_with_medium(): array
 {
+    if (function_exists('writing_purge_cms_auto_publishers_once')) {
+        writing_purge_cms_auto_publishers_once();
+    }
+
     $articles = [];
     $seen = [];
 
@@ -127,18 +131,29 @@ function writing_catalog_with_medium(): array
             'imageSrc' => (string) ($article['imageSrc'] ?? ''),
             'source' => 'static',
         ];
+        if (function_exists('writing_is_auto_publisher_article')
+            && writing_is_auto_publisher_article($row['category'], $row['url'])) {
+            continue;
+        }
         $key = writing_article_dedupe_key($row);
         $seen[$key] = true;
         $articles[] = $row;
     }
 
-    foreach (fetch_medium_posts() as $post) {
-        $key = writing_article_dedupe_key($post);
-        if (isset($seen[$key])) {
-            continue;
+    $autoGroups = [fetch_medium_posts()];
+    if (function_exists('fetch_auto_writing_posts')) {
+        $autoGroups[] = fetch_auto_writing_posts();
+    }
+
+    foreach ($autoGroups as $group) {
+        foreach ($group as $post) {
+            $key = writing_article_dedupe_key($post);
+            if (isset($seen[$key])) {
+                continue;
+            }
+            $seen[$key] = true;
+            $articles[] = $post;
         }
-        $seen[$key] = true;
-        $articles[] = $post;
     }
 
     return $articles;
