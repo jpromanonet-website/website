@@ -163,8 +163,15 @@ function writing_catalog_with_medium(): array
         static function (array $a, array $b): int {
             $ta = (int) ($a['timestamp'] ?? 0);
             $tb = (int) ($b['timestamp'] ?? 0);
-            if ($ta === $tb) {
+            // Undated CMS cards go last so the timeline stays clean.
+            if ($ta === 0 && $tb === 0) {
                 return strcasecmp((string) ($a['title'] ?? ''), (string) ($b['title'] ?? ''));
+            }
+            if ($ta === 0) {
+                return 1;
+            }
+            if ($tb === 0) {
+                return -1;
             }
             // Oldest → newest
             return $ta <=> $tb;
