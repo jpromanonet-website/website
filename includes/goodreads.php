@@ -288,7 +288,6 @@ function goodreads_http_get(string $url): ?string
         ]);
         $body = curl_exec($ch);
         $code = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
         if ($body === false || $code >= 400) {
             return null;
         }

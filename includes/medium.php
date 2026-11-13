@@ -706,7 +706,6 @@ function medium_http_get(string $url, array $headers = [], int $timeout = 25): ?
         ]);
         $body = curl_exec($ch);
         $code = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
         if ($body === false || $code >= 400) {
             return null;
         }
