@@ -73,10 +73,10 @@ $homeBlocks = \MicroCMS\Content::homeBlocks();
 $teachingLinks = [
     ['label' => 'Learning IA', 'url' => 'https://learningiaforfree.vercel.app/', 'group' => 'tech'],
     ['label' => 'Learning to Code', 'url' => 'https://learningtocodeforfree.vercel.app/', 'group' => 'tech'],
-    ['label' => 'Aprendiendo Guaraní', 'url' => 'https://guarani.jpromano.net', 'group' => 'language'],
-    ['label' => 'Aprendiendo Italiano', 'url' => 'https://aprendiendoitaliano.jpromano.net', 'group' => 'language'],
-    ['label' => 'Aprendiendo Mandarín', 'url' => 'https://aprendiendomandarin.jpromano.net', 'group' => 'language'],
-    ['label' => 'Aprendiendo Portugués', 'url' => 'https://aprendiendoportugues.jpromano.net', 'group' => 'language'],
+    ['label' => 'Guaraní', 'url' => 'https://guarani.jpromano.net', 'group' => 'language'],
+    ['label' => 'Italiano', 'url' => 'https://italiano.jpromano.net', 'group' => 'language'],
+    ['label' => 'Mandarín', 'url' => 'https://mandarin.jpromano.net', 'group' => 'language'],
+    ['label' => 'Portugués', 'url' => 'https://portugues.jpromano.net', 'group' => 'language'],
 ];
 $teachingGroupLabels = [
     'tech' => 'Tech',
