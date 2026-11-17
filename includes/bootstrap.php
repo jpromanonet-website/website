@@ -81,7 +81,7 @@ $teachingLinks = [
 ];
 $teachingGroupLabels = [
     'tech' => 'Tech',
-    'language' => 'Language',
+    'language' => 'Languages',
 ];
 $teachingNavChildren = [];
 $teachingLastGroup = null;
