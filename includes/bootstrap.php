@@ -74,6 +74,7 @@ $teachingLinks = [
     ['label' => 'Learning IA', 'url' => 'https://learningiaforfree.vercel.app/', 'group' => 'tech'],
     ['label' => 'Learning to Code', 'url' => 'https://learningtocodeforfree.vercel.app/', 'group' => 'tech'],
     ['label' => 'Guaraní', 'url' => 'https://guarani.jpromano.net', 'group' => 'language'],
+    ['label' => 'Inglés', 'url' => 'https://ingles.jpromano.net', 'group' => 'language'],
     ['label' => 'Italiano', 'url' => 'https://italiano.jpromano.net', 'group' => 'language'],
     ['label' => 'Mandarín', 'url' => 'https://mandarin.jpromano.net', 'group' => 'language'],
     ['label' => 'Portugués', 'url' => 'https://portugues.jpromano.net', 'group' => 'language'],
