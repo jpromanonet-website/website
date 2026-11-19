@@ -316,21 +316,38 @@ function normalize_signal_items(array $items): array
         if ($entries === []) {
             $value = trim((string) ($item['value'] ?? ''));
             if ($value !== '') {
-                $parts = preg_split('/\s*,\s*/u', $value) ?: [];
-                foreach ($parts as $part) {
-                    $part = trim((string) $part);
-                    if ($part === '' || preg_match('/^and more$/iu', $part)) {
-                        continue;
+                // Base stays a single line (city, country), never split.
+                if (strtolower($label) === 'base') {
+                    $entries[] = ['role' => '', 'name' => $value, 'url' => ''];
+                } else {
+                    $parts = preg_split('/\s*,\s*/u', $value) ?: [];
+                    foreach ($parts as $part) {
+                        $part = trim((string) $part);
+                        if ($part === '' || preg_match('/^and more$/iu', $part)) {
+                            continue;
+                        }
+                        $role = '';
+                        $name = $part;
+                        if (preg_match('/^(.+?)\s+at\s+(.+)$/iu', $part, $m)) {
+                            $role = trim($m[1]);
+                            $name = trim($m[2]);
+                        }
+                        $url = $urlByName[strtolower($name)] ?? '';
+                        $entries[] = ['role' => $role, 'name' => $name, 'url' => $url];
                     }
-                    $role = '';
-                    $name = $part;
-                    if (preg_match('/^(.+?)\s+at\s+(.+)$/iu', $part, $m)) {
-                        $role = trim($m[1]);
-                        $name = trim($m[2]);
-                    }
-                    $url = $urlByName[strtolower($name)] ?? '';
-                    $entries[] = ['role' => $role, 'name' => $name, 'url' => $url];
                 }
+            }
+        } elseif (strtolower($label) === 'base' && count($entries) > 1) {
+            // Repair accidental comma splits from older admin saves.
+            $joined = [];
+            foreach ($entries as $entry) {
+                $name = trim((string) ($entry['name'] ?? ''));
+                if ($name !== '') {
+                    $joined[] = $name;
+                }
+            }
+            if ($joined !== []) {
+                $entries = [['role' => '', 'name' => implode(', ', $joined), 'url' => '']];
             }
         }
 
