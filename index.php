@@ -176,16 +176,20 @@ require APP_ROOT . '/includes/header.php';
             </div>
 
             <?php if ($signalItems): ?>
-            <ul class="signal-list">
+            <div class="signal-list">
                 <?php foreach ($signalItems as $signal):
                     $signalLabel = (string) ($signal['label'] ?? '');
                     $entries = $signal['entries'] ?? [];
                     if ($entries === []) {
                         continue;
                     }
+                    $presentation = signal_group_presentation($signalLabel);
                 ?>
-                    <li>
-                        <span class="signal-list__label"><?= e($signalLabel) ?></span>
+                    <section class="signal-block">
+                        <h3 class="signal-block__title">
+                            <span class="signal-block__emoji" aria-hidden="true"><?= e($presentation['heading']) ?></span>
+                            <?= e($presentation['title']) ?>
+                        </h3>
                         <ul class="signal-list__entries">
                             <?php foreach ($entries as $entry):
                                 $role = trim((string) ($entry['role'] ?? ''));
@@ -199,7 +203,7 @@ require APP_ROOT . '/includes/header.php';
                                     : e($name);
                             ?>
                                 <li class="signal-entry">
-                                    <span class="signal-entry__icon"><?= signal_group_icon($signalLabel) ?></span>
+                                    <span class="signal-entry__icon" aria-hidden="true"><?= e($presentation['bullet']) ?></span>
                                     <span class="signal-entry__text">
                                         <?php if ($role !== ''): ?>
                                             <?= e($role) ?> at <?= $nameHtml ?>
@@ -210,9 +214,9 @@ require APP_ROOT . '/includes/header.php';
                                 </li>
                             <?php endforeach; ?>
                         </ul>
-                    </li>
+                    </section>
                 <?php endforeach; ?>
-            </ul>
+            </div>
             <?php endif; ?>
         </section>
 

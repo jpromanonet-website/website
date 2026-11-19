@@ -360,19 +360,39 @@ function normalize_signal_items(array $items): array
     return $out;
 }
 
-/** Inline SVG icon for a signal group label. */
-function signal_group_icon(string $label): string
+/**
+ * Presentation for a home signal group (GitHub README style).
+ *
+ * @return array{title:string,heading:string,bullet:string}
+ */
+function signal_group_presentation(string $label): array
 {
     $key = strtolower(trim($label));
     if ($key === 'now') {
-        return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 4h4l1 3h4v3h-2l-1.5 10h-7L7 10H5V7h4l1-3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 14h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+        return [
+            'title' => 'Currently working as',
+            'heading' => '📌',
+            'bullet' => '⚡',
+        ];
     }
     if ($key === 'building') {
-        return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20h16M7 20V9l5-4 5 4v11M10 20v-5h4v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        return [
+            'title' => 'Currently maintaining',
+            'heading' => '🌍',
+            'bullet' => '🛠️',
+        ];
     }
     if ($key === 'base') {
-        return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="11" r="2.2" stroke="currentColor" stroke-width="1.8"/></svg>';
+        return [
+            'title' => 'Based in',
+            'heading' => '📍',
+            'bullet' => '🏠',
+        ];
     }
 
-    return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="1.8"/></svg>';
+    return [
+        'title' => $label !== '' ? $label : 'Signal',
+        'heading' => '✨',
+        'bullet' => '•',
+    ];
 }
