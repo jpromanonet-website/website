@@ -284,7 +284,7 @@ function normalize_signal_items(array $items): array
     $urlByName = [
         'soup it' => 'https://soupit.ar',
         'homespot' => 'https://homespot.com.ar',
-        'hybrid bee technology' => 'https://hybridbee.tech',
+        'hybrid bee technology' => 'https://hybridbeetechnology.com/',
     ];
 
     $out = [];
