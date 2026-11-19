@@ -139,7 +139,7 @@ if ($aboutParagraphs === []) {
         'I’m Juan, a software engineer and Engineering Manager based in Buenos Aires.',
     ];
 }
-$signalItems = $signals['items'] ?? [];
+$signalItems = normalize_signal_items($signals['items'] ?? []);
 $skillsLead = (string) ($skills['lead'] ?? '');
 $skillGroups = $skills['groups'] ?? [];
 $contactLead = (string) ($contact['lead'] ?? 'Ideas, collaborations, or a good conversation about building things.');
@@ -177,10 +177,39 @@ require APP_ROOT . '/includes/header.php';
 
             <?php if ($signalItems): ?>
             <ul class="signal-list">
-                <?php foreach ($signalItems as $signal): ?>
+                <?php foreach ($signalItems as $signal):
+                    $signalLabel = (string) ($signal['label'] ?? '');
+                    $entries = $signal['entries'] ?? [];
+                    if ($entries === []) {
+                        continue;
+                    }
+                ?>
                     <li>
-                        <span class="signal-list__label"><?= e((string) ($signal['label'] ?? '')) ?></span>
-                        <span class="signal-list__value"><?= e((string) ($signal['value'] ?? '')) ?></span>
+                        <span class="signal-list__label"><?= e($signalLabel) ?></span>
+                        <ul class="signal-list__entries">
+                            <?php foreach ($entries as $entry):
+                                $role = trim((string) ($entry['role'] ?? ''));
+                                $name = trim((string) ($entry['name'] ?? ''));
+                                $entryUrl = trim((string) ($entry['url'] ?? ''));
+                                if ($name === '') {
+                                    continue;
+                                }
+                                $nameHtml = $entryUrl !== ''
+                                    ? '<a href="' . e($entryUrl) . '" target="_blank" rel="noopener noreferrer">' . e($name) . '</a>'
+                                    : e($name);
+                            ?>
+                                <li class="signal-entry">
+                                    <span class="signal-entry__icon"><?= signal_group_icon($signalLabel) ?></span>
+                                    <span class="signal-entry__text">
+                                        <?php if ($role !== ''): ?>
+                                            <?= e($role) ?> at <?= $nameHtml ?>
+                                        <?php else: ?>
+                                            <?= $nameHtml ?>
+                                        <?php endif; ?>
+                                    </span>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
                     </li>
                 <?php endforeach; ?>
             </ul>

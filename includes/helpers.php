@@ -271,3 +271,91 @@ function defer_after_response(callable $task, string $key): bool
 
     return true;
 }
+
+/**
+ * Normalize home signal groups into label + entry rows.
+ * Supports legacy {label,value} and new {label,entries:[{role,name,url}]}.
+ *
+ * @param list<array<string,mixed>> $items
+ * @return list<array{label:string,entries:list<array{role:string,name:string,url:string}>}>
+ */
+function normalize_signal_items(array $items): array
+{
+    $urlByName = [
+        'soup it' => 'https://soupit.ar',
+        'homespot' => 'https://homespot.com.ar',
+        'hybrid bee technology' => 'https://hybridbee.tech',
+    ];
+
+    $out = [];
+    foreach ($items as $item) {
+        if (!is_array($item)) {
+            continue;
+        }
+        $label = trim((string) ($item['label'] ?? ''));
+        $entries = [];
+
+        if (isset($item['entries']) && is_array($item['entries'])) {
+            foreach ($item['entries'] as $entry) {
+                if (!is_array($entry)) {
+                    continue;
+                }
+                $role = trim((string) ($entry['role'] ?? ''));
+                $name = trim((string) ($entry['name'] ?? ''));
+                $url = trim((string) ($entry['url'] ?? ''));
+                if ($name === '' && $role === '') {
+                    continue;
+                }
+                if ($url === '' && $name !== '') {
+                    $url = $urlByName[strtolower($name)] ?? '';
+                }
+                $entries[] = ['role' => $role, 'name' => $name !== '' ? $name : $role, 'url' => $url];
+            }
+        }
+
+        if ($entries === []) {
+            $value = trim((string) ($item['value'] ?? ''));
+            if ($value !== '') {
+                $parts = preg_split('/\s*,\s*/u', $value) ?: [];
+                foreach ($parts as $part) {
+                    $part = trim((string) $part);
+                    if ($part === '' || preg_match('/^and more$/iu', $part)) {
+                        continue;
+                    }
+                    $role = '';
+                    $name = $part;
+                    if (preg_match('/^(.+?)\s+at\s+(.+)$/iu', $part, $m)) {
+                        $role = trim($m[1]);
+                        $name = trim($m[2]);
+                    }
+                    $url = $urlByName[strtolower($name)] ?? '';
+                    $entries[] = ['role' => $role, 'name' => $name, 'url' => $url];
+                }
+            }
+        }
+
+        if ($label === '' && $entries === []) {
+            continue;
+        }
+        $out[] = ['label' => $label, 'entries' => $entries];
+    }
+
+    return $out;
+}
+
+/** Inline SVG icon for a signal group label. */
+function signal_group_icon(string $label): string
+{
+    $key = strtolower(trim($label));
+    if ($key === 'now') {
+        return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 4h4l1 3h4v3h-2l-1.5 10h-7L7 10H5V7h4l1-3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 14h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+    }
+    if ($key === 'building') {
+        return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20h16M7 20V9l5-4 5 4v11M10 20v-5h4v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    }
+    if ($key === 'base') {
+        return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="11" r="2.2" stroke="currentColor" stroke-width="1.8"/></svg>';
+    }
+
+    return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="1.8"/></svg>';
+}
