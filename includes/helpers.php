@@ -362,6 +362,7 @@ function normalize_signal_items(array $items): array
 
 /**
  * Presentation for a home signal group card.
+ * Bullet is trusted HTML (emoji entities).
  *
  * @return array{title:string,bullet:string}
  */
@@ -369,17 +370,17 @@ function signal_group_presentation(string $label): array
 {
     $key = strtolower(trim($label));
     if ($key === 'now') {
-        return ['title' => 'Now', 'bullet' => '⚡'];
+        return ['title' => 'Now', 'bullet' => '&#x26A1;'];
     }
     if ($key === 'building') {
-        return ['title' => 'Building', 'bullet' => '🛠️'];
+        return ['title' => 'Building', 'bullet' => '&#x1F6E0;&#xFE0F;'];
     }
     if ($key === 'base' || $key === 'based in') {
-        return ['title' => 'Based in', 'bullet' => '📍'];
+        return ['title' => 'Based in', 'bullet' => '&#x1F4CD;'];
     }
 
     return [
         'title' => $label !== '' ? $label : 'Signal',
-        'bullet' => '•',
+        'bullet' => '&bull;',
     ];
 }

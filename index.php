@@ -200,10 +200,10 @@ require APP_ROOT . '/includes/header.php';
                                     : e($name);
                             ?>
                                 <li class="signal-entry">
-                                    <span class="signal-entry__icon" aria-hidden="true"><?= e($presentation['bullet']) ?></span>
+                                    <span class="signal-entry__icon" aria-hidden="true"><?= $presentation['bullet'] ?></span>
                                     <span class="signal-entry__text">
                                         <?php if ($role !== ''): ?>
-                                            <?= e($role) ?> at <?= $nameHtml ?>
+                                            <strong><?= e($role) ?></strong> at <?= $nameHtml ?>
                                         <?php else: ?>
                                             <?= $nameHtml ?>
                                         <?php endif; ?>
