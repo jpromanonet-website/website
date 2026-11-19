@@ -361,38 +361,25 @@ function normalize_signal_items(array $items): array
 }
 
 /**
- * Presentation for a home signal group (GitHub README style).
+ * Presentation for a home signal group card.
  *
- * @return array{title:string,heading:string,bullet:string}
+ * @return array{title:string,bullet:string}
  */
 function signal_group_presentation(string $label): array
 {
     $key = strtolower(trim($label));
     if ($key === 'now') {
-        return [
-            'title' => 'Currently working as',
-            'heading' => '📌',
-            'bullet' => '⚡',
-        ];
+        return ['title' => 'Now', 'bullet' => '⚡'];
     }
     if ($key === 'building') {
-        return [
-            'title' => 'Currently maintaining',
-            'heading' => '🌍',
-            'bullet' => '🛠️',
-        ];
+        return ['title' => 'Building', 'bullet' => '🛠️'];
     }
-    if ($key === 'base') {
-        return [
-            'title' => 'Based in',
-            'heading' => '📍',
-            'bullet' => '🏠',
-        ];
+    if ($key === 'base' || $key === 'based in') {
+        return ['title' => 'Based in', 'bullet' => '📍'];
     }
 
     return [
         'title' => $label !== '' ? $label : 'Signal',
-        'heading' => '✨',
         'bullet' => '•',
     ];
 }

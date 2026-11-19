@@ -176,7 +176,7 @@ require APP_ROOT . '/includes/header.php';
             </div>
 
             <?php if ($signalItems): ?>
-            <div class="signal-list">
+            <ul class="signal-list">
                 <?php foreach ($signalItems as $signal):
                     $signalLabel = (string) ($signal['label'] ?? '');
                     $entries = $signal['entries'] ?? [];
@@ -185,11 +185,8 @@ require APP_ROOT . '/includes/header.php';
                     }
                     $presentation = signal_group_presentation($signalLabel);
                 ?>
-                    <section class="signal-block">
-                        <h3 class="signal-block__title">
-                            <span class="signal-block__emoji" aria-hidden="true"><?= e($presentation['heading']) ?></span>
-                            <?= e($presentation['title']) ?>
-                        </h3>
+                    <li class="signal-card">
+                        <span class="signal-list__label"><?= e($presentation['title']) ?></span>
                         <ul class="signal-list__entries">
                             <?php foreach ($entries as $entry):
                                 $role = trim((string) ($entry['role'] ?? ''));
@@ -214,9 +211,9 @@ require APP_ROOT . '/includes/header.php';
                                 </li>
                             <?php endforeach; ?>
                         </ul>
-                    </section>
+                    </li>
                 <?php endforeach; ?>
-            </div>
+            </ul>
             <?php endif; ?>
         </section>
 
