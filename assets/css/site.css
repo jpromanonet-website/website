@@ -868,16 +868,16 @@ body.nav-open .nav-item--dropdown .nav-menu {
   margin: 1.5rem 0 0;
   padding: 0;
   display: grid;
-  gap: 0.75rem;
+  gap: 1.15rem;
 }
 
 .signal-list > li {
   display: grid;
-  gap: 0.55rem;
-  padding: 0.9rem 1rem;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  gap: 0.4rem;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
 }
 
 .signal-list__label {
@@ -893,40 +893,46 @@ body.nav-open .nav-item--dropdown .nav-menu {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 0.45rem;
+  gap: 0.35rem;
 }
 
 .signal-entry {
   display: grid;
-  grid-template-columns: 1.15rem 1fr;
+  grid-template-columns: 1rem 1fr;
   gap: 0.55rem;
   align-items: start;
   color: var(--text);
   font-weight: 500;
-  line-height: 1.35;
+  line-height: 1.4;
+  padding: 0;
+  background: none;
+  border: 0;
 }
 
 .signal-entry__icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-top: 0.12rem;
-  color: var(--accent);
+  margin-top: 0.18rem;
+  color: var(--muted);
 }
 
 .signal-entry__icon svg {
   display: block;
+  width: 14px;
+  height: 14px;
 }
 
 .signal-entry__text a {
   color: inherit;
   text-decoration: underline;
-  text-decoration-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  text-decoration-color: color-mix(in srgb, var(--text) 28%, transparent);
   text-underline-offset: 0.14em;
 }
 
 .signal-entry__text a:hover {
   color: var(--accent);
+  text-decoration-color: color-mix(in srgb, var(--accent) 55%, transparent);
 }
 
 .stat-grid {
